@@ -12,8 +12,6 @@
 #import "GEEventManager.h"
 #import "NSDate+TimeAgo.h"
 
-//Layout Optimisation
-
 @implementation GEEventVC
 
 - (void)viewDidLoad

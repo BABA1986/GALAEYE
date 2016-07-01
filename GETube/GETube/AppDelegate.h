@@ -17,9 +17,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-//Layout Optimisation
-//Layout Optimisation123
-//Move IN Master
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, GEMenuVCDelegate>
 {

@@ -10,7 +10,6 @@
 #import "GEEventHeader.h"
 #import "DGActivityIndicatorView.h"
 
-//Layout Optimisation
 
 @interface GEEventVC : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GEEventHeaderDelegate>
 {
