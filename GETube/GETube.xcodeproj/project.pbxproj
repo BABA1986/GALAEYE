@@ -1,0 +1,1016 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1691D15678700DDD39F /* MMNavigationController.m */; };
+		001BD16D1D1567BA00DDD39F /* GEMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD16C1D1567BA00DDD39F /* GEMenuVC.m */; };
+		001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD16F1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m */; };
+		001BD1731D16466600DDD39F /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1721D16466600DDD39F /* CAPSPageMenu.m */; };
+		001BD1761D164A5700DDD39F /* GEPageRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1751D164A5700DDD39F /* GEPageRootVC.m */; };
+		001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */ = {isa = PBXBuildFile; fileRef = 001BD17A1D164D4500DDD39F /* GalaMenuMetaData.json */; };
+		001BD17E1D166FC700DDD39F /* GESharedMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD17D1D166FC700DDD39F /* GESharedMenu.m */; };
+		001BD1811D16793D00DDD39F /* MenuListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1801D16793D00DDD39F /* MenuListCell.m */; };
+		001BD1851D16E03C00DDD39F /* GEEventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1841D16E03C00DDD39F /* GEEventVC.m */; };
+		001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1871D16FA5900DDD39F /* GEEventHeader.m */; };
+		001BD18B1D16FA7800DDD39F /* GEEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD18A1D16FA7800DDD39F /* GEEventCell.m */; };
+		0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */; };
+		00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9A1D170820003AF084 /* GEServiceManager.m */; };
+		00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9E1D17962B003AF084 /* GEEventManager.m */; };
+		00706FA31D179D70003AF084 /* GESharedPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FA21D179D70003AF084 /* GESharedPlaylist.m */; };
+		00706FF01D19B8B1003AF084 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FD01D19B8B1003AF084 /* MKAnnotationView+WebCache.m */; };
+		00706FF11D19B8B1003AF084 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FD21D19B8B1003AF084 /* NSData+ImageContentType.m */; };
+		00706FF21D19B8B1003AF084 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FD41D19B8B1003AF084 /* SDImageCache.m */; };
+		00706FF31D19B8B1003AF084 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FD61D19B8B1003AF084 /* SDWebImageCompat.m */; };
+		00706FF41D19B8B1003AF084 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FD81D19B8B1003AF084 /* SDWebImageDecoder.m */; };
+		00706FF51D19B8B1003AF084 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FDA1D19B8B1003AF084 /* SDWebImageDownloader.m */; };
+		00706FF61D19B8B1003AF084 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FDC1D19B8B1003AF084 /* SDWebImageDownloaderOperation.m */; };
+		00706FF71D19B8B1003AF084 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FDE1D19B8B1003AF084 /* SDWebImageManager.m */; };
+		00706FF81D19B8B1003AF084 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FE11D19B8B1003AF084 /* SDWebImagePrefetcher.m */; };
+		00706FF91D19B8B1003AF084 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FE31D19B8B1003AF084 /* UIButton+WebCache.m */; };
+		00706FFA1D19B8B1003AF084 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FE51D19B8B1003AF084 /* UIImage+GIF.m */; };
+		00706FFB1D19B8B1003AF084 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FE71D19B8B1003AF084 /* UIImage+MultiFormat.m */; };
+		00706FFC1D19B8B1003AF084 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FE91D19B8B1003AF084 /* UIImage+WebP.m */; };
+		00706FFD1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FEB1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m */; };
+		00706FFE1D19B8B1003AF084 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */; };
+		00706FFF1D19B8B1003AF084 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */; };
+		00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */; };
+		00B2D07A1D1CD0F3007F8A9C /* GEPlaylistFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D0791D1CD0F3007F8A9C /* GEPlaylistFooter.m */; };
+		00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B2D07B1D1CD378007F8A9C /* playlistIcon.png */; };
+		00B2D07F1D1CDA5F007F8A9C /* GEPlaylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */; };
+		00BE6BBC1D1540A50019D907 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BBB1D1540A50019D907 /* main.m */; };
+		00BE6BBF1D1540A50019D907 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BBE1D1540A50019D907 /* AppDelegate.m */; };
+		00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BC31D1540A50019D907 /* Main.storyboard */; };
+		00BE6BC81D1540A50019D907 /* GETube.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BC61D1540A50019D907 /* GETube.xcdatamodeld */; };
+		00BE6BCA1D1540A50019D907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BC91D1540A50019D907 /* Assets.xcassets */; };
+		00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */; };
+		00BE6BD81D1540A50019D907 /* GETubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BD71D1540A50019D907 /* GETubeTests.m */; };
+		00BE6BE31D1540A50019D907 /* GETubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BE21D1540A50019D907 /* GETubeUITests.m */; };
+		7816A3460E664526E10853A7 /* libPods-GETubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE7861B3DF6A6B8B981041 /* libPods-GETubeTests.a */; };
+		9A14700DFB305F88F1931ECE /* libPods-GETubeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343CFD89483153C29D72872F /* libPods-GETubeUITests.a */; };
+		D45B828CC805462814942A6E /* libPods-GETube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B69523F67549DDD39AA98B2 /* libPods-GETube.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00BE6BD41D1540A50019D907 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00BE6BAF1D1540A50019D907 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00BE6BB61D1540A50019D907;
+			remoteInfo = GETube;
+		};
+		00BE6BDF1D1540A50019D907 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00BE6BAF1D1540A50019D907 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00BE6BB61D1540A50019D907;
+			remoteInfo = GETube;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		001BD1681D15678700DDD39F /* MMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNavigationController.h; sourceTree = "<group>"; };
+		001BD1691D15678700DDD39F /* MMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNavigationController.m; sourceTree = "<group>"; };
+		001BD16B1D1567BA00DDD39F /* GEMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEMenuVC.h; sourceTree = "<group>"; };
+		001BD16C1D1567BA00DDD39F /* GEMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEMenuVC.m; sourceTree = "<group>"; };
+		001BD16E1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMExampleDrawerVisualStateManager.h; sourceTree = "<group>"; };
+		001BD16F1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMExampleDrawerVisualStateManager.m; sourceTree = "<group>"; };
+		001BD1711D16466600DDD39F /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
+		001BD1721D16466600DDD39F /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
+		001BD1741D164A5700DDD39F /* GEPageRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPageRootVC.h; sourceTree = "<group>"; };
+		001BD1751D164A5700DDD39F /* GEPageRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPageRootVC.m; sourceTree = "<group>"; };
+		001BD17A1D164D4500DDD39F /* GalaMenuMetaData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GalaMenuMetaData.json; sourceTree = "<group>"; };
+		001BD17C1D166FC700DDD39F /* GESharedMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESharedMenu.h; sourceTree = "<group>"; };
+		001BD17D1D166FC700DDD39F /* GESharedMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESharedMenu.m; sourceTree = "<group>"; };
+		001BD17F1D16793D00DDD39F /* MenuListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListCell.h; sourceTree = "<group>"; };
+		001BD1801D16793D00DDD39F /* MenuListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListCell.m; sourceTree = "<group>"; };
+		001BD1821D16876F00DDD39F /* GEConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEConstants.h; sourceTree = "<group>"; };
+		001BD1831D16E03C00DDD39F /* GEEventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventVC.h; sourceTree = "<group>"; };
+		001BD1841D16E03C00DDD39F /* GEEventVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventVC.m; sourceTree = "<group>"; };
+		001BD1861D16FA5900DDD39F /* GEEventHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventHeader.h; sourceTree = "<group>"; };
+		001BD1871D16FA5900DDD39F /* GEEventHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventHeader.m; sourceTree = "<group>"; };
+		001BD1891D16FA7800DDD39F /* GEEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventCell.h; sourceTree = "<group>"; };
+		001BD18A1D16FA7800DDD39F /* GEEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventCell.m; sourceTree = "<group>"; };
+		0042E9B61D2613EF0094DA42 /* GEPlaylistVideoListCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVideoListCtr.h; sourceTree = "<group>"; };
+		0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVideoListCtr.m; sourceTree = "<group>"; };
+		0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GENavigatorProtocol.h; sourceTree = "<group>"; };
+		00706F991D170820003AF084 /* GEServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEServiceManager.h; sourceTree = "<group>"; };
+		00706F9A1D170820003AF084 /* GEServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEServiceManager.m; sourceTree = "<group>"; };
+		00706F9D1D17962B003AF084 /* GEEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventManager.h; sourceTree = "<group>"; };
+		00706F9E1D17962B003AF084 /* GEEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventManager.m; sourceTree = "<group>"; };
+		00706FA11D179D70003AF084 /* GESharedPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESharedPlaylist.h; sourceTree = "<group>"; };
+		00706FA21D179D70003AF084 /* GESharedPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESharedPlaylist.m; sourceTree = "<group>"; };
+		00706FCF1D19B8B1003AF084 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
+		00706FD01D19B8B1003AF084 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
+		00706FD11D19B8B1003AF084 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		00706FD21D19B8B1003AF084 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		00706FD31D19B8B1003AF084 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		00706FD41D19B8B1003AF084 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		00706FD51D19B8B1003AF084 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		00706FD61D19B8B1003AF084 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		00706FD71D19B8B1003AF084 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		00706FD81D19B8B1003AF084 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		00706FD91D19B8B1003AF084 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		00706FDA1D19B8B1003AF084 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
+		00706FDB1D19B8B1003AF084 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		00706FDC1D19B8B1003AF084 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		00706FDD1D19B8B1003AF084 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		00706FDE1D19B8B1003AF084 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
+		00706FDF1D19B8B1003AF084 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		00706FE01D19B8B1003AF084 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		00706FE11D19B8B1003AF084 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		00706FE21D19B8B1003AF084 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		00706FE31D19B8B1003AF084 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		00706FE41D19B8B1003AF084 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		00706FE51D19B8B1003AF084 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		00706FE61D19B8B1003AF084 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		00706FE71D19B8B1003AF084 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		00706FE81D19B8B1003AF084 /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
+		00706FE91D19B8B1003AF084 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
+		00706FEA1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		00706FEB1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
+		00706FEC1D19B8B1003AF084 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		00706FEE1D19B8B1003AF084 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		00B2D0751D1C4C41007F8A9C /* GEPlaylistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVC.h; sourceTree = "<group>"; };
+		00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVC.m; sourceTree = "<group>"; };
+		00B2D0781D1CD0F3007F8A9C /* GEPlaylistFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistFooter.h; sourceTree = "<group>"; };
+		00B2D0791D1CD0F3007F8A9C /* GEPlaylistFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistFooter.m; sourceTree = "<group>"; };
+		00B2D07B1D1CD378007F8A9C /* playlistIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlistIcon.png; sourceTree = "<group>"; };
+		00B2D07D1D1CDA5F007F8A9C /* GEPlaylistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistCell.h; sourceTree = "<group>"; };
+		00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistCell.m; sourceTree = "<group>"; };
+		00BE6BB71D1540A50019D907 /* GETube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GETube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00BE6BBB1D1540A50019D907 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00BE6BBD1D1540A50019D907 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		00BE6BBE1D1540A50019D907 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		00BE6BC41D1540A50019D907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		00BE6BC71D1540A50019D907 /* GETube.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GETube.xcdatamodel; sourceTree = "<group>"; };
+		00BE6BC91D1540A50019D907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00BE6BCC1D1540A50019D907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		00BE6BCE1D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00BE6BD31D1540A50019D907 /* GETubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00BE6BD71D1540A50019D907 /* GETubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GETubeTests.m; sourceTree = "<group>"; };
+		00BE6BD91D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00BE6BDE1D1540A50019D907 /* GETubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00BE6BE21D1540A50019D907 /* GETubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GETubeUITests.m; sourceTree = "<group>"; };
+		00BE6BE41D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		184FB69CD61EDE80E14B5E51 /* Pods-GETubeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeUITests/Pods-GETubeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1B69523F67549DDD39AA98B2 /* libPods-GETube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		343CFD89483153C29D72872F /* libPods-GETubeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETubeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3636D0B901C7767BAF0DDFD0 /* Pods-GETube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETube.release.xcconfig"; path = "Pods/Target Support Files/Pods-GETube/Pods-GETube.release.xcconfig"; sourceTree = "<group>"; };
+		4CFE7861B3DF6A6B8B981041 /* libPods-GETubeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETubeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B94C5C998675A79A0384B85 /* Pods-GETubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeTests/Pods-GETubeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DA53BFD12BDE7F152646253 /* Pods-GETubeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeUITests/Pods-GETubeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		70787FF6A654C2BED5D90F80 /* Pods-GETubeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeTests/Pods-GETubeTests.release.xcconfig"; sourceTree = "<group>"; };
+		B965180A4A98C511FC2DE882 /* Pods-GETube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GETube/Pods-GETube.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00BE6BB41D1540A50019D907 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45B828CC805462814942A6E /* libPods-GETube.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00BE6BD01D1540A50019D907 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7816A3460E664526E10853A7 /* libPods-GETubeTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00BE6BDB1D1540A50019D907 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A14700DFB305F88F1931ECE /* libPods-GETubeUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		001BD15D1D1555E900DDD39F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				001BD15E1D1555E900DDD39F /* Controllers */,
+				001BD15F1D1555E900DDD39F /* Modals */,
+				001BD1601D1555E900DDD39F /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		001BD15E1D1555E900DDD39F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				001BD1681D15678700DDD39F /* MMNavigationController.h */,
+				001BD1691D15678700DDD39F /* MMNavigationController.m */,
+				001BD16E1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.h */,
+				001BD16F1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m */,
+				001BD16B1D1567BA00DDD39F /* GEMenuVC.h */,
+				001BD16C1D1567BA00DDD39F /* GEMenuVC.m */,
+				001BD1741D164A5700DDD39F /* GEPageRootVC.h */,
+				001BD1751D164A5700DDD39F /* GEPageRootVC.m */,
+				001BD1831D16E03C00DDD39F /* GEEventVC.h */,
+				001BD1841D16E03C00DDD39F /* GEEventVC.m */,
+				00B2D0751D1C4C41007F8A9C /* GEPlaylistVC.h */,
+				00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */,
+				0042E9B61D2613EF0094DA42 /* GEPlaylistVideoListCtr.h */,
+				0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */,
+				0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		001BD15F1D1555E900DDD39F /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				00706FA01D179D4F003AF084 /* Playlists */,
+				00706F9C1D1795F8003AF084 /* Events */,
+				001BD1821D16876F00DDD39F /* GEConstants.h */,
+				001BD17C1D166FC700DDD39F /* GESharedMenu.h */,
+				001BD17D1D166FC700DDD39F /* GESharedMenu.m */,
+				00706F991D170820003AF084 /* GEServiceManager.h */,
+				00706F9A1D170820003AF084 /* GEServiceManager.m */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		001BD1601D1555E900DDD39F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				001BD1711D16466600DDD39F /* CAPSPageMenu.h */,
+				001BD1721D16466600DDD39F /* CAPSPageMenu.m */,
+				001BD17F1D16793D00DDD39F /* MenuListCell.h */,
+				001BD1801D16793D00DDD39F /* MenuListCell.m */,
+				001BD1611D1555E900DDD39F /* CollectionWidgets */,
+				001BD1621D1555E900DDD39F /* Drawer */,
+				001BD1631D1555E900DDD39F /* SDImages */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		001BD1611D1555E900DDD39F /* CollectionWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				001BD1861D16FA5900DDD39F /* GEEventHeader.h */,
+				001BD1871D16FA5900DDD39F /* GEEventHeader.m */,
+				001BD1891D16FA7800DDD39F /* GEEventCell.h */,
+				001BD18A1D16FA7800DDD39F /* GEEventCell.m */,
+				00B2D0781D1CD0F3007F8A9C /* GEPlaylistFooter.h */,
+				00B2D0791D1CD0F3007F8A9C /* GEPlaylistFooter.m */,
+				00B2D07D1D1CDA5F007F8A9C /* GEPlaylistCell.h */,
+				00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */,
+			);
+			path = CollectionWidgets;
+			sourceTree = "<group>";
+		};
+		001BD1621D1555E900DDD39F /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Drawer;
+			sourceTree = "<group>";
+		};
+		001BD1631D1555E900DDD39F /* SDImages */ = {
+			isa = PBXGroup;
+			children = (
+				00706FCF1D19B8B1003AF084 /* MKAnnotationView+WebCache.h */,
+				00706FD01D19B8B1003AF084 /* MKAnnotationView+WebCache.m */,
+				00706FD11D19B8B1003AF084 /* NSData+ImageContentType.h */,
+				00706FD21D19B8B1003AF084 /* NSData+ImageContentType.m */,
+				00706FD31D19B8B1003AF084 /* SDImageCache.h */,
+				00706FD41D19B8B1003AF084 /* SDImageCache.m */,
+				00706FD51D19B8B1003AF084 /* SDWebImageCompat.h */,
+				00706FD61D19B8B1003AF084 /* SDWebImageCompat.m */,
+				00706FD71D19B8B1003AF084 /* SDWebImageDecoder.h */,
+				00706FD81D19B8B1003AF084 /* SDWebImageDecoder.m */,
+				00706FD91D19B8B1003AF084 /* SDWebImageDownloader.h */,
+				00706FDA1D19B8B1003AF084 /* SDWebImageDownloader.m */,
+				00706FDB1D19B8B1003AF084 /* SDWebImageDownloaderOperation.h */,
+				00706FDC1D19B8B1003AF084 /* SDWebImageDownloaderOperation.m */,
+				00706FDD1D19B8B1003AF084 /* SDWebImageManager.h */,
+				00706FDE1D19B8B1003AF084 /* SDWebImageManager.m */,
+				00706FDF1D19B8B1003AF084 /* SDWebImageOperation.h */,
+				00706FE01D19B8B1003AF084 /* SDWebImagePrefetcher.h */,
+				00706FE11D19B8B1003AF084 /* SDWebImagePrefetcher.m */,
+				00706FE21D19B8B1003AF084 /* UIButton+WebCache.h */,
+				00706FE31D19B8B1003AF084 /* UIButton+WebCache.m */,
+				00706FE41D19B8B1003AF084 /* UIImage+GIF.h */,
+				00706FE51D19B8B1003AF084 /* UIImage+GIF.m */,
+				00706FE61D19B8B1003AF084 /* UIImage+MultiFormat.h */,
+				00706FE71D19B8B1003AF084 /* UIImage+MultiFormat.m */,
+				00706FE81D19B8B1003AF084 /* UIImage+WebP.h */,
+				00706FE91D19B8B1003AF084 /* UIImage+WebP.m */,
+				00706FEA1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.h */,
+				00706FEB1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m */,
+				00706FEC1D19B8B1003AF084 /* UIImageView+WebCache.h */,
+				00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */,
+				00706FEE1D19B8B1003AF084 /* UIView+WebCacheOperation.h */,
+				00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */,
+			);
+			path = SDImages;
+			sourceTree = "<group>";
+		};
+		001BD1641D1555F700DDD39F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00B2D07B1D1CD378007F8A9C /* playlistIcon.png */,
+				001BD1771D164CCB00DDD39F /* MetaData */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		001BD1771D164CCB00DDD39F /* MetaData */ = {
+			isa = PBXGroup;
+			children = (
+				001BD17A1D164D4500DDD39F /* GalaMenuMetaData.json */,
+			);
+			path = MetaData;
+			sourceTree = "<group>";
+		};
+		00706F9C1D1795F8003AF084 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				00706F9D1D17962B003AF084 /* GEEventManager.h */,
+				00706F9E1D17962B003AF084 /* GEEventManager.m */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		00706FA01D179D4F003AF084 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				00706FA11D179D70003AF084 /* GESharedPlaylist.h */,
+				00706FA21D179D70003AF084 /* GESharedPlaylist.m */,
+			);
+			path = Playlists;
+			sourceTree = "<group>";
+		};
+		00BE6BAE1D1540A50019D907 = {
+			isa = PBXGroup;
+			children = (
+				00BE6BB91D1540A50019D907 /* GETube */,
+				00BE6BD61D1540A50019D907 /* GETubeTests */,
+				00BE6BE11D1540A50019D907 /* GETubeUITests */,
+				00BE6BB81D1540A50019D907 /* Products */,
+				12EEAB186007BB9E08F2316D /* Pods */,
+				8AAD3EAB25D22B05EAC352B6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00BE6BB81D1540A50019D907 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00BE6BB71D1540A50019D907 /* GETube.app */,
+				00BE6BD31D1540A50019D907 /* GETubeTests.xctest */,
+				00BE6BDE1D1540A50019D907 /* GETubeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00BE6BB91D1540A50019D907 /* GETube */ = {
+			isa = PBXGroup;
+			children = (
+				001BD1641D1555F700DDD39F /* Resources */,
+				001BD15D1D1555E900DDD39F /* Classes */,
+				00BE6BBD1D1540A50019D907 /* AppDelegate.h */,
+				00BE6BBE1D1540A50019D907 /* AppDelegate.m */,
+				00BE6BC31D1540A50019D907 /* Main.storyboard */,
+				00BE6BC91D1540A50019D907 /* Assets.xcassets */,
+				00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */,
+				00BE6BCE1D1540A50019D907 /* Info.plist */,
+				00BE6BC61D1540A50019D907 /* GETube.xcdatamodeld */,
+				00BE6BBA1D1540A50019D907 /* Supporting Files */,
+			);
+			path = GETube;
+			sourceTree = "<group>";
+		};
+		00BE6BBA1D1540A50019D907 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00BE6BBB1D1540A50019D907 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00BE6BD61D1540A50019D907 /* GETubeTests */ = {
+			isa = PBXGroup;
+			children = (
+				00BE6BD71D1540A50019D907 /* GETubeTests.m */,
+				00BE6BD91D1540A50019D907 /* Info.plist */,
+			);
+			path = GETubeTests;
+			sourceTree = "<group>";
+		};
+		00BE6BE11D1540A50019D907 /* GETubeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				00BE6BE21D1540A50019D907 /* GETubeUITests.m */,
+				00BE6BE41D1540A50019D907 /* Info.plist */,
+			);
+			path = GETubeUITests;
+			sourceTree = "<group>";
+		};
+		12EEAB186007BB9E08F2316D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B965180A4A98C511FC2DE882 /* Pods-GETube.debug.xcconfig */,
+				3636D0B901C7767BAF0DDFD0 /* Pods-GETube.release.xcconfig */,
+				6B94C5C998675A79A0384B85 /* Pods-GETubeTests.debug.xcconfig */,
+				70787FF6A654C2BED5D90F80 /* Pods-GETubeTests.release.xcconfig */,
+				6DA53BFD12BDE7F152646253 /* Pods-GETubeUITests.debug.xcconfig */,
+				184FB69CD61EDE80E14B5E51 /* Pods-GETubeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8AAD3EAB25D22B05EAC352B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B69523F67549DDD39AA98B2 /* libPods-GETube.a */,
+				4CFE7861B3DF6A6B8B981041 /* libPods-GETubeTests.a */,
+				343CFD89483153C29D72872F /* libPods-GETubeUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00BE6BB61D1540A50019D907 /* GETube */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00BE6BE71D1540A50019D907 /* Build configuration list for PBXNativeTarget "GETube" */;
+			buildPhases = (
+				8121058383E43C08BF7433EB /* 📦 Check Pods Manifest.lock */,
+				00BE6BB31D1540A50019D907 /* Sources */,
+				00BE6BB41D1540A50019D907 /* Frameworks */,
+				00BE6BB51D1540A50019D907 /* Resources */,
+				01A4B78ACFDACFC77BD7EF3F /* 📦 Embed Pods Frameworks */,
+				EBF9E98D17A6C73DC5E0E7E2 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GETube;
+			productName = GETube;
+			productReference = 00BE6BB71D1540A50019D907 /* GETube.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00BE6BD21D1540A50019D907 /* GETubeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00BE6BEA1D1540A50019D907 /* Build configuration list for PBXNativeTarget "GETubeTests" */;
+			buildPhases = (
+				367D1B591A5441E41F7F8A70 /* 📦 Check Pods Manifest.lock */,
+				00BE6BCF1D1540A50019D907 /* Sources */,
+				00BE6BD01D1540A50019D907 /* Frameworks */,
+				00BE6BD11D1540A50019D907 /* Resources */,
+				B2693D72906AA8D26D90CB1B /* 📦 Embed Pods Frameworks */,
+				A09523FD7A421620754F7C2C /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00BE6BD51D1540A50019D907 /* PBXTargetDependency */,
+			);
+			name = GETubeTests;
+			productName = GETubeTests;
+			productReference = 00BE6BD31D1540A50019D907 /* GETubeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00BE6BDD1D1540A50019D907 /* GETubeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00BE6BED1D1540A50019D907 /* Build configuration list for PBXNativeTarget "GETubeUITests" */;
+			buildPhases = (
+				A93602A05D6D0EA8F3FCD82E /* 📦 Check Pods Manifest.lock */,
+				00BE6BDA1D1540A50019D907 /* Sources */,
+				00BE6BDB1D1540A50019D907 /* Frameworks */,
+				00BE6BDC1D1540A50019D907 /* Resources */,
+				26BFFDC15937447043F2AF6E /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00BE6BE01D1540A50019D907 /* PBXTargetDependency */,
+			);
+			name = GETubeUITests;
+			productName = GETubeUITests;
+			productReference = 00BE6BDE1D1540A50019D907 /* GETubeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00BE6BAF1D1540A50019D907 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Deepak;
+				TargetAttributes = {
+					00BE6BB61D1540A50019D907 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					00BE6BD21D1540A50019D907 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 00BE6BB61D1540A50019D907;
+					};
+					00BE6BDD1D1540A50019D907 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 00BE6BB61D1540A50019D907;
+					};
+				};
+			};
+			buildConfigurationList = 00BE6BB21D1540A50019D907 /* Build configuration list for PBXProject "GETube" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00BE6BAE1D1540A50019D907;
+			productRefGroup = 00BE6BB81D1540A50019D907 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00BE6BB61D1540A50019D907 /* GETube */,
+				00BE6BD21D1540A50019D907 /* GETubeTests */,
+				00BE6BDD1D1540A50019D907 /* GETubeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00BE6BB51D1540A50019D907 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */,
+				00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */,
+				00BE6BCA1D1540A50019D907 /* Assets.xcassets in Resources */,
+				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
+				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00BE6BD11D1540A50019D907 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00BE6BDC1D1540A50019D907 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01A4B78ACFDACFC77BD7EF3F /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GETube/Pods-GETube-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26BFFDC15937447043F2AF6E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GETubeUITests/Pods-GETubeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		367D1B591A5441E41F7F8A70 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8121058383E43C08BF7433EB /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A09523FD7A421620754F7C2C /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GETubeTests/Pods-GETubeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A93602A05D6D0EA8F3FCD82E /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B2693D72906AA8D26D90CB1B /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GETubeTests/Pods-GETubeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBF9E98D17A6C73DC5E0E7E2 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GETube/Pods-GETube-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00BE6BB31D1540A50019D907 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00706FFA1D19B8B1003AF084 /* UIImage+GIF.m in Sources */,
+				00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */,
+				001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */,
+				00706FA31D179D70003AF084 /* GESharedPlaylist.m in Sources */,
+				00BE6BBF1D1540A50019D907 /* AppDelegate.m in Sources */,
+				00706FFC1D19B8B1003AF084 /* UIImage+WebP.m in Sources */,
+				00706FF11D19B8B1003AF084 /* NSData+ImageContentType.m in Sources */,
+				00B2D07F1D1CDA5F007F8A9C /* GEPlaylistCell.m in Sources */,
+				001BD1851D16E03C00DDD39F /* GEEventVC.m in Sources */,
+				0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */,
+				00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */,
+				001BD1731D16466600DDD39F /* CAPSPageMenu.m in Sources */,
+				00706FF41D19B8B1003AF084 /* SDWebImageDecoder.m in Sources */,
+				001BD1761D164A5700DDD39F /* GEPageRootVC.m in Sources */,
+				00706FF91D19B8B1003AF084 /* UIButton+WebCache.m in Sources */,
+				00706FF71D19B8B1003AF084 /* SDWebImageManager.m in Sources */,
+				00B2D07A1D1CD0F3007F8A9C /* GEPlaylistFooter.m in Sources */,
+				001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */,
+				00706FFE1D19B8B1003AF084 /* UIImageView+WebCache.m in Sources */,
+				001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */,
+				00BE6BBC1D1540A50019D907 /* main.m in Sources */,
+				001BD1811D16793D00DDD39F /* MenuListCell.m in Sources */,
+				00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */,
+				00706FFD1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m in Sources */,
+				00706FF51D19B8B1003AF084 /* SDWebImageDownloader.m in Sources */,
+				00706FF81D19B8B1003AF084 /* SDWebImagePrefetcher.m in Sources */,
+				00BE6BC81D1540A50019D907 /* GETube.xcdatamodeld in Sources */,
+				00706FF21D19B8B1003AF084 /* SDImageCache.m in Sources */,
+				00706FF61D19B8B1003AF084 /* SDWebImageDownloaderOperation.m in Sources */,
+				001BD16D1D1567BA00DDD39F /* GEMenuVC.m in Sources */,
+				00706FF01D19B8B1003AF084 /* MKAnnotationView+WebCache.m in Sources */,
+				00706FFB1D19B8B1003AF084 /* UIImage+MultiFormat.m in Sources */,
+				00706FFF1D19B8B1003AF084 /* UIView+WebCacheOperation.m in Sources */,
+				00706FF31D19B8B1003AF084 /* SDWebImageCompat.m in Sources */,
+				001BD17E1D166FC700DDD39F /* GESharedMenu.m in Sources */,
+				001BD18B1D16FA7800DDD39F /* GEEventCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00BE6BCF1D1540A50019D907 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00BE6BD81D1540A50019D907 /* GETubeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00BE6BDA1D1540A50019D907 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00BE6BE31D1540A50019D907 /* GETubeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00BE6BD51D1540A50019D907 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00BE6BB61D1540A50019D907 /* GETube */;
+			targetProxy = 00BE6BD41D1540A50019D907 /* PBXContainerItemProxy */;
+		};
+		00BE6BE01D1540A50019D907 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00BE6BB61D1540A50019D907 /* GETube */;
+			targetProxy = 00BE6BDF1D1540A50019D907 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		00BE6BC31D1540A50019D907 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00BE6BC41D1540A50019D907 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00BE6BCC1D1540A50019D907 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00BE6BE51D1540A50019D907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00BE6BE61D1540A50019D907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00BE6BE81D1540A50019D907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B965180A4A98C511FC2DE882 /* Pods-GETube.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GETube/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		00BE6BE91D1540A50019D907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3636D0B901C7767BAF0DDFD0 /* Pods-GETube.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GETube/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		00BE6BEB1D1540A50019D907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B94C5C998675A79A0384B85 /* Pods-GETubeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GETubeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Cresearance.GETubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GETube.app/GETube";
+			};
+			name = Debug;
+		};
+		00BE6BEC1D1540A50019D907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70787FF6A654C2BED5D90F80 /* Pods-GETubeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GETubeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Cresearance.GETubeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GETube.app/GETube";
+			};
+			name = Release;
+		};
+		00BE6BEE1D1540A50019D907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DA53BFD12BDE7F152646253 /* Pods-GETubeUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = GETubeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Cresearance.GETubeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GETube;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		00BE6BEF1D1540A50019D907 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 184FB69CD61EDE80E14B5E51 /* Pods-GETubeUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = GETubeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Cresearance.GETubeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GETube;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00BE6BB21D1540A50019D907 /* Build configuration list for PBXProject "GETube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00BE6BE51D1540A50019D907 /* Debug */,
+				00BE6BE61D1540A50019D907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00BE6BE71D1540A50019D907 /* Build configuration list for PBXNativeTarget "GETube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00BE6BE81D1540A50019D907 /* Debug */,
+				00BE6BE91D1540A50019D907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00BE6BEA1D1540A50019D907 /* Build configuration list for PBXNativeTarget "GETubeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00BE6BEB1D1540A50019D907 /* Debug */,
+				00BE6BEC1D1540A50019D907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00BE6BED1D1540A50019D907 /* Build configuration list for PBXNativeTarget "GETubeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00BE6BEE1D1540A50019D907 /* Debug */,
+				00BE6BEF1D1540A50019D907 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		00BE6BC61D1540A50019D907 /* GETube.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				00BE6BC71D1540A50019D907 /* GETube.xcdatamodel */,
+			);
+			currentVersion = 00BE6BC71D1540A50019D907 /* GETube.xcdatamodel */;
+			path = GETube.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 00BE6BAF1D1540A50019D907 /* Project object */;
+}
