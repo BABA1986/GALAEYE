@@ -5,14 +5,7 @@
 //  Created by Deepak on 18/06/16.
 //  Copyright © 2016 Deepak. All rights reserved.
 
-//Changes
-//Changes012
-
-//Changes012NEW
-
-
-//Changes012NEW (Commit in master)
-//Changes012NEW Master
+// Commit from firoz in master
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
