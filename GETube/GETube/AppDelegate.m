@@ -3,7 +3,7 @@
 //  GETube
 //
 //  Created by Deepak on 18/06/16.
-//  Copyright © 2016 Deepak. All rights reserved.
+//  Copyright © 2016 Deepak. All rights reserved.//
 
 #import "AppDelegate.h"
 #import "MMExampleDrawerVisualStateManager.h"
