@@ -45,3 +45,4 @@ This section provides a step-by-step guide so you can get the sample up and runn
 ### Build and Execute Griddler iOS Client
 1. On the top left corner of the toolbar, select `[Your bundle ID] > iOS Device`.  Then click the `Run` button to execute the application.
 2. The application should open up in your iPhone.
+# GALAEYE
