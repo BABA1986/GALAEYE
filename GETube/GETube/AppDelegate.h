@@ -17,6 +17,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+//123Layout Optimisation
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, GEMenuVCDelegate>
 {
     MMDrawerController*             mAppDrawer;
