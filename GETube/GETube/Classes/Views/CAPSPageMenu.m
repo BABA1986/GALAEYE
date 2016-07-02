@@ -317,9 +317,9 @@ NSString * const CAPSPageMenuOptionHideTopMenuBar                       = @"hide
     for (UIViewController *controller in _controllerArray) {
         if (index == 0.0) {
             // Add first two controllers to scrollview and as child view controller
-            [controller viewWillAppear:YES];
+//            [controller viewWillAppear:YES];
             [self addPageAtIndex:0];
-            [controller viewDidAppear:YES];
+//            [controller viewDidAppear:YES];
         }
         
         // Set up menu item for menu scroll view

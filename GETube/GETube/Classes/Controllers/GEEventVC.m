@@ -19,7 +19,7 @@
     [super viewDidLoad];
     UICollectionViewFlowLayout* lLayout = (UICollectionViewFlowLayout*) mEventListView.collectionViewLayout;
     CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    lLayout.itemSize = CGSizeMake(lLength, 0.85*lLength);
+    lLayout.itemSize = CGSizeMake(lLength, 0.90*lLength);
     lLayout.sectionInset = UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0);
     lLayout.minimumInteritemSpacing = 0.0;
     lLayout.minimumLineSpacing = 0.0;
@@ -51,7 +51,7 @@
 {
     [mIndicator removeFromSuperview];
     mIndicator = nil;
-    mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:kDefaultThemeColor size:20.0f];
+    mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:kDefaultThemeColor size:40.0f];
     CGRect lIndicatorFrame = self.view.bounds;
     lIndicatorFrame.size.width = 50.0;
     lIndicatorFrame.size.height = 50.0;

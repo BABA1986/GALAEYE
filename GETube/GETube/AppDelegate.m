@@ -29,7 +29,6 @@
     
     UIStoryboard* lSb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     mDrawerCenterCtr = (GEPageRootVC*)[lSb instantiateViewControllerWithIdentifier:@"GEPageRootVCID"];
-    [mDrawerCenterCtr initialisePagesForLeftMenuIndex: 0];
     MMNavigationController* lCenterNavCtr = [[MMNavigationController alloc] initWithRootViewController: mDrawerCenterCtr];
     
     mDrawerLeftMenuCtr = (GEMenuVC*)[lSb instantiateViewControllerWithIdentifier:@"GEMenuVCID"];

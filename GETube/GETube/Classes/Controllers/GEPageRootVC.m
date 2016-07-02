@@ -27,6 +27,12 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear: animated];
+    [self initialisePagesForLeftMenuIndex: 0];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -54,11 +60,6 @@
     NSArray* lCtrs = [self pageCtrsForLeftMenuIndex: leftMenuIndex];
     mPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:lCtrs frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
     [self.view addSubview:mPageMenu.view];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear: animated];
 }
 
 - (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex
