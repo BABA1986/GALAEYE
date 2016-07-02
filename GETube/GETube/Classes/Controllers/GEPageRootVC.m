@@ -27,9 +27,17 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
+    if (mPageMenu)
+        return;
+    
     [self initialisePagesForLeftMenuIndex: 0];
 }
 
@@ -51,7 +59,7 @@
                                  CAPSPageMenuOptionScrollMenuBackgroundColor: kDefaultThemeColor,
                                  CAPSPageMenuOptionSelectionIndicatorColor: kDefaultTitleColor,
                                  CAPSPageMenuOptionBottomMenuHairlineColor: kDefaultThemeColor,
-                                 CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0],
+                                 CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:15.0],
                                  CAPSPageMenuOptionMenuHeight: @(40.0),
                                  CAPSPageMenuOptionMenuItemWidth: @(90.0),
                                  CAPSPageMenuOptionCenterMenuItems: @(YES)

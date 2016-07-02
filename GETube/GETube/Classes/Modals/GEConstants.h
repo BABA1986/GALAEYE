@@ -24,7 +24,8 @@
 #define kDefaultTitleColor [UIColor whiteColor]
 
 #define kGEUserId           @"ydb_5JpzCvZtyB2TN973jg"
-#define kGEChannelID        @"UCydb_5JpzCvZtyB2TN973jg"
+//#define kGEChannelID        @"UCydb_5JpzCvZtyB2TN973jg"
+#define kGEChannelID        @"UCUMZ7gohGI9HcU9VNsr2FJQ"
 #define kGEAPIKey           @"AIzaSyC6yMGiXNg3fdcsrQfSSTovWstKNXBN7Rk"
 #define kGEClientId         @"342351758071-eh37s0qsulpbl3g6ei6m752cu189g2jp.apps.googleusercontent.com"
 

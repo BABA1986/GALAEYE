@@ -46,7 +46,7 @@
                                  pageToken: (NSString*)pageToken
 {
     GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForSearchListWithPart: @"id,snippet"];
-    lQuery.maxResults = 10;
+    lQuery.maxResults = 20;
     lQuery.type = @"video";
     lQuery.channelId = kGEChannelID;
     if (eventType == EFetchEventsLive)
@@ -65,7 +65,7 @@
                                         pageToken: (NSString*)pageToken
 {
     GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistsListWithPart: @"id,snippet,contentDetails"];
-    lQuery.maxResults = 10;
+    lQuery.maxResults = 20;
     lQuery.channelId = channelId;
     lQuery.pageToken = pageToken;
     

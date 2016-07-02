@@ -67,14 +67,14 @@
                                                     <rect key="frame" x="169" y="0.0" width="64" height="176"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playlistIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="CXS-hA-bch">
-                                                            <rect key="frame" x="10" y="56" width="44" height="44"/>
+                                                            <rect key="frame" x="15" y="61" width="34" height="34"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="KWu-bh-HxS"/>
-                                                                <constraint firstAttribute="width" constant="44" id="LBV-1F-fsQ"/>
+                                                                <constraint firstAttribute="height" constant="34" id="KWu-bh-HxS"/>
+                                                                <constraint firstAttribute="width" constant="34" id="LBV-1F-fsQ"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPc-iF-vro" userLabel="NOOfVideoLabel">
-                                                            <rect key="frame" x="10" y="100" width="44" height="21"/>
+                                                            <rect key="frame" x="10" y="95" width="44" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="WeV-Bf-qyI"/>
                                                             </constraints>
@@ -83,7 +83,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFB-XK-yVP">
-                                                            <rect key="frame" x="10" y="121" width="44" height="21"/>
+                                                            <rect key="frame" x="10" y="116" width="44" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
