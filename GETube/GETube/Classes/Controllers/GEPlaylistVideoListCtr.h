@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DGActivityIndicatorView.h"
+#import "GTLYouTube.h"
 
-@interface GEPlaylistVideoListCtr : UIViewController
+@interface GEPlaylistVideoListCtr : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+{
+    IBOutlet UICollectionView*      mVideoListView;
+    DGActivityIndicatorView*        mIndicator;
+    __weak GTLYouTubePlaylist*      mFromPlayList;
+}
+
+@property(nonatomic, weak)GTLYouTubePlaylist*       fromPlayList;
 
 @end

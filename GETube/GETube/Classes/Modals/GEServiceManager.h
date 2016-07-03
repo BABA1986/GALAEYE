@@ -28,4 +28,7 @@ typedef void (^GEServicePlaylistLoadedCallbacks)(BOOL success);
 - (void)loadPlaylistFromSource: (NSString*)channelSource
                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback;
 
+- (void)loadVideolistFromSource: (GTLYouTubePlaylist*)playlist
+                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback;
+
 @end

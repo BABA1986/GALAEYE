@@ -8,7 +8,7 @@
 
 #import "GEPlaylistVC.h"
 #import "GEPlaylistCell.h"
-#import "GEPlaylistFooter.h"
+#import "GELoadingFooter.h"
 #import "GEServiceManager.h"
 #import "GESharedPlaylist.h"
 #import "GEPlaylistVideoListCtr.h"
@@ -32,7 +32,7 @@
     UICollectionViewFlowLayout* lLayout = (UICollectionViewFlowLayout*) mPlaylistListView.collectionViewLayout;
     CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
     lLayout.itemSize = CGSizeMake(lLength, 0.9*lLength);
-    lLayout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 0.0, 2.0);
+    lLayout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0);
     lLayout.minimumInteritemSpacing = 0.0;
     lLayout.minimumLineSpacing = 0.0;
 }
@@ -57,9 +57,9 @@
     [lServiceMngr loadPlaylistFromSource: self.listSource onCompletion: ^(BOOL success)
      {
          [mPlaylistListView reloadData];
-          mRequesting = FALSE;
         [mIndicator stopAnimating];
          mIndicator.hidden = TRUE;
+         mRequesting = FALSE;
      }];
 }
 
@@ -140,7 +140,7 @@
     
     if (kind == UICollectionElementKindSectionFooter)
     {
-        GEPlaylistFooter* lFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"GEPlaylistFooterID" forIndexPath:indexPath];
+        GELoadingFooter* lFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"GELoadingFooterID" forIndexPath:indexPath];
         
         reusableview = lFooterView;
     }
@@ -177,9 +177,16 @@
 {
     if (self.navigationDelegate && [self.navigationDelegate respondsToSelector: @selector(moveToViewController:fromViewCtr:)])
     {
-//        Main.storyboard
+        GESharedPlaylistList* lSharedPlaylist = [GESharedPlaylistList sharedPlaylistList];
+        GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
+        GEPlaylistListPage* lPlaylistListPage = [lPlaylistObject.playlistListPages objectAtIndex: indexPath.section];
+        
+        GTLYouTubePlaylist* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
+
+        
         UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         GEPlaylistVideoListCtr* lVideoListCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEPlaylistVideoListCtrID"];
+        lVideoListCtr.fromPlayList = lPlayList;
         [self.navigationDelegate moveToViewController: lVideoListCtr fromViewCtr: self];
     }
 }

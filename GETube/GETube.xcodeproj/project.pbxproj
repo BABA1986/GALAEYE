@@ -38,8 +38,12 @@
 		00706FFD1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FEB1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m */; };
 		00706FFE1D19B8B1003AF084 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */; };
 		00706FFF1D19B8B1003AF084 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */; };
+		008B3E521D27C68000DBD93C /* play-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008B3E511D27C68000DBD93C /* play-Icon.png */; };
+		008B3E561D283C9800DBD93C /* GESharedVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E551D283C9800DBD93C /* GESharedVideoList.m */; };
+		008B3E591D28C06600DBD93C /* GEVideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E581D28C06600DBD93C /* GEVideoListCell.m */; };
+		008B3E5C1D28C0DE00DBD93C /* GELoadingFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */; };
+		008B3E5F1D28D0AA00DBD93C /* GEVideoListHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */; };
 		00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */; };
-		00B2D07A1D1CD0F3007F8A9C /* GEPlaylistFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D0791D1CD0F3007F8A9C /* GEPlaylistFooter.m */; };
 		00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B2D07B1D1CD378007F8A9C /* playlistIcon.png */; };
 		00B2D07F1D1CDA5F007F8A9C /* GEPlaylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */; };
 		00BE6BBC1D1540A50019D907 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BBB1D1540A50019D907 /* main.m */; };
@@ -137,10 +141,17 @@
 		00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		00706FEE1D19B8B1003AF084 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		008B3E511D27C68000DBD93C /* play-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-Icon.png"; sourceTree = "<group>"; };
+		008B3E541D283C9800DBD93C /* GESharedVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESharedVideoList.h; sourceTree = "<group>"; };
+		008B3E551D283C9800DBD93C /* GESharedVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESharedVideoList.m; sourceTree = "<group>"; };
+		008B3E571D28C06600DBD93C /* GEVideoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoListCell.h; sourceTree = "<group>"; };
+		008B3E581D28C06600DBD93C /* GEVideoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoListCell.m; sourceTree = "<group>"; };
+		008B3E5A1D28C0DE00DBD93C /* GELoadingFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GELoadingFooter.h; sourceTree = "<group>"; };
+		008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GELoadingFooter.m; sourceTree = "<group>"; };
+		008B3E5D1D28D0AA00DBD93C /* GEVideoListHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoListHeader.h; sourceTree = "<group>"; };
+		008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoListHeader.m; sourceTree = "<group>"; };
 		00B2D0751D1C4C41007F8A9C /* GEPlaylistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVC.h; sourceTree = "<group>"; };
 		00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVC.m; sourceTree = "<group>"; };
-		00B2D0781D1CD0F3007F8A9C /* GEPlaylistFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistFooter.h; sourceTree = "<group>"; };
-		00B2D0791D1CD0F3007F8A9C /* GEPlaylistFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistFooter.m; sourceTree = "<group>"; };
 		00B2D07B1D1CD378007F8A9C /* playlistIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlistIcon.png; sourceTree = "<group>"; };
 		00B2D07D1D1CDA5F007F8A9C /* GEPlaylistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistCell.h; sourceTree = "<group>"; };
 		00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistCell.m; sourceTree = "<group>"; };
@@ -233,6 +244,7 @@
 		001BD15F1D1555E900DDD39F /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				008B3E531D283C5400DBD93C /* VideoList */,
 				00706FA01D179D4F003AF084 /* Playlists */,
 				00706F9C1D1795F8003AF084 /* Events */,
 				001BD1821D16876F00DDD39F /* GEConstants.h */,
@@ -265,10 +277,14 @@
 				001BD1871D16FA5900DDD39F /* GEEventHeader.m */,
 				001BD1891D16FA7800DDD39F /* GEEventCell.h */,
 				001BD18A1D16FA7800DDD39F /* GEEventCell.m */,
-				00B2D0781D1CD0F3007F8A9C /* GEPlaylistFooter.h */,
-				00B2D0791D1CD0F3007F8A9C /* GEPlaylistFooter.m */,
 				00B2D07D1D1CDA5F007F8A9C /* GEPlaylistCell.h */,
 				00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */,
+				008B3E571D28C06600DBD93C /* GEVideoListCell.h */,
+				008B3E581D28C06600DBD93C /* GEVideoListCell.m */,
+				008B3E5A1D28C0DE00DBD93C /* GELoadingFooter.h */,
+				008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */,
+				008B3E5D1D28D0AA00DBD93C /* GEVideoListHeader.h */,
+				008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */,
 			);
 			path = CollectionWidgets;
 			sourceTree = "<group>";
@@ -323,6 +339,7 @@
 		001BD1641D1555F700DDD39F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				008B3E511D27C68000DBD93C /* play-Icon.png */,
 				00B2D07B1D1CD378007F8A9C /* playlistIcon.png */,
 				001BD1771D164CCB00DDD39F /* MetaData */,
 			);
@@ -353,6 +370,15 @@
 				00706FA21D179D70003AF084 /* GESharedPlaylist.m */,
 			);
 			path = Playlists;
+			sourceTree = "<group>";
+		};
+		008B3E531D283C5400DBD93C /* VideoList */ = {
+			isa = PBXGroup;
+			children = (
+				008B3E541D283C9800DBD93C /* GESharedVideoList.h */,
+				008B3E551D283C9800DBD93C /* GESharedVideoList.m */,
+			);
+			path = VideoList;
 			sourceTree = "<group>";
 		};
 		00BE6BAE1D1540A50019D907 = {
@@ -556,6 +582,7 @@
 			files = (
 				00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */,
 				00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */,
+				008B3E521D27C68000DBD93C /* play-Icon.png in Resources */,
 				00BE6BCA1D1540A50019D907 /* Assets.xcassets in Resources */,
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
@@ -706,10 +733,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008B3E561D283C9800DBD93C /* GESharedVideoList.m in Sources */,
 				00706FFA1D19B8B1003AF084 /* UIImage+GIF.m in Sources */,
 				00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */,
 				001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */,
 				00706FA31D179D70003AF084 /* GESharedPlaylist.m in Sources */,
+				008B3E5F1D28D0AA00DBD93C /* GEVideoListHeader.m in Sources */,
 				00BE6BBF1D1540A50019D907 /* AppDelegate.m in Sources */,
 				00706FFC1D19B8B1003AF084 /* UIImage+WebP.m in Sources */,
 				00706FF11D19B8B1003AF084 /* NSData+ImageContentType.m in Sources */,
@@ -722,14 +751,15 @@
 				001BD1761D164A5700DDD39F /* GEPageRootVC.m in Sources */,
 				00706FF91D19B8B1003AF084 /* UIButton+WebCache.m in Sources */,
 				00706FF71D19B8B1003AF084 /* SDWebImageManager.m in Sources */,
-				00B2D07A1D1CD0F3007F8A9C /* GEPlaylistFooter.m in Sources */,
 				001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */,
 				00706FFE1D19B8B1003AF084 /* UIImageView+WebCache.m in Sources */,
+				008B3E5C1D28C0DE00DBD93C /* GELoadingFooter.m in Sources */,
 				001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */,
 				00BE6BBC1D1540A50019D907 /* main.m in Sources */,
 				001BD1811D16793D00DDD39F /* MenuListCell.m in Sources */,
 				00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */,
 				00706FFD1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m in Sources */,
+				008B3E591D28C06600DBD93C /* GEVideoListCell.m in Sources */,
 				00706FF51D19B8B1003AF084 /* SDWebImageDownloader.m in Sources */,
 				00706FF81D19B8B1003AF084 /* SDWebImagePrefetcher.m in Sources */,
 				00BE6BC81D1540A50019D907 /* GETube.xcdatamodeld in Sources */,

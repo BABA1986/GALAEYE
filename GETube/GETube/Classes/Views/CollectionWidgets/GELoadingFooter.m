@@ -1,20 +1,18 @@
 //
-//  GEPlaylistFooter.m
+//  GELoadingFooter.m
 //  GETube
 //
-//  Created by Deepak on 24/06/16.
+//  Created by Deepak on 03/07/16.
 //  Copyright © 2016 Deepak. All rights reserved.
 //
 
-#import "GEPlaylistFooter.h"
+#import "GELoadingFooter.h"
 #import "GEConstants.h"
 
-@implementation GEPlaylistFooter
-
+@implementation GELoadingFooter
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     mLoadingMore.textColor = kDefaultThemeColor;
 }
-
 @end

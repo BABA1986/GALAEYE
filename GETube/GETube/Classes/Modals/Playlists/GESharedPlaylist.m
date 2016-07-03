@@ -30,16 +30,16 @@
 
 @implementation GEPlaylistListObj : NSObject
 @synthesize  playlistListPages;
-@synthesize  channelSource;
+@synthesize  listSource;
 @synthesize  totalResult;
 
 - (id)initWithResponse: (GTLYouTubePlaylistListResponse*)response
-             forSource:(NSString *)channelSourceID
+             forSource:(NSString *)listSourceID
 {
     self = [super init];
     if (self)
     {
-        self.channelSource = channelSourceID;
+        self.listSource = listSourceID;
         self.totalResult = [response.pageInfo.totalResults integerValue];
         GEPlaylistListPage* lGEPlaylistListPage = [[GEPlaylistListPage alloc] initWithList: response.items nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
         self.playlistListPages = [[NSMutableArray alloc] init];
@@ -81,12 +81,12 @@
     mPlaylistListObjs = [[NSMutableArray alloc] init];
 }
 
-- (GEPlaylistListObj*)playlistObjForChannelSource: (NSString*)channelSource
+- (GEPlaylistListObj*)playlistObjForChannelSource: (NSString*)listSource
 {
     GEPlaylistListObj* lListObj = nil;
     for (lListObj in mPlaylistListObjs)
     {
-        if ([channelSource isEqualToString: lListObj.channelSource])
+        if ([listSource isEqualToString: lListObj.listSource])
         {
             break;
         }
@@ -95,10 +95,10 @@
     return lListObj;
 }
 
-- (NSString*)pageTokenForPlaylistForSource: (NSString*)channelSource
+- (NSString*)pageTokenForPlaylistForSource: (NSString*)listSource
                               canFetchMore: (BOOL*)canFetch
 {
-    GEPlaylistListObj* lPlaylistListObj = [self playlistObjForChannelSource: channelSource];
+    GEPlaylistListObj* lPlaylistListObj = [self playlistObjForChannelSource: listSource];
     if (!lPlaylistListObj)
     {
         *canFetch = TRUE;
@@ -123,13 +123,13 @@
 }
 
 - (void)addplaylistSearchResponse: (GTLYouTubePlaylistListResponse*)response
-                        forSource: (NSString*)channelSource
+                        forSource: (NSString*)listSource
 {
-    GEPlaylistListObj* lPlaylistListObj = [self playlistObjForChannelSource: channelSource];
+    GEPlaylistListObj* lPlaylistListObj = [self playlistObjForChannelSource: listSource];
     
     if(!lPlaylistListObj)
     {
-        lPlaylistListObj = [[GEPlaylistListObj alloc] initWithResponse: response forSource: channelSource];
+        lPlaylistListObj = [[GEPlaylistListObj alloc] initWithResponse: response forSource: listSource];
         [mPlaylistListObjs addObject: lPlaylistListObj];
     }
     else

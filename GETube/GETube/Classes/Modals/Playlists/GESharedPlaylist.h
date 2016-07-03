@@ -21,11 +21,11 @@
 
 @interface GEPlaylistListObj : NSObject
 @property(nonatomic, strong)NSMutableArray*     playlistListPages;
-@property(nonatomic, copy)NSString*             channelSource;
+@property(nonatomic, copy)NSString*             listSource;
 @property(nonatomic, assign)NSUInteger          totalResult;
 
 - (id)initWithResponse: (GTLYouTubePlaylistListResponse*)response
-             forSource: (NSString*)channelSource;
+             forSource: (NSString*)listSource;
 - (void)addplaylistListFromResponse: (GTLYouTubePlaylistListResponse*)response;
 @end
 

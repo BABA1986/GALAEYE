@@ -9,6 +9,7 @@
 #import "GEServiceManager.h"
 #import "GEEventManager.h"
 #import "GESharedPlaylist.h"
+#import "GESharedVideoList.h"
 #import "GEConstants.h"
 
 @interface GEServiceManager ()
@@ -19,6 +20,9 @@
                                         pageToken: (NSString*)pageToken;
 - (void)channelIdFroChannelSource: (NSString*)channelSrc
                      onCompletion: (void(^)(NSString* channelId))onCompletion;
+
+- (GTLQueryYouTube*)queryForVideoListOfPlaylist: (NSString*)playlistId
+                                      pageToken: (NSString*)pageToken;
 @end
 
 @implementation GEServiceManager
@@ -67,6 +71,17 @@
     GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistsListWithPart: @"id,snippet,contentDetails"];
     lQuery.maxResults = 20;
     lQuery.channelId = channelId;
+    lQuery.pageToken = pageToken;
+    
+    return lQuery;
+}
+
+- (GTLQueryYouTube*)queryForVideoListOfPlaylist: (NSString*)playlistId
+                                      pageToken: (NSString*)pageToken
+{
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistItemsListWithPart: @"id,snippet"];
+    lQuery.maxResults = 20;
+    lQuery.playlistId = playlistId;
     lQuery.pageToken = pageToken;
     
     return lQuery;
@@ -151,6 +166,25 @@
               [lSharedPlaylist addplaylistSearchResponse: lResult forSource: channelSource];
               finishCallback(TRUE);
           }];
+     }];
+}
+
+- (void)loadVideolistFromSource: (GTLYouTubePlaylist*)playlist
+                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback
+{
+    GESharedVideoList* lSharedVideoList = [GESharedVideoList sharedVideoList];
+    BOOL lCanFetchPage = TRUE;
+    NSString* lPageToken = [lSharedVideoList pageTokenForVideoListForSource: playlist.identifier canFetchMore: &lCanFetchPage];
+    
+    if (!lCanFetchPage)
+        finishCallback(FALSE);
+    GTLQueryYouTube* lQuery = [self queryForVideoListOfPlaylist: playlist.identifier pageToken: lPageToken];
+    [mYTService executeQuery: lQuery
+           completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+     {
+         GTLYouTubeVideoListResponse* lResult = (GTLYouTubeVideoListResponse*)object;
+         [lSharedVideoList addVideoListSearchResponse: lResult forSource: playlist.identifier];
+         finishCallback(TRUE);
      }];
 }
 
