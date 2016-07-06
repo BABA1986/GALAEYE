@@ -55,10 +55,15 @@
         mPageMenu = nil;
     }
     
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
+    
     NSDictionary *parameters = @{
-                                 CAPSPageMenuOptionScrollMenuBackgroundColor: kDefaultThemeColor,
-                                 CAPSPageMenuOptionSelectionIndicatorColor: kDefaultTitleColor,
-                                 CAPSPageMenuOptionBottomMenuHairlineColor: kDefaultThemeColor,
+                                 CAPSPageMenuOptionScrollMenuBackgroundColor: lNavColor,
+                                 CAPSPageMenuOptionSelectionIndicatorColor: lNavTextColor,
+                                 CAPSPageMenuOptionBottomMenuHairlineColor: lNavColor,
+                                 CAPSPageMenuOptionSelectedMenuItemLabelColor: lNavTextColor,
                                  CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:15.0],
                                  CAPSPageMenuOptionMenuHeight: @(40.0),
                                  CAPSPageMenuOptionMenuItemWidth: @(90.0),

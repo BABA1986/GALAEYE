@@ -17,7 +17,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    self.menuTitleLbl.textColor = kDefaultTitleColor;
+    menuTitleLbl.textAlignment = NSTextAlignmentLeft;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -13,6 +13,6 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    mLoadingMore.textColor = kDefaultThemeColor;
+    mLoadingMore.textColor = [UIColor blackColor];
 }
 @end

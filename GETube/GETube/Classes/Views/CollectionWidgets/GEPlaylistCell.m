@@ -21,9 +21,9 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.noOfVideoLbl.textColor = kDefaultThemeColor;
-    self.videoLbl.textColor = kDefaultThemeColor;
-    self.videoTileLbl.textColor = kDefaultThemeColor;
+    self.noOfVideoLbl.textColor = [UIColor blackColor];
+    self.videoLbl.textColor = [UIColor blackColor];
+    self.videoTileLbl.textColor = [UIColor blackColor];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl

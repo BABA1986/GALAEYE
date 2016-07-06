@@ -19,11 +19,14 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    self.titleLabel.backgroundColor = kDefaultThemeColor;
-    self.titleLabel.textColor = kDefaultTitleColor;
-    [self.seeMoreBtn setBackgroundColor: kDefaultTitleColor];
-    [self.seeMoreBtn setTitleColor: kDefaultThemeColor forState: UIControlStateNormal];
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
+
+    self.titleLabel.backgroundColor = lNavColor;
+    self.titleLabel.textColor = lNavTextColor;
+    [self.seeMoreBtn setBackgroundColor: lNavColor];
+    [self.seeMoreBtn setTitleColor: lNavTextColor forState: UIControlStateNormal];
 }
 
 - (IBAction)seeMoreBtnAction:(id)sender

@@ -9,6 +9,8 @@
 #ifndef GEConstants_h
 #define GEConstants_h
 
+#import "ThemeManager.h"
+
 //#define kDefaultThemeColor [UIColor colorWithRed:254.0/255.0 green:209.0/255.0 blue:24.0/255.0 alpha:1.0]
 
 //#define kDefaultThemeColor [UIColor colorWithRed:31.0/255.0 green:154.0/255.0 blue:204.0/255.0 alpha:1.0]

@@ -43,6 +43,13 @@
 		008B3E591D28C06600DBD93C /* GEVideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E581D28C06600DBD93C /* GEVideoListCell.m */; };
 		008B3E5C1D28C0DE00DBD93C /* GELoadingFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */; };
 		008B3E5F1D28D0AA00DBD93C /* GEVideoListHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */; };
+		008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */ = {isa = PBXBuildFile; fileRef = 008B3E601D2971D800DBD93C /* ThemeColor.json */; };
+		00A6024D1D2C283C00A62423 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A6024C1D2C283C00A62423 /* ThemeManager.m */; };
+		00A6024F1D2C2A5500A62423 /* downarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A6024E1D2C2A5500A62423 /* downarrow.png */; };
+		00A602511D2C2A9E00A62423 /* uparrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A602501D2C2A9E00A62423 /* uparrow.png */; };
+		00A602541D2C305300A62423 /* UIColor+HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A602531D2C305300A62423 /* UIColor+HexColors.m */; };
+		00A602571D2CA5AF00A62423 /* MenuListHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A602561D2CA5AF00A62423 /* MenuListHeader.m */; };
+		00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */ = {isa = PBXBuildFile; fileRef = 00A602581D2CAFFF00A62423 /* MenuFooter.json */; };
 		00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */; };
 		00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B2D07B1D1CD378007F8A9C /* playlistIcon.png */; };
 		00B2D07F1D1CDA5F007F8A9C /* GEPlaylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B2D07E1D1CDA5F007F8A9C /* GEPlaylistCell.m */; };
@@ -150,6 +157,16 @@
 		008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GELoadingFooter.m; sourceTree = "<group>"; };
 		008B3E5D1D28D0AA00DBD93C /* GEVideoListHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoListHeader.h; sourceTree = "<group>"; };
 		008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoListHeader.m; sourceTree = "<group>"; };
+		008B3E601D2971D800DBD93C /* ThemeColor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ThemeColor.json; sourceTree = "<group>"; };
+		00A6024B1D2C283C00A62423 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		00A6024C1D2C283C00A62423 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
+		00A6024E1D2C2A5500A62423 /* downarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downarrow.png; sourceTree = "<group>"; };
+		00A602501D2C2A9E00A62423 /* uparrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uparrow.png; sourceTree = "<group>"; };
+		00A602521D2C305300A62423 /* UIColor+HexColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColors.h"; sourceTree = "<group>"; };
+		00A602531D2C305300A62423 /* UIColor+HexColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColors.m"; sourceTree = "<group>"; };
+		00A602551D2CA5AF00A62423 /* MenuListHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListHeader.h; sourceTree = "<group>"; };
+		00A602561D2CA5AF00A62423 /* MenuListHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListHeader.m; sourceTree = "<group>"; };
+		00A602581D2CAFFF00A62423 /* MenuFooter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MenuFooter.json; sourceTree = "<group>"; };
 		00B2D0751D1C4C41007F8A9C /* GEPlaylistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVC.h; sourceTree = "<group>"; };
 		00B2D0761D1C4C41007F8A9C /* GEPlaylistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVC.m; sourceTree = "<group>"; };
 		00B2D07B1D1CD378007F8A9C /* playlistIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlistIcon.png; sourceTree = "<group>"; };
@@ -252,6 +269,10 @@
 				001BD17D1D166FC700DDD39F /* GESharedMenu.m */,
 				00706F991D170820003AF084 /* GEServiceManager.h */,
 				00706F9A1D170820003AF084 /* GEServiceManager.m */,
+				00A6024B1D2C283C00A62423 /* ThemeManager.h */,
+				00A6024C1D2C283C00A62423 /* ThemeManager.m */,
+				00A602521D2C305300A62423 /* UIColor+HexColors.h */,
+				00A602531D2C305300A62423 /* UIColor+HexColors.m */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -285,6 +306,8 @@
 				008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */,
 				008B3E5D1D28D0AA00DBD93C /* GEVideoListHeader.h */,
 				008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */,
+				00A602551D2CA5AF00A62423 /* MenuListHeader.h */,
+				00A602561D2CA5AF00A62423 /* MenuListHeader.m */,
 			);
 			path = CollectionWidgets;
 			sourceTree = "<group>";
@@ -339,8 +362,10 @@
 		001BD1641D1555F700DDD39F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00A602501D2C2A9E00A62423 /* uparrow.png */,
 				008B3E511D27C68000DBD93C /* play-Icon.png */,
 				00B2D07B1D1CD378007F8A9C /* playlistIcon.png */,
+				00A6024E1D2C2A5500A62423 /* downarrow.png */,
 				001BD1771D164CCB00DDD39F /* MetaData */,
 			);
 			path = Resources;
@@ -349,6 +374,8 @@
 		001BD1771D164CCB00DDD39F /* MetaData */ = {
 			isa = PBXGroup;
 			children = (
+				00A602581D2CAFFF00A62423 /* MenuFooter.json */,
+				008B3E601D2971D800DBD93C /* ThemeColor.json */,
 				001BD17A1D164D4500DDD39F /* GalaMenuMetaData.json */,
 			);
 			path = MetaData;
@@ -583,9 +610,13 @@
 				00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */,
 				00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */,
 				008B3E521D27C68000DBD93C /* play-Icon.png in Resources */,
+				00A6024F1D2C2A5500A62423 /* downarrow.png in Resources */,
 				00BE6BCA1D1540A50019D907 /* Assets.xcassets in Resources */,
+				00A602511D2C2A9E00A62423 /* uparrow.png in Resources */,
+				008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */,
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
+				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,9 +768,12 @@
 				00706FFA1D19B8B1003AF084 /* UIImage+GIF.m in Sources */,
 				00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */,
 				001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */,
+				00A602541D2C305300A62423 /* UIColor+HexColors.m in Sources */,
+				00A602571D2CA5AF00A62423 /* MenuListHeader.m in Sources */,
 				00706FA31D179D70003AF084 /* GESharedPlaylist.m in Sources */,
 				008B3E5F1D28D0AA00DBD93C /* GEVideoListHeader.m in Sources */,
 				00BE6BBF1D1540A50019D907 /* AppDelegate.m in Sources */,
+				00A6024D1D2C283C00A62423 /* ThemeManager.m in Sources */,
 				00706FFC1D19B8B1003AF084 /* UIImage+WebP.m in Sources */,
 				00706FF11D19B8B1003AF084 /* NSData+ImageContentType.m in Sources */,
 				00B2D07F1D1CDA5F007F8A9C /* GEPlaylistCell.m in Sources */,

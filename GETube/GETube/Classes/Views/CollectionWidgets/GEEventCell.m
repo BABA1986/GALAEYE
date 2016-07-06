@@ -21,12 +21,11 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.titleBaseView.backgroundColor = kDefaultTitleColor;
-    self.titleLabel.textColor = kDefaultThemeColor;
-    self.timeLabel.textColor = kDefaultThemeColor;
+    
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.timeLabel.textColor = [UIColor blackColor];
     self.statusLabel.alpha = 0.5;
-    self.statusLabel.backgroundColor = kDefaultThemeColor;
-    self.statusLabel.textColor = kDefaultTitleColor;
+    self.statusLabel.textColor = [UIColor blackColor];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl

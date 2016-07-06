@@ -45,7 +45,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    if (mRequesting)
+    
+    GESharedPlaylistList* lSharedPlaylist = [GESharedPlaylistList sharedPlaylistList];
+    GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
+
+    if (mRequesting || lPlaylistObject.playlistListPages.count)
         return;
 
     [self addIndicatorView];
@@ -67,7 +71,10 @@
 {
     [mIndicator removeFromSuperview];
     mIndicator = nil;
-    mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:kDefaultThemeColor size:40.0f];
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    
+    mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:lNavColor size:40.0f];
     CGRect lIndicatorFrame = self.view.bounds;
     lIndicatorFrame.size.width = 100.0;
     lIndicatorFrame.size.height = 100.0;
@@ -182,7 +189,6 @@
         GEPlaylistListPage* lPlaylistListPage = [lPlaylistObject.playlistListPages objectAtIndex: indexPath.section];
         
         GTLYouTubePlaylist* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
-
         
         UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         GEPlaylistVideoListCtr* lVideoListCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEPlaylistVideoListCtrID"];

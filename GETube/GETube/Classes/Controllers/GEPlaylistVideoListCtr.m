@@ -48,7 +48,10 @@
     [super viewWillAppear: animated];
     self.title = self.fromPlayList.snippet.channelTitle;
     
-    if (mRequesting)
+    GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+
+    if (mRequesting || lListObject.videoListPages.count)
         return;
 
     [self addIndicatorView];
@@ -70,7 +73,10 @@
 {
     [mIndicator removeFromSuperview];
     mIndicator = nil;
-    mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:kDefaultThemeColor size:40.0f];
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    
+    mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:lNavColor size:40.0f];
     CGRect lIndicatorFrame = self.view.bounds;
     lIndicatorFrame.size.width = 50.0;
     lIndicatorFrame.size.height = 50.0;

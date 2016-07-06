@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "GEConstants.h"
+#import "ThemeManager.h"
 
 @interface AppDelegate ()
 
@@ -18,13 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIColor* tintColor = kDefaultThemeColor;
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    lThemeManager.selectedIndex = 2;
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
     // Override point for customization after application launch.
-    [[UINavigationBar appearance] setBarTintColor:tintColor];
-    [[UINavigationBar appearance] setTintColor:kDefaultTitleColor];
+    [[UINavigationBar appearance] setBarTintColor:lNavColor];
+    [[UINavigationBar appearance] setTintColor:lNavTextColor];
     [[UINavigationBar appearance] setTitleTextAttributes:
-     @{NSForegroundColorAttributeName: kDefaultTitleColor}];
+     @{NSForegroundColorAttributeName: lNavTextColor}];
 
     
     UIStoryboard* lSb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -52,7 +56,7 @@
          }
      }];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setTintColor:tintColor];
+    [self.window setTintColor:lNavColor];
     [self.window setRootViewController:mAppDrawer];
     
     return YES;

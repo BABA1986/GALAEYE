@@ -1,0 +1,19 @@
+{
+    "Footers": [
+               {
+               "name": "Setting",
+               "canopen": true,
+               "isopen": false
+               },
+               {
+               "name": "AboutUs",
+               "canopen": false,
+               "isopen": false
+               },
+               {
+               "name": "Disclaimer",
+               "canopen": false,
+               "isopen": false
+               }
+               ]
+}

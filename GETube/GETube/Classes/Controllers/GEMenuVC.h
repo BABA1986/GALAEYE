@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuListHeader.h"
 
 @class GEMenuVC;
 @protocol GEMenuVCDelegate <NSObject>
@@ -15,9 +16,10 @@
 
 @end
 
-@interface GEMenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface GEMenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuListHeaderDelegate>
 {
     IBOutlet UITableView*           mMenuListView;
+    IBOutlet UITableView*           mFooterListView;
     
     __weak id<GEMenuVCDelegate>     mDelegate;
 }
