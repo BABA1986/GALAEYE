@@ -59,6 +59,11 @@
     [self.window setTintColor:lNavColor];
     [self.window setRootViewController:mAppDrawer];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onThemeChange:)
+                                                 name:@"onThemeChange"
+                                               object:nil];
+    
     return YES;
 }
 
@@ -84,6 +89,23 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (void)onThemeChange: (NSNotification*)notification
+{
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
+    
+    mDrawerCenterCtr.navigationController.navigationBar.barTintColor = lNavColor;
+    mDrawerCenterCtr.navigationController.navigationBar.tintColor = lNavTextColor;
+    mDrawerCenterCtr.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: lNavTextColor};
+    [mDrawerCenterCtr applyTheme];
+    
+    mDrawerLeftMenuCtr.navigationController.navigationBar.barTintColor = lNavColor;
+    mDrawerLeftMenuCtr.navigationController.navigationBar.tintColor = lNavTextColor;
+    mDrawerLeftMenuCtr.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: lNavTextColor};
+    [mDrawerLeftMenuCtr applyTheme];
 }
 
 #pragma mark-

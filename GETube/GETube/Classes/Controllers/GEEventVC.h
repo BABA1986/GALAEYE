@@ -17,4 +17,6 @@
     DGActivityIndicatorView*            mIndicator;
 }
 
+- (void)applyTheme;
+
 @end

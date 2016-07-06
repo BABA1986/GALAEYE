@@ -16,7 +16,7 @@
 
 @end
 
-@interface GEMenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuListHeaderDelegate>
+@interface GEMenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UITableView*           mMenuListView;
     IBOutlet UITableView*           mFooterListView;
@@ -25,5 +25,7 @@
 }
 
 @property(nonatomic, weak)id<GEMenuVCDelegate>     delegate;
+
+- (void)applyTheme;
 
 @end

@@ -10,13 +10,14 @@
 #import "MenuListCell.h"
 #import "GESharedMenu.h"
 #import "GEConstants.h"
+#import "GESettingViewCtr.h"
 
 @interface GEMenuVC ()
 {
     NSMutableArray*            mFooterItems;
 }
 - (void)initialiseFooterItems;
-- (void)applyTheme;
+
 @end
 
 @implementation GEMenuVC
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = TRUE;
-    
+    [self applyTheme];
     mMenuListView.backgroundColor = [UIColor clearColor];
     mFooterListView.backgroundColor = [UIColor clearColor];
     
@@ -93,26 +94,11 @@
     return 40.0;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if (tableView == mFooterListView)
-        return 3;
-    
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == mFooterListView)
     {
-        NSDictionary* lFooterItem = [mFooterItems objectAtIndex: section];
-        BOOL lIsOpen = [[lFooterItem objectForKey: @"isopen"] boolValue];
-        if (section == 0 && lIsOpen)
-        {
-            ThemeManager* lThemeManager = [ThemeManager themeManager];
-            return lThemeManager.themes.count;
-        }
-        return 0;
+        return mFooterItems.count;
     }
     
     GESharedMenu* lGESharedMenu = [GESharedMenu sharedMenu];
@@ -131,18 +117,16 @@
         lCell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         ThemeManager* lThemeManager = [ThemeManager themeManager];
-        UIColor* lNavColor = [lThemeManager selectedNavColor];
         UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
         if (tableView == mFooterListView)
         {
+            NSDictionary* lFooterItem = [mFooterItems objectAtIndex: indexPath.row];
+            BOOL lCanOpen = [[lFooterItem objectForKey: @"canopen"] boolValue];
+
+            lCell.disclosureIconView.hidden = !lCanOpen;
             lCell.menuTitleLbl.textColor = lNavTextColor;
-            lCell.backgroundColor = lNavColor;
-            ThemeInfo* lThemeInfo = [lThemeManager.themes objectAtIndex: indexPath.row];
-            lCell.menuTitleLbl.text = lThemeInfo.themeName;
-            lCell.contentView.backgroundColor = lThemeInfo.navColor;
-            lCell.menuTitleLbl.textColor = lThemeInfo.navTextColor;
-            lCell.menuTitleLbl.font = [UIFont systemFontOfSize: 13.0];
+            lCell.menuTitleLbl.text = [lFooterItem objectForKey: @"name"];
         }
         else
         {
@@ -157,46 +141,6 @@
     return lCell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (tableView == mFooterListView)
-    {
-        return 40.0;
-    }
-    
-    return 0.0;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView == mFooterListView)
-    {
-        CGRect lHeaderRect = tableView.bounds;
-        lHeaderRect.size.height = 40.0;
-        MenuListHeader* lHeaderView = [[MenuListHeader alloc] initWithFrame: lHeaderRect];
-        ThemeManager* lThemeManager = [ThemeManager themeManager];
-        UIColor* lNavColor = [lThemeManager selectedNavColor];
-        UIColor* lNavTextColor = [lThemeManager selectedTextColor];
-        lHeaderView.backgroundColor = lNavColor;
-        NSDictionary* lFooterItem = [mFooterItems objectAtIndex: section];
-        lHeaderView.titleLabel.text = [lFooterItem objectForKey: @"name"];
-        lHeaderView.titleLabel.textColor = lNavTextColor;
-        
-        BOOL lCanOpen = [[lFooterItem objectForKey: @"canopen"] boolValue];
-        lHeaderView.expandView.hidden = !lCanOpen;
-        
-        BOOL lIsOpen = [[lFooterItem objectForKey: @"isopen"] boolValue];
-        UIImage* lImage = lIsOpen ? [UIImage imageNamed: @"uparrow"] : [UIImage imageNamed: @"downarrow"];
-        lHeaderView.expandView.image = lImage;
-        
-        lHeaderView.sectionIndex = section;
-        lHeaderView.delegate = self;
-        return lHeaderView;
-    }
-    
-    return nil;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView != mFooterListView)
@@ -205,43 +149,9 @@
     }
     else
     {
-        ThemeManager* lThemeManager = [ThemeManager themeManager];
-        lThemeManager.selectedIndex = indexPath.row;
-        [self applyTheme];
+        GESettingViewCtr* lGESettingViewCtr = [self.storyboard instantiateViewControllerWithIdentifier: @"GESettingViewCtrID"];
+        [self.navigationController pushViewController: lGESettingViewCtr animated: TRUE];
     }
-}
-
-- (void)menuListHeader: (MenuListHeader*)header didSelectAtIndex: (NSUInteger)index
-{
-    NSMutableDictionary* lFooterItem = [mFooterItems objectAtIndex: index];
-    BOOL lCanOpen = [[lFooterItem objectForKey: @"canopen"] boolValue];
-    if (!lCanOpen)
-        return;
-
-    BOOL lIsOpen = [[lFooterItem objectForKey: @"isopen"] boolValue];
-    UIImage* lImage = !lIsOpen ? [UIImage imageNamed: @"uparrow"] : [UIImage imageNamed: @"downarrow"];
-    header.expandView.image = lImage;
-    [lFooterItem setObject: [NSNumber numberWithBool: !lIsOpen] forKey: @"isopen"];
-
-    NSMutableArray* lIndexPaths = [[NSMutableArray alloc] init];
-    ThemeManager* lThemeManager = [ThemeManager themeManager];
-    for (NSUInteger lIndex = 0; lIndex < lThemeManager.themes.count; ++lIndex)
-    {
-        NSIndexPath* lIndexPath = [NSIndexPath indexPathForItem: lIndex inSection: index];
-        [lIndexPaths addObject: lIndexPath];
-    }
-    
-    [mFooterListView beginUpdates];
-    if (!lIsOpen)
-    {
-        [mFooterListView insertRowsAtIndexPaths: lIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    else
-    {
-        [mFooterListView deleteRowsAtIndexPaths: lIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    
-    [mFooterListView endUpdates];
 }
 
 @end

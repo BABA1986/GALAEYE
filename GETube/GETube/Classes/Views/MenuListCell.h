@@ -15,5 +15,6 @@
 
 @property(nonatomic, strong)IBOutlet UILabel*       menuTitleLbl;
 @property(nonatomic, strong)IBOutlet UIImageView*   menuIconView;
+@property(nonatomic, strong)IBOutlet UIImageView*   disclosureIconView;
 
 @end

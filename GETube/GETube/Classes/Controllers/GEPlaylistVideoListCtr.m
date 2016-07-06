@@ -69,6 +69,11 @@
      }];
 }
 
+- (void)applyTheme
+{
+    [mVideoListView reloadData];
+}
+
 - (void)addIndicatorView
 {
     [mIndicator removeFromSuperview];

@@ -13,6 +13,7 @@
 
 @synthesize menuTitleLbl;
 @synthesize menuIconView;
+@synthesize disclosureIconView;
 
 - (void)awakeFromNib
 {

@@ -19,4 +19,6 @@
 
 @property(nonatomic, weak)GTLYouTubePlaylist*       fromPlayList;
 
+- (void)applyTheme;
+
 @end

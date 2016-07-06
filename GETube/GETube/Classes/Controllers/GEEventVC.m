@@ -25,19 +25,23 @@
     lLayout.minimumLineSpacing = 0.0;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear: animated];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear: animated];
+    
+    GEEventManager* lManager = [GEEventManager manager];
+    if (lManager.eventListObjs.count)
+    return;
     
     [self addIndicatorView];
     [mIndicator startAnimating];
     mIndicator.hidden = FALSE;
-
+    
     GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
     [lServiceMngr loadAllEventsForFirstPage: ^(FetchEventQueryType eventQueryType)
      {
@@ -45,6 +49,11 @@
          [mIndicator stopAnimating];
          mIndicator.hidden = TRUE;
      }];
+}
+
+- (void)applyTheme
+{
+    [mEventListView reloadData];
 }
 
 - (void)addIndicatorView

@@ -16,5 +16,5 @@
 }
 
 - (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex;
-
+- (void)applyTheme;
 @end

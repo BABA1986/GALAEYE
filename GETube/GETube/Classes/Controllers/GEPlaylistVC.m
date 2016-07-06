@@ -67,6 +67,11 @@
      }];
 }
 
+- (void)applyTheme
+{
+    [mPlaylistListView reloadData];
+}
+
 - (void)addIndicatorView
 {
     [mIndicator removeFromSuperview];

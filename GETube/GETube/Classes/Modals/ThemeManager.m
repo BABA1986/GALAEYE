@@ -64,7 +64,7 @@
     NSData* lJsonData = [lFileManager contentsAtPath: lBundlePath];
     NSError* lError;
     
-    if (lJsonData!=nil)
+    if (lJsonData != nil)
     {
         NSMutableArray* lThemes = [[NSMutableArray alloc] init];
         NSDictionary* lDict = [NSJSONSerialization JSONObjectWithData:lJsonData

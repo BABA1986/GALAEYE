@@ -422,6 +422,44 @@ NSString * const CAPSPageMenuOptionHideTopMenuBar                       = @"hide
     [_menuScrollView addSubview:_selectionIndicatorView];
 }
 
+- (void)setSelectionIndicatorColor:(UIColor *)selectionIndicatorColor
+{
+    _selectionIndicatorColor = selectionIndicatorColor;
+    _selectionIndicatorView.backgroundColor = selectionIndicatorColor;
+}
+
+- (void)setSelectedMenuItemLabelColor:(UIColor *)selectedMenuItemLabelColor
+{
+    _selectedMenuItemLabelColor = selectedMenuItemLabelColor;
+    
+    if (!_mutableMenuItems.count)
+        return;
+
+    for (NSUInteger lIndex = 0; lIndex < _mutableMenuItems.count; ++lIndex)
+    {
+        if ([_mutableMenuItems[lIndex] titleLabel] != nil) {
+            [_mutableMenuItems[lIndex] titleLabel].textColor = _selectedMenuItemLabelColor;
+        }
+    }
+}
+
+- (void)setUnselectedMenuItemLabelColor:(UIColor *)unselectedMenuItemLabelColor
+{
+    _unselectedMenuItemLabelColor = unselectedMenuItemLabelColor;
+    for (NSUInteger lIndex = 0; lIndex < _mutableMenuItems.count; ++lIndex)
+    {
+        if ([_mutableMenuItems[lIndex] titleLabel] != nil) {
+            [_mutableMenuItems[lIndex] titleLabel].textColor = _selectedMenuItemLabelColor;
+        }
+    }
+}
+
+- (void)setScrollMenuBackgroundColor:(UIColor *)scrollMenuBackgroundColor
+{
+    _scrollMenuBackgroundColor = scrollMenuBackgroundColor;
+    _menuScrollView.backgroundColor = scrollMenuBackgroundColor;
+}
+
 #pragma mark - Scroll view delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

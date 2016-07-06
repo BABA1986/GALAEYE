@@ -19,4 +19,6 @@
 @property(nonatomic, copy)NSString*                         listSource;
 @property(nonatomic, weak)id<GENavigatorProtocol>           navigationDelegate;
 
+- (void)applyTheme;
+
 @end
