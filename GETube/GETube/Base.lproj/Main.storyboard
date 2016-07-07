@@ -577,20 +577,20 @@
                                             <rect key="frame" x="2" y="2" width="596" height="46"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaylistTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Fw-Cd-W2W">
-                                                    <rect key="frame" x="0.0" y="0.0" width="596" height="28"/>
+                                                    <rect key="frame" x="2" y="0.0" width="592" height="28"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-zm-8h9">
-                                                    <rect key="frame" x="0.0" y="28" width="298" height="18"/>
+                                                    <rect key="frame" x="2" y="28" width="298" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO OfVideos" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGj-2t-six">
-                                                    <rect key="frame" x="298" y="28" width="298" height="18"/>
+                                                    <rect key="frame" x="300" y="28" width="294" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -604,8 +604,8 @@
                                                 <constraint firstItem="JGj-2t-six" firstAttribute="height" secondItem="vN2-zm-8h9" secondAttribute="height" id="48V-dc-yJG"/>
                                                 <constraint firstItem="JGj-2t-six" firstAttribute="trailing" secondItem="0Fw-Cd-W2W" secondAttribute="trailing" id="6xs-9r-ZB7"/>
                                                 <constraint firstItem="vN2-zm-8h9" firstAttribute="width" secondItem="df4-qy-430" secondAttribute="width" multiplier="0.5" id="Mg8-b5-0hu"/>
-                                                <constraint firstItem="0Fw-Cd-W2W" firstAttribute="leading" secondItem="df4-qy-430" secondAttribute="leading" id="OML-7j-cC3"/>
-                                                <constraint firstAttribute="trailing" secondItem="0Fw-Cd-W2W" secondAttribute="trailing" id="WtP-V8-zmX"/>
+                                                <constraint firstItem="0Fw-Cd-W2W" firstAttribute="leading" secondItem="df4-qy-430" secondAttribute="leading" constant="2" id="OML-7j-cC3"/>
+                                                <constraint firstAttribute="trailing" secondItem="0Fw-Cd-W2W" secondAttribute="trailing" constant="2" id="WtP-V8-zmX"/>
                                                 <constraint firstItem="vN2-zm-8h9" firstAttribute="height" secondItem="df4-qy-430" secondAttribute="height" multiplier="0.4" id="dfQ-l9-V36"/>
                                                 <constraint firstItem="vN2-zm-8h9" firstAttribute="leading" secondItem="0Fw-Cd-W2W" secondAttribute="leading" id="lhG-8X-IRG"/>
                                                 <constraint firstItem="0Fw-Cd-W2W" firstAttribute="height" secondItem="df4-qy-430" secondAttribute="height" multiplier="0.6" id="nZF-ww-HRQ"/>
