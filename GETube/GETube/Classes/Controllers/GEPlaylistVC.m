@@ -119,7 +119,7 @@
     GEPlaylistListPage* lPlaylistListPage = [lPlaylistObject.playlistListPages objectAtIndex: indexPath.section];
     
     GTLYouTubePlaylist* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
-    NSURL* lThumbUrl = [NSURL URLWithString: lPlayList.snippet.thumbnails.high.url];
+    NSURL* lThumbUrl = [NSURL URLWithString: lPlayList.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
     lCell.videoTileLbl.text = lPlayList.snippet.title;
     lCell.noOfVideoLbl.text = [lPlayList.contentDetails.itemCount stringValue];

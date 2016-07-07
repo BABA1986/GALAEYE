@@ -18,6 +18,7 @@
 		001BD1851D16E03C00DDD39F /* GEEventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1841D16E03C00DDD39F /* GEEventVC.m */; };
 		001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1871D16FA5900DDD39F /* GEEventHeader.m */; };
 		001BD18B1D16FA7800DDD39F /* GEEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD18A1D16FA7800DDD39F /* GEEventCell.m */; };
+		0027D4B91D2E069E001B5503 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0027D4B81D2E069E001B5503 /* menuicon.png */; };
 		0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */; };
 		00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9A1D170820003AF084 /* GEServiceManager.m */; };
 		00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9E1D17962B003AF084 /* GEEventManager.m */; };
@@ -111,6 +112,7 @@
 		001BD1871D16FA5900DDD39F /* GEEventHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventHeader.m; sourceTree = "<group>"; };
 		001BD1891D16FA7800DDD39F /* GEEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventCell.h; sourceTree = "<group>"; };
 		001BD18A1D16FA7800DDD39F /* GEEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventCell.m; sourceTree = "<group>"; };
+		0027D4B81D2E069E001B5503 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuicon.png; sourceTree = "<group>"; };
 		0042E9B61D2613EF0094DA42 /* GEPlaylistVideoListCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVideoListCtr.h; sourceTree = "<group>"; };
 		0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVideoListCtr.m; sourceTree = "<group>"; };
 		0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GENavigatorProtocol.h; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				00A6025F1D2D11E500A62423 /* disclosureicon.png */,
+				0027D4B81D2E069E001B5503 /* menuicon.png */,
 				00A602501D2C2A9E00A62423 /* uparrow.png */,
 				008B3E511D27C68000DBD93C /* play-Icon.png */,
 				00A6025D1D2D037000A62423 /* backarrow.png */,
@@ -639,6 +642,7 @@
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
 				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
+				0027D4B91D2E069E001B5503 /* menuicon.png in Resources */,
 				00A602601D2D11E500A62423 /* disclosureicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,11 +30,10 @@
     [[UINavigationBar appearance] setTitleTextAttributes:
      @{NSForegroundColorAttributeName: lNavTextColor}];
 
-    
     UIStoryboard* lSb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     mDrawerCenterCtr = (GEPageRootVC*)[lSb instantiateViewControllerWithIdentifier:@"GEPageRootVCID"];
     MMNavigationController* lCenterNavCtr = [[MMNavigationController alloc] initWithRootViewController: mDrawerCenterCtr];
-    
+            
     mDrawerLeftMenuCtr = (GEMenuVC*)[lSb instantiateViewControllerWithIdentifier:@"GEMenuVCID"];
     mDrawerLeftMenuCtr.delegate = self;
     MMNavigationController* lLeftNavCtr = [[MMNavigationController alloc] initWithRootViewController: mDrawerLeftMenuCtr];

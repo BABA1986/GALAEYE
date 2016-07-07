@@ -121,7 +121,7 @@
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
     
     GTLYouTubeVideo* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
-    NSURL* lThumbUrl = [NSURL URLWithString: lVideo.snippet.thumbnails.high.url];
+    NSURL* lThumbUrl = [NSURL URLWithString: lVideo.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
     lCell.timeLabel.text = [lVideo.snippet.publishedAt.date dateTimeAgo];
     lCell.titleLabel.text = lVideo.snippet.title;
@@ -176,7 +176,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return CGSizeMake(collectionView.frame.size.width, 40);
+        return CGSizeMake(collectionView.frame.size.width, 44);
     }
     return CGSizeMake(collectionView.frame.size.width, 0);
 }

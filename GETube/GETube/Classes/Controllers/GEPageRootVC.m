@@ -12,6 +12,8 @@
 #import "GEEventVC.h"
 #import "GEPlaylistVC.h"
 #import "GEPlaylistVideoListCtr.h"
+#import "MMDrawerBarButtonItem.h"
+
 
 @interface GEPageRootVC ()
 - (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex;
@@ -24,6 +26,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    MMDrawerBarButtonItem* lItem = [[MMDrawerBarButtonItem alloc] initWithTarget: self action: nil];
+    lItem.image = [UIImage imageNamed: @"menuicon.png"];
+    self.navigationItem.leftBarButtonItem = lItem;
+
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
 }

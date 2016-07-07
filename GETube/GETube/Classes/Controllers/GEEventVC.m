@@ -117,7 +117,7 @@
         lCell.statusLabel.text = @"Completed";
     }
 
-    NSURL* lThumbUrl = [NSURL URLWithString: lEvent.snippet.thumbnails.high.url];
+    NSURL* lThumbUrl = [NSURL URLWithString: lEvent.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
     
     return lCell;
