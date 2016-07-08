@@ -9,6 +9,7 @@
 #import "MMExampleDrawerVisualStateManager.h"
 #import "GEConstants.h"
 #import "UIImage+ImageMask.h"
+#import "UIImageView+WebCache.h"
 #import "ThemeManager.h"
 
 @interface AppDelegate ()
@@ -20,6 +21,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    SDImageCache* lImageCache = [SDImageCache sharedImageCache];
+    [lImageCache clearMemory];
+    [lImageCache clearDisk];
+
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     lThemeManager.selectedIndex = 2;
     [self createIconsForTheme];

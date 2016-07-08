@@ -120,6 +120,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="noOfVideoLbl" destination="MPc-iF-vro" id="cIj-OI-dpu"/>
+                                            <outlet property="overlayView" destination="IRr-pP-af9" id="KCI-1f-gzv"/>
                                             <outlet property="playlistIconView" destination="CXS-hA-bch" id="mie-vE-xQt"/>
                                             <outlet property="thumbIconView" destination="eD7-96-SJq" id="RYG-8e-Mio"/>
                                             <outlet property="videoLbl" destination="iFB-XK-yVP" id="yz6-Zz-IJX"/>
@@ -501,7 +502,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GEVideoListCellID" id="DcJ-Wm-9pu" customClass="GEEventCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GEVideoListCellID" id="DcJ-Wm-9pu" customClass="GEVideoListCell">
                                         <rect key="frame" x="0.0" y="50" width="233" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -566,6 +567,7 @@
                                             <outlet property="titleBaseView" destination="o4J-bo-zMz" id="vdk-Xk-3vo"/>
                                             <outlet property="titleLabel" destination="HFz-eU-Ggr" id="acE-xB-sWz"/>
                                             <outlet property="videoIcon" destination="aJa-GR-4xe" id="qMH-6J-13r"/>
+                                            <outlet property="videoPlayIcon" destination="qOC-3t-5cC" id="HPl-SH-cdr"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

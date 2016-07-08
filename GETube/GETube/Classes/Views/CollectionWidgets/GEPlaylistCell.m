@@ -9,11 +9,13 @@
 #import "GEPlaylistCell.h"
 #import "GEConstants.h"
 #import "UIImageView+WebCache.h"
+#import "UIImage+ImageMask.h"
 
 @implementation GEPlaylistCell
 
 @synthesize thumbIconView;
 @synthesize playlistIconView;
+@synthesize overlayView;
 @synthesize noOfVideoLbl;
 @synthesize videoLbl;
 @synthesize videoTileLbl;
@@ -21,17 +23,42 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.noOfVideoLbl.textColor = [UIColor blackColor];
-    self.videoLbl.textColor = [UIColor blackColor];
+    
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
+
+    self.overlayView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.5];
+    self.noOfVideoLbl.textColor = lNavTextColor;
+    self.videoLbl.textColor = lNavTextColor;
     self.videoTileLbl.textColor = [UIColor blackColor];
+    self.playlistIconView.image = [UIImage imageWithName: @"playlistIcon.png"];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
 {
-    [self.thumbIconView sd_setImageWithURL:thumbUrl placeholderImage:[UIImage imageNamed:@"loading_ds.png"] completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    SDImageCache* lShCacheImage = [SDImageCache sharedImageCache];
+    SDWebImageManager* lManager = [SDWebImageManager sharedManager];
+    NSString* lKey= [lManager cacheKeyForURL: thumbUrl];
+    UIImage* lImage = [lShCacheImage imageFromDiskCacheForKey: lKey];
+    if (lImage) {
+        self.thumbIconView.image = lImage;
+        return;
+    }
+    
+    UIImage* lLoadingImage = [UIImage imageWithName: @"loadingthumbnailurl.png"];
+    [self.thumbIconView sd_setImageWithURL:thumbUrl placeholderImage:lLoadingImage completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
-         self.thumbIconView.image = image;
-     }]; 
+         if (image)
+         {
+             [UIView transitionWithView:self.thumbIconView
+                               duration:1.0
+                                options:UIViewAnimationOptionTransitionCrossDissolve
+                             animations:^{
+                                 [self.thumbIconView setImage:image];
+                             } completion:NULL];
+         }
+     }];
 }
 
 @end

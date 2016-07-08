@@ -12,6 +12,7 @@
 
 @property(nonatomic, strong)IBOutlet UIImageView*   thumbIconView;
 @property(nonatomic, strong)IBOutlet UIImageView*   playlistIconView;
+@property(nonatomic, strong)IBOutlet UIView*        overlayView;
 @property(nonatomic, strong)IBOutlet UILabel*       noOfVideoLbl;
 @property(nonatomic, strong)IBOutlet UILabel*       videoLbl;
 @property(nonatomic, strong)IBOutlet UILabel*       videoTileLbl;

@@ -9,6 +9,7 @@
 #import "GEEventCell.h"
 #import "GEConstants.h"
 #import "UIImageView+WebCache.h"
+#import "UIImage+ImageMask.h"
 
 @implementation GEEventCell
 
@@ -22,17 +23,39 @@
 {
     [super layoutSubviews];
     
+    ThemeManager* lManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lManager selectedNavColor];
+    UIColor* lNavTextColor = [lManager selectedTextColor];
+
     self.titleLabel.textColor = [UIColor blackColor];
     self.timeLabel.textColor = [UIColor blackColor];
-    self.statusLabel.alpha = 0.5;
-    self.statusLabel.textColor = [UIColor blackColor];
+    self.statusLabel.backgroundColor = [lNavColor colorWithAlphaComponent: 0.5];
+    self.statusLabel.textColor = lNavTextColor;
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
 {
-    [self.videoIcon sd_setImageWithURL:thumbUrl placeholderImage:[UIImage imageNamed:@"loading_ds.png"] completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    SDImageCache* lShCacheImage = [SDImageCache sharedImageCache];
+    SDWebImageManager* lManager = [SDWebImageManager sharedManager];
+    NSString* lKey= [lManager cacheKeyForURL: thumbUrl];
+    UIImage* lImage = [lShCacheImage imageFromDiskCacheForKey: lKey];
+    if (lImage) {
+        self.videoIcon.image = lImage;
+        return;
+    }
+    
+    UIImage* lLoadingImage = [UIImage imageWithName: @"loadingthumbnailurl.png"];
+    [self.videoIcon sd_setImageWithURL:thumbUrl placeholderImage:lLoadingImage completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
-         self.videoIcon.image = image;
+         if (image)
+         {
+             [UIView transitionWithView:self.videoIcon
+                               duration:1.0
+                                options:UIViewAnimationOptionTransitionCrossDissolve
+                             animations:^{
+                                 [self.videoIcon setImage:image];
+                             } completion:NULL];
+         }
      }];
 }
 
