@@ -19,6 +19,8 @@
 		001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1871D16FA5900DDD39F /* GEEventHeader.m */; };
 		001BD18B1D16FA7800DDD39F /* GEEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD18A1D16FA7800DDD39F /* GEEventCell.m */; };
 		0027D4B91D2E069E001B5503 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0027D4B81D2E069E001B5503 /* menuicon.png */; };
+		0027D4BB1D2ED9EE001B5503 /* MaskImages.json in Resources */ = {isa = PBXBuildFile; fileRef = 0027D4BA1D2ED9EE001B5503 /* MaskImages.json */; };
+		0027D4BE1D2EE1AA001B5503 /* UIImage+ImageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0027D4BD1D2EE1AA001B5503 /* UIImage+ImageMask.m */; };
 		0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */; };
 		00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9A1D170820003AF084 /* GEServiceManager.m */; };
 		00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9E1D17962B003AF084 /* GEEventManager.m */; };
@@ -113,6 +115,9 @@
 		001BD1891D16FA7800DDD39F /* GEEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventCell.h; sourceTree = "<group>"; };
 		001BD18A1D16FA7800DDD39F /* GEEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventCell.m; sourceTree = "<group>"; };
 		0027D4B81D2E069E001B5503 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuicon.png; sourceTree = "<group>"; };
+		0027D4BA1D2ED9EE001B5503 /* MaskImages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MaskImages.json; sourceTree = "<group>"; };
+		0027D4BC1D2EE1AA001B5503 /* UIImage+ImageMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageMask.h"; sourceTree = "<group>"; };
+		0027D4BD1D2EE1AA001B5503 /* UIImage+ImageMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageMask.m"; sourceTree = "<group>"; };
 		0042E9B61D2613EF0094DA42 /* GEPlaylistVideoListCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVideoListCtr.h; sourceTree = "<group>"; };
 		0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVideoListCtr.m; sourceTree = "<group>"; };
 		0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GENavigatorProtocol.h; sourceTree = "<group>"; };
@@ -290,6 +295,8 @@
 				00A6024C1D2C283C00A62423 /* ThemeManager.m */,
 				00A602521D2C305300A62423 /* UIColor+HexColors.h */,
 				00A602531D2C305300A62423 /* UIColor+HexColors.m */,
+				0027D4BC1D2EE1AA001B5503 /* UIImage+ImageMask.h */,
+				0027D4BD1D2EE1AA001B5503 /* UIImage+ImageMask.m */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -398,6 +405,7 @@
 		001BD1771D164CCB00DDD39F /* MetaData */ = {
 			isa = PBXGroup;
 			children = (
+				0027D4BA1D2ED9EE001B5503 /* MaskImages.json */,
 				00A602581D2CAFFF00A62423 /* MenuFooter.json */,
 				008B3E601D2971D800DBD93C /* ThemeColor.json */,
 				001BD17A1D164D4500DDD39F /* GalaMenuMetaData.json */,
@@ -644,6 +652,7 @@
 				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
 				0027D4B91D2E069E001B5503 /* menuicon.png in Resources */,
 				00A602601D2D11E500A62423 /* disclosureicon.png in Resources */,
+				0027D4BB1D2ED9EE001B5503 /* MaskImages.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,6 +817,7 @@
 				001BD1851D16E03C00DDD39F /* GEEventVC.m in Sources */,
 				0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */,
 				00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */,
+				0027D4BE1D2EE1AA001B5503 /* UIImage+ImageMask.m in Sources */,
 				001BD1731D16466600DDD39F /* CAPSPageMenu.m in Sources */,
 				00706FF41D19B8B1003AF084 /* SDWebImageDecoder.m in Sources */,
 				00A602661D2D1AF500A62423 /* GESettingHeader.m in Sources */,

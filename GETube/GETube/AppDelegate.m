@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "GEConstants.h"
+#import "UIImage+ImageMask.h"
 #import "ThemeManager.h"
 
 @interface AppDelegate ()
@@ -21,6 +22,8 @@
 {
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     lThemeManager.selectedIndex = 2;
+    [self createIconsForTheme];
+
     UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
@@ -55,7 +58,6 @@
          }
      }];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setTintColor:lNavColor];
     [self.window setRootViewController:mAppDrawer];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -90,12 +92,38 @@
     [self saveContext];
 }
 
+- (void)createIconsForTheme
+{
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
+    
+    NSString* lBundlePath = [[NSBundle mainBundle] pathForResource:@"MaskImages" ofType:@"json"];
+    NSFileManager* lFileManager = [NSFileManager defaultManager];
+    if (![lFileManager fileExistsAtPath: lBundlePath])
+        return;
+    
+    NSData* lJsonData = [lFileManager contentsAtPath: lBundlePath];
+    NSError* lError;
+    
+    if (lJsonData!=nil)
+    {
+        NSDictionary* lDict = [NSJSONSerialization JSONObjectWithData:lJsonData
+                                                              options:kNilOptions error:&lError];
+        NSArray* lImages = [lDict objectForKey: @"Images"];
+        for (NSDictionary* lImageInfo in lImages)
+        {
+            NSString* lImageName = [lImageInfo objectForKey: @"name"];
+            [UIImage createImageFromMaskOfImageName: lImageName withFillColor: lNavTextColor needCache: TRUE];
+        }
+    }
+}
+
 - (void)onThemeChange: (NSNotification*)notification
 {
+    [self createIconsForTheme];
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
-    
     mDrawerCenterCtr.navigationController.navigationBar.barTintColor = lNavColor;
     mDrawerCenterCtr.navigationController.navigationBar.tintColor = lNavTextColor;
     mDrawerCenterCtr.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: lNavTextColor};
@@ -104,7 +132,9 @@
     mDrawerLeftMenuCtr.navigationController.navigationBar.barTintColor = lNavColor;
     mDrawerLeftMenuCtr.navigationController.navigationBar.tintColor = lNavTextColor;
     mDrawerLeftMenuCtr.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: lNavTextColor};
+
     [mDrawerLeftMenuCtr applyTheme];
+    [self.window setTintColor:lNavColor];
 }
 
 #pragma mark-

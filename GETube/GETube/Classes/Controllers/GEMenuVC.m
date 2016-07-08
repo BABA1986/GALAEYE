@@ -11,6 +11,7 @@
 #import "GESharedMenu.h"
 #import "GEConstants.h"
 #import "GESettingViewCtr.h"
+#import "UIImage+ImageMask.h"
 
 @interface GEMenuVC ()
 {
@@ -125,6 +126,7 @@
             BOOL lCanOpen = [[lFooterItem objectForKey: @"canopen"] boolValue];
 
             lCell.disclosureIconView.hidden = !lCanOpen;
+            lCell.disclosureIconView.image = [UIImage imageWithName: @"disclosureicon.png"];
             lCell.menuTitleLbl.textColor = lNavTextColor;
             lCell.menuTitleLbl.text = [lFooterItem objectForKey: @"name"];
         }

@@ -16,6 +16,7 @@
 @property(nonatomic, strong)IBOutlet UILabel*       videoLbl;
 @property(nonatomic, strong)IBOutlet UILabel*       videoTileLbl;
 
+
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl;
 
 @end
