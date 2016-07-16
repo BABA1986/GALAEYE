@@ -37,6 +37,11 @@
     [self initialiseFooterItems];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+}
+
 - (void)initialiseFooterItems
 {
     NSString* lBundlePath = [[NSBundle mainBundle] pathForResource:@"MenuFooter" ofType:@"json"];
@@ -153,6 +158,7 @@
     else
     {
         GESettingViewCtr* lGESettingViewCtr = [self.storyboard instantiateViewControllerWithIdentifier: @"GESettingViewCtrID"];
+        lGESettingViewCtr.view.frame = self.view.bounds;
         [self.navigationController pushViewController: lGESettingViewCtr animated: TRUE];
     }
 }

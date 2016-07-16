@@ -540,13 +540,13 @@
                                                     <rect key="frame" x="0.0" y="120" width="233" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFz-eU-Ggr" userLabel="TitleLabel">
-                                                            <rect key="frame" x="5" y="0.0" width="223" height="55"/>
+                                                            <rect key="frame" x="5" y="0.0" width="223" height="39"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkE-7J-v7A" userLabel="Published time">
-                                                            <rect key="frame" x="5" y="55" width="223" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkE-7J-v7A" userLabel="Published time">
+                                                            <rect key="frame" x="5" y="39" width="223" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -555,8 +555,8 @@
                                                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="HFz-eU-Ggr" firstAttribute="leading" secondItem="o4J-bo-zMz" secondAttribute="leading" constant="5" id="10R-lH-8Cu"/>
-                                                        <constraint firstItem="HFz-eU-Ggr" firstAttribute="height" secondItem="o4J-bo-zMz" secondAttribute="height" id="5tI-uq-vZk"/>
                                                         <constraint firstItem="KkE-7J-v7A" firstAttribute="leading" secondItem="HFz-eU-Ggr" secondAttribute="leading" id="F7V-gy-Qp9"/>
+                                                        <constraint firstItem="HFz-eU-Ggr" firstAttribute="height" secondItem="o4J-bo-zMz" secondAttribute="height" multiplier="0.7" id="Gvr-2X-CZ6"/>
                                                         <constraint firstItem="KkE-7J-v7A" firstAttribute="trailing" secondItem="HFz-eU-Ggr" secondAttribute="trailing" id="f5Q-pb-yE6"/>
                                                         <constraint firstAttribute="bottom" secondItem="KkE-7J-v7A" secondAttribute="bottom" id="fZg-9c-pis"/>
                                                         <constraint firstItem="KkE-7J-v7A" firstAttribute="top" secondItem="HFz-eU-Ggr" secondAttribute="bottom" id="toO-Vw-cWM"/>

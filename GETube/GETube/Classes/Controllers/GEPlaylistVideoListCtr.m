@@ -117,7 +117,7 @@
     GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
     NSURL* lThumbUrl = [NSURL URLWithString: lVideo.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
-//    lCell.timeLabel.text = [lVideo.snippet.publishedAt.date dateTimeAgo];
+    lCell.timeLabel.text = [lVideo.snippet.publishedAt.date dateTimeAgo];
     lCell.titleLabel.text = lVideo.snippet.title;
     return lCell;
 }

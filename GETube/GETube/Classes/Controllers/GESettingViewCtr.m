@@ -32,14 +32,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    
     self.navigationController.navigationBarHidden = FALSE;
     UICollectionViewFlowLayout* lLayout = (UICollectionViewFlowLayout*) mCollectionView.collectionViewLayout;
-    CGFloat lLength = self.view.bounds.size.width/3 - 5.0;
+    CGFloat lLength = self.view.bounds.size.width/3 - 3.0;
     lLayout.itemSize = CGSizeMake(lLength, lLength);
     lLayout.sectionInset = UIEdgeInsetsMake(3.0, 3.0, 3.0, 3.0);
     lLayout.minimumInteritemSpacing = 0.0;
     lLayout.minimumLineSpacing = 5.0;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear: animated];
+    
 }
 
 - (void)didReceiveMemoryWarning {
