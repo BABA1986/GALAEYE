@@ -6,17 +6,26 @@
 //  Copyright © 2016 Deepak. All rights reserved.
 //
 
-#import "GEEventVC.h"
+#import "GEVideoListVC.h"
 #import "GEEventCell.h"
 #import "GEServiceManager.h"
-#import "GEEventManager.h"
 #import "NSDate+TimeAgo.h"
 
-@implementation GEEventVC
+@interface GEVideoListVC ()
+{
+    BOOL        mRequesting;
+}
+@end
+
+@implementation GEVideoListVC
+
+@synthesize channelSource = mChannelSource;
+@synthesize videoEventType = mVideoEventType;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    mVideoEventType = EFetchEventsNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -29,25 +38,28 @@
     [super viewDidAppear: animated];
     
     GEEventManager* lManager = [GEEventManager manager];
-    if (lManager.eventListObjs.count)
-    return;
-    
+    if (mRequesting || lManager.eventListObjs.count)
+        return;
+
+    mRequesting = TRUE;
+
     [self addIndicatorView];
     [mIndicator startAnimating];
     mIndicator.hidden = FALSE;
     
     GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
-    [lServiceMngr loadAllEventsForFirstPage: ^(FetchEventQueryType eventQueryType)
+    [lServiceMngr loadVideosFromChannelSource: self.channelSource eventType: mVideoEventType onCompletion: ^(BOOL success)
      {
-         [mEventListView reloadData];
+         [mVideoListView reloadData];
          [mIndicator stopAnimating];
          mIndicator.hidden = TRUE;
+         mRequesting = FALSE;
      }];
 }
 
 - (void)applyTheme
 {
-    [mEventListView reloadData];
+    [mVideoListView reloadData];
 }
 
 - (void)addIndicatorView
@@ -56,7 +68,7 @@
     mIndicator = nil;
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavColor = [lThemeManager selectedNavColor];
-
+    
     mIndicator = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeFiveDots tintColor:lNavColor size:40.0f];
     CGRect lIndicatorFrame = self.view.bounds;
     lIndicatorFrame.size.width = 50.0;
@@ -110,52 +122,32 @@
     else if (indexPath.section == 2) {
         lCell.statusLabel.text = @"Completed";
     }
-
+    
     NSURL* lThumbUrl = [NSURL URLWithString: lEvent.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
     
     return lCell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *reusableview = nil;
-    
-    if (kind == UICollectionElementKindSectionHeader)
-    {
-        GEEventHeader* lHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GEEventHeaderID" forIndexPath:indexPath];
-        if (indexPath.section == 0)
-        {
-            lHeaderView.titleLabel.text = @"Live";
-        }
-        else if (indexPath.section == 1)
-        {
-            lHeaderView.titleLabel.text = @"Upcomming";
-        }
-        else
-        {
-            lHeaderView.titleLabel.text = @"Completed";
-        }
-
-        GEEventManager* lManager = [GEEventManager manager];
-        GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
-        GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
-        lHeaderView.seeMoreBtn.hidden = (lEventPageObj.eventList.count <= 4);
-        reusableview = lHeaderView;
-    }
-    
-    return reusableview;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GEEventManager* lManager = [GEEventManager manager];
-    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: section];
-    GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
-    if (!lEventPageObj.eventList.count)
-        return CGSizeMake(collectionView.frame.size.width, 0);
-    
-    return CGSizeMake(collectionView.frame.size.width, 40);
+    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
+
+    if (indexPath.section == lEventObj.eventListPages.count - 1)
+    {
+        if (mRequesting)
+            return;
+        
+        mRequesting = TRUE;
+        GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+        [lServiceMngr loadVideosFromChannelSource: self.channelSource eventType: mVideoEventType onCompletion: ^(BOOL success)
+         {
+             [mVideoListView reloadData];
+             mRequesting = FALSE;
+         }];
+    }
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -191,15 +183,6 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 2.0;
-}
-
-#pragma mark-
-#pragma mark- GEEventHeaderDelegate
-#pragma mark-
-
-- (void)didSelectSeeMoreOnGEEventHeader: (GEEventHeader*)header
-{
-    
 }
 
 @end

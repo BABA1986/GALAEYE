@@ -12,6 +12,8 @@
 
 typedef void (^GEServiceEventsLoadedCallbacks)(FetchEventQueryType fetchType);
 typedef void (^GEServicePlaylistLoadedCallbacks)(BOOL success);
+typedef void (^GEServiceVideoLoadedFromPlaylistCallbacks)(BOOL success);
+typedef void (^GEServiceVideoLoadedFromChannelCallbacks)(BOOL success);
 
 
 @interface GEServiceManager : NSObject
@@ -22,13 +24,15 @@ typedef void (^GEServicePlaylistLoadedCallbacks)(BOOL success);
 + (id)sharedManager;
 
 - (void)loadAllEventsForFirstPage: (GEServiceEventsLoadedCallbacks)finishCallback;
-- (void)loadEventOfType: (FetchEventQueryType)queryType
-           onCompletion: (GEServiceEventsLoadedCallbacks)finishCallback;
 
 - (void)loadPlaylistFromSource: (NSString*)channelSource
                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback;
 
 - (void)loadVideolistFromSource: (GTLYouTubePlaylist*)playlist
-                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback;
+                   onCompletion: (GEServiceVideoLoadedFromPlaylistCallbacks)finishCallback;
+
+- (void)loadVideosFromChannelSource: (NSString*)channelSource
+                          eventType: (FetchEventQueryType)eventType
+                       onCompletion: (GEServiceVideoLoadedFromChannelCallbacks)finishCallback;
 
 @end

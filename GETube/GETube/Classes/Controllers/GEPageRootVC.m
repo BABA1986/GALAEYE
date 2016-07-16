@@ -12,6 +12,7 @@
 #import "GEEventVC.h"
 #import "GEPlaylistVC.h"
 #import "GEPlaylistVideoListCtr.h"
+#import "GEVideoListVC.h"
 #import "MMDrawerBarButtonItem.h"
 
 
@@ -144,6 +145,11 @@
         }
         else if ([lPageMenu.subMenuType isEqualToString: @"playlist"])
         {
+//            GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
+//            lGEVideoListVC.title = lPageMenu.subMenuName;
+//            lGEVideoListVC.channelSource = lPageMenu.subMenuSrc;
+//            [lPageCtrs addObject: lGEVideoListVC];
+            
             GEPlaylistVC* lGEPlaylistVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEPlaylistVCID"];
             lGEPlaylistVC.title = lPageMenu.subMenuName;
             lGEPlaylistVC.navigationDelegate = self;

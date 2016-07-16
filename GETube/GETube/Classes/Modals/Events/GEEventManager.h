@@ -13,10 +13,7 @@ typedef enum : NSUInteger {
     EFetchEventsCompleted,
     EFetchEventsUpcomming,
     EFetchEventsLive,
-    EFetchEventsPopular,
-    EFetchEventsCategorised,
-    EFetchEventsShared,
-    EFetchEventsFavorites
+    EFetchEventsNone
 } FetchEventQueryType;
 
 @interface GEEventListPage : NSObject

@@ -15,7 +15,9 @@
 @interface GEServiceManager ()
 - (void)initialiseYTService;
 - (GTLQueryYouTube*)queryForEventFetchType: (FetchEventQueryType)eventType
+                                 channelId: (NSString*)channelId
                                  pageToken: (NSString*)pageToken;
+
 - (GTLQueryYouTube*)queryForPlaylistListOfChannel: (NSString*)channelId
                                         pageToken: (NSString*)pageToken;
 - (void)channelIdFroChannelSource: (NSString*)channelSrc
@@ -23,6 +25,11 @@
 
 - (GTLQueryYouTube*)queryForVideoListOfPlaylist: (NSString*)playlistId
                                       pageToken: (NSString*)pageToken;
+
+
+- (void)loadEventOfType: (FetchEventQueryType)queryType
+           onCompletion: (GEServiceEventsLoadedCallbacks)finishCallback;
+
 @end
 
 @implementation GEServiceManager
@@ -47,12 +54,13 @@
 }
 
 - (GTLQueryYouTube*)queryForEventFetchType: (FetchEventQueryType)eventType
+                                 channelId: (NSString*)channelId
                                  pageToken: (NSString*)pageToken
 {
     GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForSearchListWithPart: @"id,snippet"];
     lQuery.maxResults = 20;
     lQuery.type = @"video";
-    lQuery.channelId = kGEChannelID;
+    lQuery.channelId = channelId;
     if (eventType == EFetchEventsLive)
         lQuery.eventType = kGTLYouTubeEventTypeLive;
     else if (eventType == EFetchEventsUpcomming)
@@ -128,13 +136,22 @@
     if (!lCanFetchPage)
         finishCallback(queryType);
 
-    GTLQueryYouTube* lQuery = [self queryForEventFetchType: queryType pageToken: lPageToken];
-    [mYTService executeQuery: lQuery
-           completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+    [self channelIdFroChannelSource: kGEChannelID onCompletion: ^(NSString* channelId)
      {
-         GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
-         [lManager addEventSearchResponse: lResult forEventType: queryType];
-         finishCallback(queryType);
+         if (!channelId.length)
+         {
+             finishCallback(queryType);
+             return;
+         }
+         
+         GTLQueryYouTube* lQuery = [self queryForEventFetchType: queryType channelId: channelId pageToken: lPageToken];
+         [mYTService executeQuery: lQuery
+                completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+          {
+              GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
+              [lManager addEventSearchResponse: lResult forEventType: queryType];
+              finishCallback(queryType);
+          }];
      }];
 }
 
@@ -168,7 +185,7 @@
 }
 
 - (void)loadVideolistFromSource: (GTLYouTubePlaylist*)playlist
-                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback
+                   onCompletion: (GEServiceVideoLoadedFromPlaylistCallbacks)finishCallback
 {
     GESharedVideoList* lSharedVideoList = [GESharedVideoList sharedVideoList];
     BOOL lCanFetchPage = TRUE;
@@ -183,6 +200,36 @@
          GTLYouTubeVideoListResponse* lResult = (GTLYouTubeVideoListResponse*)object;
          [lSharedVideoList addVideoListSearchResponse: lResult forSource: playlist.identifier];
          finishCallback(TRUE);
+     }];
+}
+
+- (void)loadVideosFromChannelSource: (NSString*)channelSource
+                          eventType: (FetchEventQueryType)eventType
+                       onCompletion: (GEServiceVideoLoadedFromChannelCallbacks)finishCallback
+{
+    [self channelIdFroChannelSource: channelSource onCompletion: ^(NSString* channelId)
+     {
+         if (!channelId.length)
+         {
+             finishCallback(FALSE);
+             return;
+         }
+         
+         GEEventManager* lManager = [GEEventManager manager];
+         BOOL lCanFetchPage = TRUE;
+         NSString* lPageToken = [lManager pageTokenForEventOfType: eventType canFetchMore: &lCanFetchPage];
+         
+         if (!lCanFetchPage)
+             finishCallback(FALSE);
+         
+         GTLQueryYouTube* lQuery = [self queryForEventFetchType: eventType channelId: channelId pageToken: lPageToken];
+         [mYTService executeQuery: lQuery
+                completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+          {
+              GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
+              [lManager addEventSearchResponse: lResult forEventType: eventType];
+              finishCallback(TRUE);
+          }];
      }];
 }
 
