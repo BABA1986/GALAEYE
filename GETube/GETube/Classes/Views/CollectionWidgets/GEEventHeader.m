@@ -15,6 +15,7 @@
 @synthesize seeMoreBtn;
 @synthesize index = mIndex;
 @synthesize delegate;
+@synthesize titleBaseView;
 
 - (void)layoutSubviews
 {
@@ -23,7 +24,7 @@
     UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
-    self.titleLabel.backgroundColor = lNavColor;
+    self.titleBaseView.backgroundColor = lNavColor;
     self.titleLabel.textColor = lNavTextColor;
     [self.seeMoreBtn setBackgroundColor: lNavColor];
     [self.seeMoreBtn setTitleColor: lNavTextColor forState: UIControlStateNormal];

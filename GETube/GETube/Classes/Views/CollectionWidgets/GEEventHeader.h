@@ -20,6 +20,7 @@
     NSUInteger              mIndex;
 }
 
+@property(nonatomic, strong)IBOutlet UIView*        titleBaseView;
 @property(nonatomic, strong)IBOutlet UILabel*       titleLabel;
 @property(nonatomic, strong)IBOutlet UIButton*      seeMoreBtn;
 

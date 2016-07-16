@@ -17,12 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UICollectionViewFlowLayout* lLayout = (UICollectionViewFlowLayout*) mEventListView.collectionViewLayout;
-    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    lLayout.itemSize = CGSizeMake(lLength, 0.90*lLength);
-    lLayout.sectionInset = UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0);
-    lLayout.minimumInteritemSpacing = 0.0;
-    lLayout.minimumLineSpacing = 0.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -162,6 +156,41 @@
         return CGSizeMake(collectionView.frame.size.width, 0);
     
     return CGSizeMake(collectionView.frame.size.width, 40);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
+    CGSize lItemSize = CGSizeMake(lLength, 0.90*lLength);
+    
+    GEEventManager* lManager = [GEEventManager manager];
+    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
+    GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
+    if (lEventPageObj.eventList.count < 4 && lEventPageObj.eventList.count % 2 != 0 && indexPath.row == 0)
+    {
+        lLength += self.view.bounds.size.width/2;
+        lItemSize = CGSizeMake(lLength, 0.50*lLength);
+        return lItemSize;
+    }
+    
+    return lItemSize;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
 }
 
 #pragma mark-

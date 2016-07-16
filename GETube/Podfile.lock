@@ -34,7 +34,7 @@ DEPENDENCIES:
   - GoogleAPIClient/YouTube
   - MMDrawerController (~> 0.5.7)
   - NSDate+TimeAgo
-  - youtube-ios-player-helper (~> 0.1.4)
+  - youtube-ios-player-helper (~> 0.1.6)
 
 SPEC CHECKSUMS:
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 6a9196254b5898c2189f6dc7dbd5b31cbd0938d3
+PODFILE CHECKSUM: c36d001cce19c9664b1126c42ac3a5360ad8bcda
 
 COCOAPODS: 1.0.0

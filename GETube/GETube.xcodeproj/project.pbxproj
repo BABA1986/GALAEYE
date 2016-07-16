@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0008E4811D323351002DDE8B /* GEVideoPlayerCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */; };
 		001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1691D15678700DDD39F /* MMNavigationController.m */; };
 		001BD16D1D1567BA00DDD39F /* GEMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD16C1D1567BA00DDD39F /* GEMenuVC.m */; };
 		001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD16F1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m */; };
@@ -70,6 +71,8 @@
 		00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */; };
 		00BE6BD81D1540A50019D907 /* GETubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BD71D1540A50019D907 /* GETubeTests.m */; };
 		00BE6BE31D1540A50019D907 /* GETubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BE21D1540A50019D907 /* GETubeUITests.m */; };
+		00F5E5CB1D3189AF00B87FE7 /* dramamenuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */; };
+		00F5E5CC1D3189AF00B87FE7 /* livemenuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */; };
 		7816A3460E664526E10853A7 /* libPods-GETubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE7861B3DF6A6B8B981041 /* libPods-GETubeTests.a */; };
 		9A14700DFB305F88F1931ECE /* libPods-GETubeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343CFD89483153C29D72872F /* libPods-GETubeUITests.a */; };
 		D45B828CC805462814942A6E /* libPods-GETube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B69523F67549DDD39AA98B2 /* libPods-GETube.a */; };
@@ -93,6 +96,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0008E47F1D323351002DDE8B /* GEVideoPlayerCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoPlayerCtr.h; sourceTree = "<group>"; };
+		0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoPlayerCtr.m; sourceTree = "<group>"; };
 		001BD1681D15678700DDD39F /* MMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNavigationController.h; sourceTree = "<group>"; };
 		001BD1691D15678700DDD39F /* MMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNavigationController.m; sourceTree = "<group>"; };
 		001BD16B1D1567BA00DDD39F /* GEMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEMenuVC.h; sourceTree = "<group>"; };
@@ -209,6 +214,8 @@
 		00BE6BDE1D1540A50019D907 /* GETubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BE6BE21D1540A50019D907 /* GETubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GETubeUITests.m; sourceTree = "<group>"; };
 		00BE6BE41D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dramamenuicon.png; sourceTree = "<group>"; };
+		00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = livemenuicon.png; sourceTree = "<group>"; };
 		184FB69CD61EDE80E14B5E51 /* Pods-GETubeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeUITests/Pods-GETubeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B69523F67549DDD39AA98B2 /* libPods-GETube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		343CFD89483153C29D72872F /* libPods-GETubeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETubeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +285,8 @@
 				0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */,
 				00A602611D2D143F00A62423 /* GESettingViewCtr.h */,
 				00A602621D2D143F00A62423 /* GESettingViewCtr.m */,
+				0008E47F1D323351002DDE8B /* GEVideoPlayerCtr.h */,
+				0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -400,6 +409,8 @@
 				00B2D07B1D1CD378007F8A9C /* playlistIcon.png */,
 				0027D4BF1D2F90DD001B5503 /* loadingthumbnailurl.png */,
 				00A6024E1D2C2A5500A62423 /* downarrow.png */,
+				00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */,
+				00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */,
 				001BD1771D164CCB00DDD39F /* MetaData */,
 			);
 			path = Resources;
@@ -646,9 +657,11 @@
 				00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */,
 				00A6025E1D2D037000A62423 /* backarrow.png in Resources */,
 				0027D4C01D2F90DD001B5503 /* loadingthumbnailurl.png in Resources */,
+				00F5E5CC1D3189AF00B87FE7 /* livemenuicon.png in Resources */,
 				008B3E521D27C68000DBD93C /* play-Icon.png in Resources */,
 				00A6024F1D2C2A5500A62423 /* downarrow.png in Resources */,
 				00BE6BCA1D1540A50019D907 /* Assets.xcassets in Resources */,
+				00F5E5CB1D3189AF00B87FE7 /* dramamenuicon.png in Resources */,
 				00A602511D2C2A9E00A62423 /* uparrow.png in Resources */,
 				008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */,
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
@@ -848,6 +861,7 @@
 				00706FFB1D19B8B1003AF084 /* UIImage+MultiFormat.m in Sources */,
 				00706FFF1D19B8B1003AF084 /* UIView+WebCacheOperation.m in Sources */,
 				00706FF31D19B8B1003AF084 /* SDWebImageCompat.m in Sources */,
+				0008E4811D323351002DDE8B /* GEVideoPlayerCtr.m in Sources */,
 				001BD17E1D166FC700DDD39F /* GESharedMenu.m in Sources */,
 				001BD18B1D16FA7800DDD39F /* GEEventCell.m in Sources */,
 			);

@@ -14,6 +14,7 @@
 @property(nonatomic, strong)IBOutlet UILabel*       timeLabel;
 @property(nonatomic, strong)IBOutlet UILabel*       statusLabel;
 @property(nonatomic, strong)IBOutlet UIImageView*   videoIcon;
+@property(nonatomic, strong)IBOutlet UIImageView*   videoPlayIcon;
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl;
 

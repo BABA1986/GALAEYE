@@ -34,7 +34,7 @@
     lLayout.itemSize = CGSizeMake(lLength, 0.9*lLength);
     lLayout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0);
     lLayout.minimumInteritemSpacing = 0.0;
-    lLayout.minimumLineSpacing = 0.0;
+    lLayout.minimumLineSpacing = 2.0;
 }
 
 - (void)didReceiveMemoryWarning {

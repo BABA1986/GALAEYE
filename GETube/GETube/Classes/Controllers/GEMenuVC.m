@@ -137,6 +137,7 @@
             lCell.menuTitleLbl.text = lMenu.menuName;
             lCell.menuTitleLbl.textColor = lNavTextColor;
             lCell.menuTitleLbl.font = [UIFont systemFontOfSize: 17.0];
+            lCell.menuIconView.image = [UIImage imageWithName: lMenu.menuImageIcon];
         }
     }
     

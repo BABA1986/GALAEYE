@@ -753,7 +753,10 @@ NSString static *const kYTPlayerSyndicationRegexPattern = @"^https://tpc.googles
     UIView *initialLoadingView = [self.delegate playerViewPreferredInitialLoadingView:self];
     if (initialLoadingView) {
       initialLoadingView.frame = self.bounds;
+      self.webView.frame = self.bounds;
       initialLoadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
       [self addSubview:initialLoadingView];
       self.initialLoadingView = initialLoadingView;
     }

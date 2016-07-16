@@ -8,6 +8,7 @@
                             {
                             "id": "",
                             "name": "Gala Eye",
+                            "image": "livemenuicon.png",
                             "submenus": [
                                          {
                                          "id": "",
@@ -44,6 +45,7 @@
                             {
                             "id": "",
                             "name": "Drama",
+                            "image": "dramamenuicon.png",
                             "submenus": [
                                          {
                                          "id": "",

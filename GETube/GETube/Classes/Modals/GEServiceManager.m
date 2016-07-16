@@ -61,7 +61,6 @@
         lQuery.eventType = kGTLYouTubeEventTypeCompleted;
     
     lQuery.pageToken = pageToken;
-    
     return lQuery;
 }
 
@@ -79,11 +78,10 @@
 - (GTLQueryYouTube*)queryForVideoListOfPlaylist: (NSString*)playlistId
                                       pageToken: (NSString*)pageToken
 {
-    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistItemsListWithPart: @"id,snippet"];
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistItemsListWithPart: @"id,snippet,contentDetails"];
     lQuery.maxResults = 20;
     lQuery.playlistId = playlistId;
     lQuery.pageToken = pageToken;
-    
     return lQuery;
 }
 

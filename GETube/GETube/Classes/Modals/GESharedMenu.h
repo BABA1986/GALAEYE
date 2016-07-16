@@ -13,6 +13,7 @@
 @property(nonatomic, copy)NSString*     menuName;
 @property(nonatomic, copy)NSString*     menuCountry;
 @property(nonatomic, copy)NSString*     menuCountryCode;
+@property(nonatomic, copy)NSString*     menuImageIcon;
 @property(nonatomic, strong)NSArray*    subMenus;
 - (GEMenu*)initWithDict: (NSDictionary*)menuDict
             withCountry: (NSDictionary*)countryInfo;

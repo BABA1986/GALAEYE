@@ -7,6 +7,7 @@
 //
 
 #import "GEPlaylistVideoListCtr.h"
+#import "GEVideoPlayerCtr.h"
 #import "GEServiceManager.h"
 #import "GESharedVideoList.h"
 #import "GEVideoListCell.h"
@@ -28,13 +29,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    UICollectionViewFlowLayout* lLayout = (UICollectionViewFlowLayout*) mVideoListView.collectionViewLayout;
-    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    lLayout.itemSize = CGSizeMake(lLength, lLength);
-    lLayout.sectionInset = UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0);
-    lLayout.minimumInteritemSpacing = 0.0;
-    lLayout.minimumLineSpacing = 0.0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,10 +114,10 @@
     GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
     
-    GTLYouTubeVideo* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
+    GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
     NSURL* lThumbUrl = [NSURL URLWithString: lVideo.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
-    lCell.timeLabel.text = [lVideo.snippet.publishedAt.date dateTimeAgo];
+//    lCell.timeLabel.text = [lVideo.snippet.publishedAt.date dateTimeAgo];
     lCell.titleLabel.text = lVideo.snippet.title;
     return lCell;
 }
@@ -195,15 +189,56 @@
     return CGSizeMake(collectionView.frame.size.width, 40);
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
+    CGSize lItemSize = CGSizeMake(lLength, lLength);
+    
+    GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
+    if (lGEVideoListPage.videoList.count < 10 && lGEVideoListPage.videoList.count % 2 != 0 && indexPath.row == 0)
+    {
+        lLength += self.view.bounds.size.width/2;
+        lItemSize = CGSizeMake(lLength, 0.60*lLength);
+        return lItemSize;
+    }
+    
+    return lItemSize;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 //    if (self.navigationDelegate && [self.navigationDelegate respondsToSelector: @selector(moveToViewController:fromViewCtr:)])
-//    {
-//        //        Main.storyboard
-//        UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        GEPlaylistVideoListCtr* lVideoListCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEPlaylistVideoListCtrID"];
-//        [self.navigationDelegate moveToViewController: lVideoListCtr fromViewCtr: self];
-//    }
+    {
+        GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
+        GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+        GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
+        
+        GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
+        
+        UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
+        lGEVideoPlayerCtr.playListItem = lVideo;
+        [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
+    }
 }
 
 @end

@@ -12,6 +12,7 @@
 @synthesize menuId;
 @synthesize menuName;
 @synthesize menuCountry;
+@synthesize menuImageIcon;
 @synthesize subMenus;
 
 - (GEMenu*)initWithDict: (NSDictionary*)menuDict
@@ -23,6 +24,7 @@
         self.menuName = [menuDict objectForKey: @"name"];
         self.menuCountry = [countryInfo objectForKey: @"name"];
         self.menuCountryCode = [countryInfo objectForKey: @"code"];
+        self.menuImageIcon = [menuDict objectForKey: @"image"];
         NSArray* lSubMenus = [menuDict objectForKey: @"submenus"];
         NSMutableArray* lGESubMenus = [[NSMutableArray alloc] init];
         for (NSDictionary* lSubMenu in lSubMenus) {
