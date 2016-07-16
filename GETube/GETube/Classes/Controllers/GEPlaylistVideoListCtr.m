@@ -237,6 +237,7 @@
         UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
         lGEVideoPlayerCtr.playListItem = lVideo;
+        lGEVideoPlayerCtr.view.frame = self.view.bounds;
         [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
     }
 }

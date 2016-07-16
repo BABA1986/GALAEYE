@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mLoadingIconView.image = [UIImage imageWithName: @"loadingthumbnailurl.png"];
+    mBrandLogoView.image = [UIImage imageWithName: @"smalllogo.png"];
     
     UIBarButtonItem* lBackItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageWithName: @"backarrow.png"]
                                                                   style: UIBarButtonItemStyleDone
@@ -30,6 +31,7 @@
                                                                  action: @selector(backButtonAction:)];
     
     self.navigationItem.leftBarButtonItem = lBackItem;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,23 +49,21 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
-
     NSDictionary* lPlayerVars = @{
                                   @"playsinline" : @1,
                                   @"enablejsapi": @1,
                                   @"autohide" : @0,
                                   @"controls" : @1,
-                                  @"showinfo" : @0,
+                                  @"showinfo" : @1,
                                   @"modestbranding" : @1,
                                   @"autoplay" : @1,
-                                  @"fs" : @1,
                                   @"origin" : @"https://www.google.com",
                                   };
     
     mPlayerView.delegate = self;
+    mPlayerView.translatesAutoresizingMaskIntoConstraints = TRUE;
     NSString* lVideoId = self.playListItem.contentDetails.videoId;
     [mPlayerView loadWithVideoId: lVideoId playerVars: lPlayerVars];
-    [mPlayerView playVideo];
     [self.view bringSubviewToFront: mPlayerBaseView];
 }
 

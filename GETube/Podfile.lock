@@ -26,7 +26,7 @@ PODS:
   - MMDrawerController/Subclass (0.5.7):
     - MMDrawerController/Core
   - NSDate+TimeAgo (1.0.6)
-  - youtube-ios-player-helper (0.1.6)
+  - youtube-ios-player-helper (0.1.5)
 
 DEPENDENCIES:
   - DGActivityIndicatorView
@@ -34,7 +34,7 @@ DEPENDENCIES:
   - GoogleAPIClient/YouTube
   - MMDrawerController (~> 0.5.7)
   - NSDate+TimeAgo
-  - youtube-ios-player-helper (~> 0.1.6)
+  - youtube-ios-player-helper (= 0.1.5)
 
 SPEC CHECKSUMS:
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
@@ -42,8 +42,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 174bc61d5238f81f9ddb807b0b0170420f67de85
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
-  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
+  youtube-ios-player-helper: 8706bb155ffee74fbe5f2f5cf41c2dafe60dc155
 
-PODFILE CHECKSUM: c36d001cce19c9664b1126c42ac3a5360ad8bcda
+PODFILE CHECKSUM: 5f5aaac2ad6cc9707640a58e1587467c440d8776
 
 COCOAPODS: 1.0.0

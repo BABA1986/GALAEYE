@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>youtube-ios-player-helper-Assets.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>youtube-ios-player-helper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -63,6 +68,11 @@
 			<true/>
 		</dict>
 		<key>13C0548F87978E770BF07D80F168F666</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>45AF1CC92216F3ED0EF6777D63B8DAC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

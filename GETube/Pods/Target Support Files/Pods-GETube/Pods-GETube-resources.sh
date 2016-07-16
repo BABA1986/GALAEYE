@@ -81,11 +81,11 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
-  install_resource "youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle"
+  install_resource "$PODS_CONFIGURATION_BUILD_DIR/youtube-ios-player-helper/Assets.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
-  install_resource "youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle"
+  install_resource "$PODS_CONFIGURATION_BUILD_DIR/youtube-ios-player-helper/Assets.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -14,6 +14,7 @@
 {
     IBOutlet UIView*                        mPlayerBaseView;
     IBOutlet UIImageView*                   mLoadingIconView;
+    IBOutlet UIImageView*                   mBrandLogoView;
     IBOutlet YTPlayerView*                  mPlayerView;
     __weak GTLYouTubePlaylistItem*          mPlayListItem;
 }
