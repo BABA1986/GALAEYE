@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CAPSPageMenu.h"
 #import "GENavigatorProtocol.h"
+#import "CPDropDownSelector.h"
 
-@interface GEPageRootVC : UIViewController<CAPSPageMenuDelegate, GENavigatorProtocol>
+@interface GEPageRootVC : UIViewController<CAPSPageMenuDelegate, GENavigatorProtocol, CPDropDownSelectorDataSource, CPDropDownSelectorDelegate>
 {
     CAPSPageMenu*               mPageMenu;
 }

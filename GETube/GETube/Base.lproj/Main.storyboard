@@ -990,23 +990,23 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-em-H3w">
-                                            <rect key="frame" x="2" y="2" width="596" height="46"/>
+                                            <rect key="frame" x="2" y="2" width="596" height="48"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaylistTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-fl-hDJ">
-                                                    <rect key="frame" x="2" y="0.0" width="592" height="28"/>
+                                                    <rect key="frame" x="2" y="0.0" width="592" height="29"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXg-3M-BIY">
-                                                    <rect key="frame" x="2" y="28" width="298" height="18"/>
+                                                    <rect key="frame" x="2" y="29" width="298" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO OfVideos" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihq-7J-rfZ">
-                                                    <rect key="frame" x="300" y="28" width="294" height="18"/>
+                                                    <rect key="frame" x="300" y="29" width="294" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1030,7 +1030,7 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="8SK-em-H3w" secondAttribute="bottom" constant="2" id="Jav-mQ-FsN"/>
+                                        <constraint firstAttribute="bottom" secondItem="8SK-em-H3w" secondAttribute="bottom" id="Jav-mQ-FsN"/>
                                         <constraint firstItem="8SK-em-H3w" firstAttribute="top" secondItem="GB5-HK-9D2" secondAttribute="top" constant="2" id="Nv6-dd-yb9"/>
                                         <constraint firstItem="8SK-em-H3w" firstAttribute="leading" secondItem="GB5-HK-9D2" secondAttribute="leading" constant="2" id="PPt-e9-1DO"/>
                                         <constraint firstAttribute="trailing" secondItem="8SK-em-H3w" secondAttribute="trailing" constant="2" id="aX7-yA-Rmr"/>

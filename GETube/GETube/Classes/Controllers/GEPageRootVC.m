@@ -18,6 +18,8 @@
 
 @interface GEPageRootVC ()
 - (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex;
+- (void)addSortFilter;
+- (void)removeSortFilter;
 @end
 
 @implementation GEPageRootVC
@@ -53,6 +55,20 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addSortFilter
+{
+    CPDropDownSelector* lDropDown = [[CPDropDownSelector alloc] initWithFrame: CGRectMake( 0.0, 0.0, 80.0, 20.0)];
+    lDropDown.shouldHideSelectLabel = TRUE;
+    lDropDown.delegate = self; lDropDown.dataSource = self;
+    MMDrawerBarButtonItem* lDropDownItem = [[MMDrawerBarButtonItem alloc] initWithCustomView: lDropDown];
+    self.navigationItem.rightBarButtonItem = lDropDownItem;
+}
+
+- (void)removeSortFilter
+{
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex
@@ -131,6 +147,11 @@
 {
     GESharedMenu* lSharedMenu = [GESharedMenu sharedMenu];
     GEMenu* lMenus = [lSharedMenu.menus objectAtIndex: leftMenuIndex];
+    if (![lMenus.menuName isEqualToString: @"Gala Eye"])
+        [self addSortFilter];
+    else
+        [self removeSortFilter];
+    
     self.title = lMenus.menuName;
     NSMutableArray* lPageCtrs = [[NSMutableArray alloc] init];
     
@@ -174,5 +195,44 @@
 {
     [self.navigationController pushViewController: toViewController animated: TRUE];
 }
+
+#pragma mark-
+#pragma mark-
+#pragma mark-
+
+- (NSInteger)numberOfRowsInDropDownSelector:(CPDropDownSelector*)selector
+{
+    return 2;
+}
+
+- (NSString*)dropDownSelector:(CPDropDownSelector*)selector textForRow:(NSInteger)row
+{
+    if (row == 0) {
+        return @"Playlists";
+    }
+    return @"Videos";
+}
+
+- (CGFloat)dropDownSelector:(CPDropDownSelector*)selector heightForRow:(NSInteger)row
+{
+    return 30.0;
+}
+
+- (void)dropDownSelector:(CPDropDownSelector*)selector didSelectedRow:(NSInteger)row
+{
+    
+}
+
+- (void)dropDownSelector:(CPDropDownSelector*)selector didSelected:(BOOL)selected row:(NSInteger)row
+{
+    
+}
+
+- (BOOL)dropDownSelector:(CPDropDownSelector*)selector  shouldShowSelectedRow:(NSInteger)row;
+{
+    return YES;
+}
+
+
 
 @end

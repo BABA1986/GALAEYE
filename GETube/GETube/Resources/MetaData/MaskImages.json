@@ -25,12 +25,20 @@
                "name": "livemenuicon.png",
                },
                {
-               "id": "6",
+               "id": "7",
                "name": "backarrow.png",
                },
                {
-               "id": "6",
+               "id": "8",
                "name": "smalllogo.png",
+               },
+               {
+               "id": "9",
+               "name": "downarrow.png",
+               },
+               {
+               "id": "10",
+               "name": "tick.png",
                }
               ]
 }

@@ -24,6 +24,7 @@
 		0027D4BE1D2EE1AA001B5503 /* UIImage+ImageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0027D4BD1D2EE1AA001B5503 /* UIImage+ImageMask.m */; };
 		0027D4C01D2F90DD001B5503 /* loadingthumbnailurl.png in Resources */ = {isa = PBXBuildFile; fileRef = 0027D4BF1D2F90DD001B5503 /* loadingthumbnailurl.png */; };
 		0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */; };
+		005104701D3B5F0600C5ACCD /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051046F1D3B5F0600C5ACCD /* tick.png */; };
 		00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9A1D170820003AF084 /* GEServiceManager.m */; };
 		00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706F9E1D17962B003AF084 /* GEEventManager.m */; };
 		00706FA31D179D70003AF084 /* GESharedPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FA21D179D70003AF084 /* GESharedPlaylist.m */; };
@@ -51,6 +52,7 @@
 		008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */ = {isa = PBXBuildFile; fileRef = 008B3E601D2971D800DBD93C /* ThemeColor.json */; };
 		00A1DCA21D3A783300C3C710 /* smalllogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A1DCA11D3A783300C3C710 /* smalllogo.png */; };
 		00A1DCA51D3A7F0A00C3C710 /* GEVideoListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A1DCA41D3A7F0A00C3C710 /* GEVideoListVC.m */; };
+		00A1DCA91D3B31FF00C3C710 /* CPDropDownSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A1DCA81D3B31FF00C3C710 /* CPDropDownSelector.m */; };
 		00A6024D1D2C283C00A62423 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A6024C1D2C283C00A62423 /* ThemeManager.m */; };
 		00A6024F1D2C2A5500A62423 /* downarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A6024E1D2C2A5500A62423 /* downarrow.png */; };
 		00A602511D2C2A9E00A62423 /* uparrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A602501D2C2A9E00A62423 /* uparrow.png */; };
@@ -130,6 +132,7 @@
 		0042E9B61D2613EF0094DA42 /* GEPlaylistVideoListCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVideoListCtr.h; sourceTree = "<group>"; };
 		0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVideoListCtr.m; sourceTree = "<group>"; };
 		0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GENavigatorProtocol.h; sourceTree = "<group>"; };
+		0051046F1D3B5F0600C5ACCD /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
 		00706F991D170820003AF084 /* GEServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEServiceManager.h; sourceTree = "<group>"; };
 		00706F9A1D170820003AF084 /* GEServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEServiceManager.m; sourceTree = "<group>"; };
 		00706F9D1D17962B003AF084 /* GEEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventManager.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 		00A1DCA11D3A783300C3C710 /* smalllogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smalllogo.png; sourceTree = "<group>"; };
 		00A1DCA31D3A7F0A00C3C710 /* GEVideoListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoListVC.h; sourceTree = "<group>"; };
 		00A1DCA41D3A7F0A00C3C710 /* GEVideoListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoListVC.m; sourceTree = "<group>"; };
+		00A1DCA71D3B31FF00C3C710 /* CPDropDownSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDropDownSelector.h; sourceTree = "<group>"; };
+		00A1DCA81D3B31FF00C3C710 /* CPDropDownSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDropDownSelector.m; sourceTree = "<group>"; };
 		00A6024B1D2C283C00A62423 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		00A6024C1D2C283C00A62423 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		00A6024E1D2C2A5500A62423 /* downarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downarrow.png; sourceTree = "<group>"; };
@@ -322,6 +327,7 @@
 		001BD1601D1555E900DDD39F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				00A1DCA61D3B31FF00C3C710 /* DropDown */,
 				001BD1711D16466600DDD39F /* CAPSPageMenu.h */,
 				001BD1721D16466600DDD39F /* CAPSPageMenu.m */,
 				001BD17F1D16793D00DDD39F /* MenuListCell.h */,
@@ -419,6 +425,7 @@
 				00A6024E1D2C2A5500A62423 /* downarrow.png */,
 				00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */,
 				00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */,
+				0051046F1D3B5F0600C5ACCD /* tick.png */,
 				001BD1771D164CCB00DDD39F /* MetaData */,
 			);
 			path = Resources;
@@ -460,6 +467,15 @@
 				008B3E551D283C9800DBD93C /* GESharedVideoList.m */,
 			);
 			path = VideoList;
+			sourceTree = "<group>";
+		};
+		00A1DCA61D3B31FF00C3C710 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				00A1DCA71D3B31FF00C3C710 /* CPDropDownSelector.h */,
+				00A1DCA81D3B31FF00C3C710 /* CPDropDownSelector.m */,
+			);
+			path = DropDown;
 			sourceTree = "<group>";
 		};
 		00BE6BAE1D1540A50019D907 = {
@@ -673,6 +689,7 @@
 				00F5E5CB1D3189AF00B87FE7 /* dramamenuicon.png in Resources */,
 				00A602511D2C2A9E00A62423 /* uparrow.png in Resources */,
 				008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */,
+				005104701D3B5F0600C5ACCD /* tick.png in Resources */,
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
 				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
@@ -844,6 +861,7 @@
 				0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */,
 				00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */,
 				0027D4BE1D2EE1AA001B5503 /* UIImage+ImageMask.m in Sources */,
+				00A1DCA91D3B31FF00C3C710 /* CPDropDownSelector.m in Sources */,
 				001BD1731D16466600DDD39F /* CAPSPageMenu.m in Sources */,
 				00706FF41D19B8B1003AF084 /* SDWebImageDecoder.m in Sources */,
 				00A602661D2D1AF500A62423 /* GESettingHeader.m in Sources */,
