@@ -142,6 +142,11 @@
     [self.window setTintColor:lNavColor];
 }
 
+- (void)openCloseLeftMenuDrawer
+{
+    [mAppDrawer toggleDrawerSide: MMDrawerSideLeft animated: TRUE completion: nil];
+}
+
 #pragma mark-
 #pragma mark- GEMenuVCDelegate
 #pragma mark-

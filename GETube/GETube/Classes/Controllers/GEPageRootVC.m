@@ -14,7 +14,7 @@
 #import "GEPlaylistVideoListCtr.h"
 #import "GEVideoListVC.h"
 #import "MMDrawerBarButtonItem.h"
-
+#import "AppDelegate.h"
 
 @interface GEPageRootVC ()
 - (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex;
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    MMDrawerBarButtonItem* lItem = [[MMDrawerBarButtonItem alloc] initWithTarget: self action: nil];
+    MMDrawerBarButtonItem* lItem = [[MMDrawerBarButtonItem alloc] initWithTarget: self action: @selector(leftDrawerOpenClose:)];
     lItem.image = [UIImage imageNamed: @"menuicon.png"];
     self.navigationItem.leftBarButtonItem = lItem;
 
@@ -185,6 +185,12 @@
     }
     
     return lPageCtrs;
+}
+
+- (void)leftDrawerOpenClose: (id)sender
+{
+    AppDelegate* lAppDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [lAppDelegate openCloseLeftMenuDrawer];
 }
 
 #pragma mark-
