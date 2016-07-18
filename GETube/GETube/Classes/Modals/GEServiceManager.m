@@ -69,6 +69,7 @@
         lQuery.eventType = kGTLYouTubeEventTypeCompleted;
     
     lQuery.pageToken = pageToken;
+    lQuery.order = @"date";
     return lQuery;
 }
 
@@ -131,7 +132,7 @@
 {
     GEEventManager* lManager = [GEEventManager manager];
     BOOL lCanFetchPage = TRUE;
-    NSString* lPageToken = [lManager pageTokenForEventOfType: queryType canFetchMore: &lCanFetchPage];
+    NSString* lPageToken = [lManager pageTokenForEventOfType: queryType forSource: kGEChannelID canFetchMore: &lCanFetchPage];
     
     if (!lCanFetchPage)
         finishCallback(queryType);
@@ -149,7 +150,7 @@
                 completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
           {
               GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
-              [lManager addEventSearchResponse: lResult forEventType: queryType];
+              [lManager addEventSearchResponse: lResult forEventType: queryType forSource: kGEChannelID];
               finishCallback(queryType);
           }];
      }];
@@ -217,7 +218,7 @@
          
          GEEventManager* lManager = [GEEventManager manager];
          BOOL lCanFetchPage = TRUE;
-         NSString* lPageToken = [lManager pageTokenForEventOfType: eventType canFetchMore: &lCanFetchPage];
+         NSString* lPageToken = [lManager pageTokenForEventOfType: eventType forSource: channelSource canFetchMore: &lCanFetchPage];
          
          if (!lCanFetchPage)
              finishCallback(FALSE);
@@ -227,7 +228,7 @@
                 completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
           {
               GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
-              [lManager addEventSearchResponse: lResult forEventType: eventType];
+              [lManager addEventSearchResponse: lResult forEventType: eventType forSource: channelSource];
               finishCallback(TRUE);
           }];
      }];

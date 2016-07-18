@@ -29,10 +29,12 @@ typedef enum : NSUInteger {
 @interface GEEventListObj : NSObject
 @property(nonatomic, strong)NSMutableArray*     eventListPages;
 @property(nonatomic, assign)FetchEventQueryType eventType;
+@property(nonatomic, strong)NSString*           channelSource;
 @property(nonatomic, assign)NSUInteger          totalResult;
 
 - (id)initWithResponse: (GTLYouTubeSearchListResponse*)response
-             eventType: (FetchEventQueryType)eventQueryType;
+             eventType: (FetchEventQueryType)eventQueryType
+         channelSource: (NSString*)channelId;
 - (void)addEventsFromResponse: (GTLYouTubeSearchListResponse*)response;
 @end
 
@@ -47,7 +49,11 @@ typedef enum : NSUInteger {
 + (id)manager;
 
 - (NSString*)pageTokenForEventOfType: (FetchEventQueryType)eventQueryType
+                           forSource: (NSString*)channelId
                         canFetchMore: (BOOL*)canFetch;
 - (void)addEventSearchResponse: (GTLYouTubeSearchListResponse*)response
-                  forEventType: (FetchEventQueryType)eventQueryType;
+                  forEventType: (FetchEventQueryType)eventQueryType
+                     forSource: (NSString*)channelId;
+- (GEEventListObj*)eventListObjForEventType: (FetchEventQueryType)fetchType
+                                  forSource: (NSString*)channelId;
 @end

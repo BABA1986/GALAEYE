@@ -17,7 +17,11 @@
 #import "AppDelegate.h"
 
 @interface GEPageRootVC ()
-- (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex;
+{
+    NSUInteger          mLeftMenuIndex;
+}
+- (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex
+                          withFilter: (NSString*)filter;
 - (void)addSortFilter;
 - (void)removeSortFilter;
 @end
@@ -48,7 +52,13 @@
     if (mPageMenu)
         return;
     
-    [self initialisePagesForLeftMenuIndex: 0];
+    [self initialisePagesForLeftMenuIndex: 0 withFilter: @""];
+}
+
+- (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex
+{
+    NSString* lFilter = (leftMenuIndex != 0) ? @"Playlists" : @"";
+    [self initialisePagesForLeftMenuIndex: leftMenuIndex withFilter: lFilter];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,6 +82,7 @@
 }
 
 - (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex
+                             withFilter: (NSString*)filter
 {
     if (mPageMenu) {
         [mPageMenu.view removeFromSuperview];
@@ -79,6 +90,7 @@
         mPageMenu = nil;
     }
     
+    mLeftMenuIndex = leftMenuIndex;
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
@@ -95,9 +107,14 @@
                                  CAPSPageMenuOptionCenterMenuItems: @(YES)
                                  };
     
-    NSArray* lCtrs = [self pageCtrsForLeftMenuIndex: leftMenuIndex];
+    NSArray* lCtrs = [self pageCtrsForLeftMenuIndex: leftMenuIndex withFilter: filter];
     mPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:lCtrs frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
     [self.view addSubview:mPageMenu.view];
+    
+    if (leftMenuIndex != 0)
+        [self addSortFilter];
+    else
+        [self removeSortFilter];
 }
 
 - (void)applyTheme
@@ -143,15 +160,10 @@
     }
 }
 
-- (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex
+- (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex withFilter: (NSString*)filter
 {
     GESharedMenu* lSharedMenu = [GESharedMenu sharedMenu];
     GEMenu* lMenus = [lSharedMenu.menus objectAtIndex: leftMenuIndex];
-    if (![lMenus.menuName isEqualToString: @"Gala Eye"])
-        [self addSortFilter];
-    else
-        [self removeSortFilter];
-    
     self.title = lMenus.menuName;
     NSMutableArray* lPageCtrs = [[NSMutableArray alloc] init];
     
@@ -166,16 +178,22 @@
         }
         else if ([lPageMenu.subMenuType isEqualToString: @"playlist"])
         {
-//            GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
-//            lGEVideoListVC.title = lPageMenu.subMenuName;
-//            lGEVideoListVC.channelSource = lPageMenu.subMenuSrc;
-//            [lPageCtrs addObject: lGEVideoListVC];
+            if ([filter isEqualToString: @"Playlists"])
+            {
+                GEPlaylistVC* lGEPlaylistVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEPlaylistVCID"];
+                lGEPlaylistVC.title = lPageMenu.subMenuName;
+                lGEPlaylistVC.navigationDelegate = self;
+                lGEPlaylistVC.listSource = lPageMenu.subMenuSrc;
+                [lPageCtrs addObject: lGEPlaylistVC];
+            }
+            else
+            {
+                GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
+                lGEVideoListVC.title = lPageMenu.subMenuName;
+                lGEVideoListVC.channelSource = lPageMenu.subMenuSrc;
+                [lPageCtrs addObject: lGEVideoListVC];
+            }
             
-            GEPlaylistVC* lGEPlaylistVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEPlaylistVCID"];
-            lGEPlaylistVC.title = lPageMenu.subMenuName;
-            lGEPlaylistVC.navigationDelegate = self;
-            lGEPlaylistVC.listSource = lPageMenu.subMenuSrc;
-            [lPageCtrs addObject: lGEPlaylistVC];
             continue;
         }
         
@@ -226,7 +244,9 @@
 
 - (void)dropDownSelector:(CPDropDownSelector*)selector didSelectedRow:(NSInteger)row
 {
-    
+    NSString* lFilter = (row == 0) ? @"Playlists" : @"Videos";
+    selector.selectorTitle = lFilter;
+    [self initialisePagesForLeftMenuIndex: mLeftMenuIndex  withFilter: lFilter];
 }
 
 - (void)dropDownSelector:(CPDropDownSelector*)selector didSelected:(BOOL)selected row:(NSInteger)row

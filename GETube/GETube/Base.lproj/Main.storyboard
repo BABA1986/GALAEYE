@@ -911,13 +911,13 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vn1-2x-shp">
                                     <size key="itemSize" width="233" height="175"/>
-                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GEVideoListCellID" id="rqz-xf-A8R" customClass="GEVideoListCell">
-                                        <rect key="frame" x="0.0" y="50" width="233" height="175"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GESearchVideoCellID" id="rqz-xf-A8R" customClass="GEVideoListCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="233" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="233" height="175"/>
@@ -985,65 +985,8 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="GEPlaylistHeaderID" reuseIdentifier="GEVideoListHeaderID" id="GB5-HK-9D2" customClass="GEVideoListHeader">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8SK-em-H3w">
-                                            <rect key="frame" x="2" y="2" width="596" height="48"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaylistTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-fl-hDJ">
-                                                    <rect key="frame" x="2" y="0.0" width="592" height="29"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXg-3M-BIY">
-                                                    <rect key="frame" x="2" y="29" width="298" height="19"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO OfVideos" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihq-7J-rfZ">
-                                                    <rect key="frame" x="300" y="29" width="294" height="19"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="Ihq-7J-rfZ" firstAttribute="top" secondItem="hXg-3M-BIY" secondAttribute="top" id="5kk-ko-TQn"/>
-                                                <constraint firstItem="hXg-3M-BIY" firstAttribute="height" secondItem="8SK-em-H3w" secondAttribute="height" multiplier="0.4" id="M4r-zB-AFE"/>
-                                                <constraint firstItem="Ihq-7J-rfZ" firstAttribute="leading" secondItem="hXg-3M-BIY" secondAttribute="trailing" id="NcS-cb-Nvl"/>
-                                                <constraint firstItem="GhO-fl-hDJ" firstAttribute="height" secondItem="8SK-em-H3w" secondAttribute="height" multiplier="0.6" id="R7P-3N-Bwh"/>
-                                                <constraint firstItem="GhO-fl-hDJ" firstAttribute="leading" secondItem="8SK-em-H3w" secondAttribute="leading" constant="2" id="X4P-es-Z3L"/>
-                                                <constraint firstItem="hXg-3M-BIY" firstAttribute="top" secondItem="GhO-fl-hDJ" secondAttribute="bottom" id="YY3-mS-ozY"/>
-                                                <constraint firstItem="Ihq-7J-rfZ" firstAttribute="height" secondItem="hXg-3M-BIY" secondAttribute="height" id="gNL-MQ-SWp"/>
-                                                <constraint firstItem="GhO-fl-hDJ" firstAttribute="top" secondItem="8SK-em-H3w" secondAttribute="top" id="huT-Op-Eob"/>
-                                                <constraint firstItem="Ihq-7J-rfZ" firstAttribute="trailing" secondItem="GhO-fl-hDJ" secondAttribute="trailing" id="l8U-1e-kfV"/>
-                                                <constraint firstAttribute="trailing" secondItem="GhO-fl-hDJ" secondAttribute="trailing" constant="2" id="m6x-4l-fRm"/>
-                                                <constraint firstItem="hXg-3M-BIY" firstAttribute="leading" secondItem="GhO-fl-hDJ" secondAttribute="leading" id="sSq-Yl-CaA"/>
-                                                <constraint firstItem="hXg-3M-BIY" firstAttribute="width" secondItem="8SK-em-H3w" secondAttribute="width" multiplier="0.5" id="tcK-hO-xAj"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="8SK-em-H3w" secondAttribute="bottom" id="Jav-mQ-FsN"/>
-                                        <constraint firstItem="8SK-em-H3w" firstAttribute="top" secondItem="GB5-HK-9D2" secondAttribute="top" constant="2" id="Nv6-dd-yb9"/>
-                                        <constraint firstItem="8SK-em-H3w" firstAttribute="leading" secondItem="GB5-HK-9D2" secondAttribute="leading" constant="2" id="PPt-e9-1DO"/>
-                                        <constraint firstAttribute="trailing" secondItem="8SK-em-H3w" secondAttribute="trailing" constant="2" id="aX7-yA-Rmr"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="baseView" destination="8SK-em-H3w" id="sQh-Ne-1RZ"/>
-                                        <outlet property="channelNameLbl" destination="hXg-3M-BIY" id="jFF-i6-V1M"/>
-                                        <outlet property="listTitleLbl" destination="GhO-fl-hDJ" id="WrT-2Y-RQV"/>
-                                        <outlet property="noOfVideosLbl" destination="Ihq-7J-rfZ" id="aRc-Ry-6s1"/>
-                                    </connections>
-                                </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GELoadingFooterID" id="eBi-VA-ryU" customClass="GELoadingFooter">
-                                    <rect key="frame" x="0.0" y="225" width="600" height="50"/>
+                                    <rect key="frame" x="0.0" y="175" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EoO-kl-CFb">

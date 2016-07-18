@@ -29,12 +29,14 @@
 @end
 
 @implementation GEEventListObj : NSObject
+@synthesize  channelSource;
 @synthesize  eventListPages;
 @synthesize  eventType;
 @synthesize  totalResult;
 
 - (id)initWithResponse: (GTLYouTubeSearchListResponse*)response
              eventType: (FetchEventQueryType)eventQueryType
+         channelSource: (NSString*)channelId
 {
     self = [super init];
     if (self)
@@ -44,6 +46,7 @@
         GEEventListPage* lGEEventListPage = [[GEEventListPage alloc] initWithList: response.items nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
         self.eventListPages = [[NSMutableArray alloc] init];
         [self.eventListPages addObject: lGEEventListPage];
+        self.channelSource = channelId;
     }
     
     return self;
@@ -60,7 +63,6 @@
 
 @interface GEEventManager ()
 - (void)initialiseListObjs;
-- (GEEventListObj*)eventListObjForEventType: (FetchEventQueryType)fetchType;
 @end
 
 @implementation GEEventManager
@@ -84,11 +86,12 @@
 }
 
 - (GEEventListObj*)eventListObjForEventType: (FetchEventQueryType)fetchType
+                                  forSource: (NSString*)channelId
 {
     GEEventListObj* lListObj = nil;
     for (lListObj in mEventListObjs)
     {
-        if (fetchType == lListObj.eventType)
+        if ((fetchType == lListObj.eventType) && ([lListObj.channelSource isEqualToString: channelId]))
         {
             break;
         }
@@ -98,9 +101,10 @@
 }
 
 - (NSString*)pageTokenForEventOfType: (FetchEventQueryType)eventQueryType
+                           forSource: (NSString*)channelId
                         canFetchMore: (BOOL*)canFetch
 {
-    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: eventQueryType];
+    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: eventQueryType forSource: channelId];
     if (!lGEEventListObj)
     {
         *canFetch = TRUE;
@@ -126,12 +130,13 @@
 
 - (void)addEventSearchResponse: (GTLYouTubeSearchListResponse*)response
                   forEventType: (FetchEventQueryType)eventQueryType
+                     forSource: (NSString*)channelId;
 {
-    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: eventQueryType];
+    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: eventQueryType forSource: channelId];
     
     if(!lGEEventListObj)
     {
-        lGEEventListObj = [[GEEventListObj alloc] initWithResponse: response eventType: eventQueryType];
+        lGEEventListObj = [[GEEventListObj alloc] initWithResponse: response eventType: eventQueryType channelSource: channelId];
         [mEventListObjs addObject: lGEEventListObj];
     }
     else

@@ -38,7 +38,7 @@
     [super viewDidAppear: animated];
     
     GEEventManager* lManager = [GEEventManager manager];
-    if (mRequesting || lManager.eventListObjs.count)
+    if (mRequesting)
         return;
 
     mRequesting = TRUE;
@@ -86,29 +86,27 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     GEEventManager* lManager = [GEEventManager manager];
-    return lManager.eventListObjs.count;
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+    return lEventObj.eventListPages.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     GEEventManager* lManager = [GEEventManager manager];
-    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: section];
-    GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
-    if (lEventPageObj.eventList.count > 4)
-        return 4;
-    
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+    GEEventListPage* lEventPageObj = [lEventObj.eventListPages objectAtIndex: section];
     return lEventPageObj.eventList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"GEEventCellID";
+    static NSString *identifier = @"GESearchVideoCellID";
     
     GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     GEEventManager* lManager = [GEEventManager manager];
-    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
-    GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+    GEEventListPage* lEventPageObj = [lEventObj.eventListPages objectAtIndex: indexPath.section];
     GTLYouTubeSearchResult* lEvent = [lEventPageObj.eventList objectAtIndex: indexPath.row];
     
     lCell.titleLabel.text = lEvent.snippet.title;
@@ -132,7 +130,7 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GEEventManager* lManager = [GEEventManager manager];
-    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
 
     if (indexPath.section == lEventObj.eventListPages.count - 1)
     {
@@ -158,8 +156,8 @@
     CGSize lItemSize = CGSizeMake(lLength, 0.90*lLength);
     
     GEEventManager* lManager = [GEEventManager manager];
-    GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
-    GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+    GEEventListPage* lEventPageObj = [lEventObj.eventListPages objectAtIndex: indexPath.section];
     if (lEventPageObj.eventList.count < 4 && lEventPageObj.eventList.count % 2 != 0 && indexPath.row == 0)
     {
         lLength += self.view.bounds.size.width/2;
