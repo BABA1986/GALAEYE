@@ -57,6 +57,11 @@
 
 - (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex
 {
+    if (leftMenuIndex != 0)
+        [self addSortFilter];
+    else
+        [self removeSortFilter];
+
     NSString* lFilter = (leftMenuIndex != 0) ? @"Playlists" : @"";
     [self initialisePagesForLeftMenuIndex: leftMenuIndex withFilter: lFilter];
 }
@@ -84,6 +89,7 @@
 - (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex
                              withFilter: (NSString*)filter
 {
+    NSUInteger lCurrentIndex = mPageMenu.currentPageIndex;
     if (mPageMenu) {
         [mPageMenu.view removeFromSuperview];
         [mPageMenu removeFromParentViewController];
@@ -109,12 +115,8 @@
     
     NSArray* lCtrs = [self pageCtrsForLeftMenuIndex: leftMenuIndex withFilter: filter];
     mPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:lCtrs frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
+    [mPageMenu moveToPage: lCurrentIndex];
     [self.view addSubview:mPageMenu.view];
-    
-    if (leftMenuIndex != 0)
-        [self addSortFilter];
-    else
-        [self removeSortFilter];
 }
 
 - (void)applyTheme
