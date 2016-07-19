@@ -33,6 +33,7 @@
     self.statusLabel.backgroundColor = [lNavColor colorWithAlphaComponent: 0.5];
     self.statusLabel.textColor = lNavTextColor;
     self.contentView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.2];
+    self.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl

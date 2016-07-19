@@ -32,6 +32,7 @@
     self.noOfVideoLbl.textColor = lNavTextColor;
     self.videoLbl.textColor = lNavTextColor;
     self.videoTileLbl.textColor = [UIColor blackColor];
+    self.playlistIconView.image = [UIImage imageWithName: @"playlistIcon.png"];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl

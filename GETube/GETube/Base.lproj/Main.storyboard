@@ -70,14 +70,14 @@
                                                     <rect key="frame" x="173" y="0.0" width="60" height="131"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playlistIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="CXS-hA-bch">
-                                                            <rect key="frame" x="13" y="18" width="35" height="35"/>
+                                                            <rect key="frame" x="13" y="28" width="35" height="35"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="35" id="iYE-cC-F7u"/>
                                                                 <constraint firstAttribute="height" constant="35" id="k4H-Xg-DF9"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPc-iF-vro" userLabel="NOOfVideoLabel">
-                                                            <rect key="frame" x="20" y="60" width="20" height="21"/>
+                                                            <rect key="frame" x="20" y="65" width="20" height="21"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -91,13 +91,13 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="0.49457003546099293" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="CXS-hA-bch" firstAttribute="centerY" secondItem="IRr-pP-af9" secondAttribute="centerY" constant="-30" id="B4a-wM-ZUJ"/>
+                                                        <constraint firstItem="CXS-hA-bch" firstAttribute="centerY" secondItem="IRr-pP-af9" secondAttribute="centerY" constant="-20" id="B4a-wM-ZUJ"/>
                                                         <constraint firstAttribute="width" constant="60" id="Dti-Ig-2dT"/>
                                                         <constraint firstItem="MPc-iF-vro" firstAttribute="centerX" secondItem="IRr-pP-af9" secondAttribute="centerX" id="NFp-pP-UNR"/>
-                                                        <constraint firstItem="MPc-iF-vro" firstAttribute="centerY" secondItem="IRr-pP-af9" secondAttribute="centerY" constant="5" id="OkX-oG-Dwe"/>
+                                                        <constraint firstItem="MPc-iF-vro" firstAttribute="centerY" secondItem="IRr-pP-af9" secondAttribute="centerY" constant="10" id="OkX-oG-Dwe"/>
                                                         <constraint firstItem="CXS-hA-bch" firstAttribute="centerX" secondItem="IRr-pP-af9" secondAttribute="centerX" id="Prq-7e-ocu"/>
                                                         <constraint firstItem="iFB-XK-yVP" firstAttribute="centerX" secondItem="IRr-pP-af9" secondAttribute="centerX" id="mSf-ld-7tn"/>
-                                                        <constraint firstItem="iFB-XK-yVP" firstAttribute="top" secondItem="MPc-iF-vro" secondAttribute="bottom" constant="10" id="zb5-A9-HbV"/>
+                                                        <constraint firstItem="iFB-XK-yVP" firstAttribute="top" secondItem="MPc-iF-vro" secondAttribute="bottom" constant="5" id="zb5-A9-HbV"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1043,7 +1043,7 @@
     <resources>
         <image name="disclosureicon.png" width="128" height="128"/>
         <image name="loadingthumbnailurl.png" width="300" height="200"/>
-        <image name="play-Icon.png" width="256" height="256"/>
-        <image name="playlistIcon.png" width="256" height="256"/>
+        <image name="play-Icon.png" width="35" height="35"/>
+        <image name="playlistIcon.png" width="50" height="50"/>
     </resources>
 </document>

@@ -32,6 +32,7 @@
     self.timeLabel.textColor = [UIColor blackColor];
     self.statusLabel.alpha = 0.5;
     self.statusLabel.textColor = [UIColor blackColor];
+    self.videoPlayIcon.image = [UIImage imageWithName: @"playlistIcon.png"];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
