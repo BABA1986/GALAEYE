@@ -74,7 +74,7 @@
 
 - (void)addSortFilter
 {
-    CPDropDownSelector* lDropDown = [[CPDropDownSelector alloc] initWithFrame: CGRectMake( 0.0, 0.0, 80.0, 20.0)];
+    CPDropDownSelector* lDropDown = [[CPDropDownSelector alloc] initWithFrame: CGRectMake( 0.0, 0.0, 90.0, 30.0)];
     lDropDown.shouldHideSelectLabel = TRUE;
     lDropDown.delegate = self; lDropDown.dataSource = self;
     MMDrawerBarButtonItem* lDropDownItem = [[MMDrawerBarButtonItem alloc] initWithCustomView: lDropDown];
@@ -104,7 +104,7 @@
     NSDictionary *parameters = @{
                                  CAPSPageMenuOptionScrollMenuBackgroundColor: lNavColor,
                                  CAPSPageMenuOptionSelectionIndicatorColor: lNavTextColor,
-                                 CAPSPageMenuOptionBottomMenuHairlineColor: lNavColor,
+                                 CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor whiteColor],
                                  CAPSPageMenuOptionSelectedMenuItemLabelColor: lNavTextColor,
                                  CAPSPageMenuOptionUnselectedMenuItemLabelColor: lNavTextColor,
                                  CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:15.0],
@@ -140,6 +140,13 @@
                 [(GEPlaylistVC*)lCtr applyTheme];
             }
         }
+        else if ([lCtr isKindOfClass: [GEVideoListVC class]])
+        {
+            if ([lCtr respondsToSelector: @selector(applyTheme)])
+            {
+                [(GEVideoListVC*)lCtr applyTheme];
+            }
+        }
         else if ([lCtr isKindOfClass: [GEEventVC class]])
         {
             if ([lCtr respondsToSelector: @selector(applyTheme)])
@@ -159,6 +166,18 @@
                 [(GEPlaylistVideoListCtr*)lNavCtr applyTheme];
             }
         }
+        else if ([lNavCtr isKindOfClass: [GEVideoListVC class]])
+        {
+            if ([lNavCtr respondsToSelector: @selector(applyTheme)])
+            {
+                [(GEVideoListVC*)lNavCtr applyTheme];
+            }
+        }
+    }
+    
+    CPDropDownSelector* lDropDown = (CPDropDownSelector*)self.navigationItem.rightBarButtonItem.customView;
+    if (lDropDown && [lDropDown isKindOfClass: [CPDropDownSelector class]]){
+        [lDropDown setNeedsDisplay];
     }
 }
 
@@ -175,6 +194,7 @@
         {
             GEEventVC* lGEEventVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEEventVCID"];
             lGEEventVC.title = lPageMenu.subMenuName;
+            lGEEventVC.navigationDelegate = self;
             [lPageCtrs addObject: lGEEventVC];
             continue;
         }
@@ -193,6 +213,7 @@
                 GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
                 lGEVideoListVC.title = lPageMenu.subMenuName;
                 lGEVideoListVC.channelSource = lPageMenu.subMenuSrc;
+                lGEVideoListVC.navigationDelegate = self;
                 [lPageCtrs addObject: lGEVideoListVC];
             }
             
@@ -241,7 +262,7 @@
 
 - (CGFloat)dropDownSelector:(CPDropDownSelector*)selector heightForRow:(NSInteger)row
 {
-    return 30.0;
+    return 44.0;
 }
 
 - (void)dropDownSelector:(CPDropDownSelector*)selector didSelectedRow:(NSInteger)row

@@ -28,13 +28,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    UICollectionViewFlowLayout* lLayout = (UICollectionViewFlowLayout*) mPlaylistListView.collectionViewLayout;
-    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    lLayout.itemSize = CGSizeMake(lLength, 0.9*lLength);
-    lLayout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0);
-    lLayout.minimumInteritemSpacing = 0.0;
-    lLayout.minimumLineSpacing = 2.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,6 +176,44 @@
         return CGSizeMake(collectionView.frame.size.width, 0);
     
     return CGSizeMake(collectionView.frame.size.width, 40);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 30.0;
+    CGSize lItemSize = CGSizeMake(lWidth, lHeight);
+    
+    GESharedPlaylistList* lSharedPlaylist = [GESharedPlaylistList sharedPlaylistList];
+    GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
+    GEPlaylistListPage* lPlaylistListPage = [lPlaylistObject.playlistListPages objectAtIndex: indexPath.section];
+    if (lPlaylistListPage.playlistList.count < 4 && lPlaylistListPage.playlistList.count % 2 != 0 && indexPath.row == 0)
+    {
+        lWidth = self.view.bounds.size.width - 3.0;
+        lHeight = 9.0*lWidth/16.0 + 30.0;
+        lItemSize = CGSizeMake(lWidth, lHeight);
+        return lItemSize;
+    }
+    
+    return lItemSize;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(2.0, 2.0, 0.0, 2.0);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
+}
+
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

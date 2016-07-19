@@ -7,9 +7,12 @@
 //
 
 #import "GEVideoListVC.h"
-#import "GEEventCell.h"
+#import "GEVideoListCell.h"
 #import "GEServiceManager.h"
 #import "NSDate+TimeAgo.h"
+#import "GEVideoPlayerCtr.h"
+#import "GELoadingFooter.h"
+#import "UIImage+ImageMask.h"
 
 @interface GEVideoListVC ()
 {
@@ -21,6 +24,7 @@
 
 @synthesize channelSource = mChannelSource;
 @synthesize videoEventType = mVideoEventType;
+@synthesize navigationDelegate;
 
 - (void)viewDidLoad
 {
@@ -102,7 +106,7 @@
 {
     static NSString *identifier = @"GESearchVideoCellID";
     
-    GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    GEVideoListCell* lCell = (GEVideoListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
@@ -123,15 +127,39 @@
     
     NSURL* lThumbUrl = [NSURL URLWithString: lEvent.snippet.thumbnails.medium.url];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
-    
     return lCell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionFooter)
+    {
+        GELoadingFooter* lFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"GELoadingFooterID" forIndexPath:indexPath];
+        
+        reusableview = lFooterView;
+    }
+    if (kind == UICollectionElementKindSectionHeader)
+    {
+        UICollectionReusableView* lHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GEPlaylistHeaderID" forIndexPath:indexPath];
+        
+        reusableview = lHeaderView;
+    }
+    
+    return reusableview;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(collectionView.frame.size.width, 0);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath
 {
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
-
+    
     if (indexPath.section == lEventObj.eventListPages.count - 1)
     {
         if (mRequesting)
@@ -145,32 +173,46 @@
              mRequesting = FALSE;
          }];
     }
-
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    CGSize lItemSize = CGSizeMake(lLength, 0.90*lLength);
+    CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 60.0;
+    CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
     GEEventListPage* lEventPageObj = [lEventObj.eventListPages objectAtIndex: indexPath.section];
     if (lEventPageObj.eventList.count < 4 && lEventPageObj.eventList.count % 2 != 0 && indexPath.row == 0)
     {
-        lLength += self.view.bounds.size.width/2;
-        lItemSize = CGSizeMake(lLength, 0.50*lLength);
-        return lItemSize;
+        lWidth = self.view.bounds.size.width - 3.0;
+        lHeight = 9.0*lWidth/16.0 + 50.0;
+        lItemSize = CGSizeMake(lWidth, lHeight);
     }
     
     return lItemSize;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    GEEventManager* lManager = [GEEventManager manager];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+    
+    BOOL lCanFetchMore = FALSE;
+    [lManager pageTokenForEventOfType: self.videoEventType forSource: self.channelSource canFetchMore: &lCanFetchMore];
+    
+    if (!lCanFetchMore || (section < lEventObj.eventListPages.count - 1))
+        return CGSizeMake(collectionView.frame.size.width, 0);
+    
+    return CGSizeMake(collectionView.frame.size.width, 40);
+}
+
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0);
+    return UIEdgeInsetsMake(2.0, 2.0, 0.0, 2.0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
@@ -182,5 +224,22 @@
 {
     return 2.0;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GEEventManager* lManager = [GEEventManager manager];
+    
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: mVideoEventType forSource: self.channelSource];
+    GEEventListPage* lEventPage = [lEventObj.eventListPages objectAtIndex: indexPath.section];
+    GTLYouTubeSearchResult* lSearchResult = [lEventPage.eventList objectAtIndex: indexPath.row];
+    
+    UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
+    lGEVideoPlayerCtr.eventType = EFetchEventsCompleted;
+    lGEVideoPlayerCtr.videoItem = lSearchResult;
+    lGEVideoPlayerCtr.view.frame = self.view.bounds;
+    [self.navigationDelegate moveToViewController: lGEVideoPlayerCtr fromViewCtr: self];
+}
+
 
 @end

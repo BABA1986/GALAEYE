@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GTLYouTube.h"
+#import "GEEventManager.h"
 
 typedef enum : NSUInteger {
     EFetchEventsCompleted,

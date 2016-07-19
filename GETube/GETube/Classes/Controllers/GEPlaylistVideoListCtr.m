@@ -193,17 +193,18 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    CGSize lItemSize = CGSizeMake(lLength, lLength);
+    CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 60.0;
+    CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
     GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
     if (lGEVideoListPage.videoList.count < 10 && lGEVideoListPage.videoList.count % 2 != 0 && indexPath.row == 0)
     {
-        lLength += self.view.bounds.size.width/2;
-        lItemSize = CGSizeMake(lLength, 0.60*lLength);
-        return lItemSize;
+        lWidth = self.view.bounds.size.width - 3.0;
+        lHeight = 9.0*lWidth/16.0 + 50.0;
+        lItemSize = CGSizeMake(lWidth, lHeight);
     }
     
     return lItemSize;
@@ -226,20 +227,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (self.navigationDelegate && [self.navigationDelegate respondsToSelector: @selector(moveToViewController:fromViewCtr:)])
-    {
-        GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-        GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
-        GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
-        
-        GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
-        
-        UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
-        lGEVideoPlayerCtr.playListItem = lVideo;
-        lGEVideoPlayerCtr.view.frame = self.view.bounds;
-        [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
-    }
+    GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
+    
+    GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
+    
+    UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
+    lGEVideoPlayerCtr.eventType = EFetchEventsNone;
+    lGEVideoPlayerCtr.videoItem = lVideo;
+    lGEVideoPlayerCtr.view.frame = self.view.bounds;
+    [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
 }
 
 @end

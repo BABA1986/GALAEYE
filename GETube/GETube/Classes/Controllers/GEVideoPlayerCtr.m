@@ -16,7 +16,8 @@
 
 @implementation GEVideoPlayerCtr
 
-@synthesize playListItem = mPlayListItem;
+@synthesize videoItem = mVideoItem;
+@synthesize eventType = mEventType;
 
 - (void)viewDidLoad
 {
@@ -43,7 +44,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    self.title = self.playListItem.snippet.channelTitle;
+    
+    NSString* lChannelTitle = @"";
+    
+    if (self.eventType == EFetchEventsNone) {
+        GTLYouTubePlaylistItem* lVideoItem = (GTLYouTubePlaylistItem*)mVideoItem;
+        lChannelTitle = lVideoItem.snippet.channelTitle;
+    }
+    else {
+        GTLYouTubeSearchResult* lVideoItem = (GTLYouTubeSearchResult*)mVideoItem;
+        lChannelTitle = lVideoItem.snippet.channelTitle;
+    }
+    self.title = lChannelTitle;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,7 +74,17 @@
     
     mPlayerView.delegate = self;
     mPlayerView.translatesAutoresizingMaskIntoConstraints = TRUE;
-    NSString* lVideoId = self.playListItem.contentDetails.videoId;
+    
+    NSString* lVideoId = @"";
+    if (self.eventType == EFetchEventsNone) {
+        GTLYouTubePlaylistItem* lVideoItem = (GTLYouTubePlaylistItem*)mVideoItem;
+        lVideoId = lVideoItem.contentDetails.videoId;
+    }
+    else {
+        GTLYouTubeSearchResult* lVideoItem = (GTLYouTubeSearchResult*)mVideoItem;
+        lVideoId = lVideoItem.identifier.videoId;
+    }
+    
     [mPlayerView loadWithVideoId: lVideoId playerVars: lPlayerVars];
     [self.view bringSubviewToFront: mPlayerBaseView];
 }

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GTLYouTube.h"
 #import "YTPlayerView.h"
+#import "GEEventManager.h"
 
 @interface GEVideoPlayerCtr : UIViewController<YTPlayerViewDelegate>
 {
@@ -16,9 +17,11 @@
     IBOutlet UIImageView*                   mLoadingIconView;
     IBOutlet UIImageView*                   mBrandLogoView;
     IBOutlet YTPlayerView*                  mPlayerView;
-    __weak GTLYouTubePlaylistItem*          mPlayListItem;
+    __weak id                               mVideoItem;
+    FetchEventQueryType                     mEventType;
 }
 
-@property(nonatomic, weak)GTLYouTubePlaylistItem*       playListItem;
+@property(nonatomic, weak)id                                 videoItem;
+@property(nonatomic, assign)FetchEventQueryType              eventType;
 
 @end

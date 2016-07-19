@@ -11,8 +11,11 @@
 #import "GEServiceManager.h"
 #import "GEEventManager.h"
 #import "NSDate+TimeAgo.h"
+#import "GEVideoPlayerCtr.h"
 
 @implementation GEEventVC
+
+@synthesize navigationDelegate;
 
 - (void)viewDidLoad
 {
@@ -162,16 +165,18 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat lLength = self.view.bounds.size.width/2 - 3.0;
-    CGSize lItemSize = CGSizeMake(lLength, 0.90*lLength);
+    CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 50.0;
+    CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
     GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
     if (lEventPageObj.eventList.count < 4 && lEventPageObj.eventList.count % 2 != 0 && indexPath.row == 0)
     {
-        lLength += self.view.bounds.size.width/2;
-        lItemSize = CGSizeMake(lLength, 0.50*lLength);
+        lWidth = self.view.bounds.size.width - 3.0;
+        lHeight = 9.0*lWidth/16.0 + 50.0;
+        lItemSize = CGSizeMake(lWidth, lHeight);
         return lItemSize;
     }
     
@@ -192,6 +197,41 @@
 {
     return 2.0;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GEEventManager* lManager = [GEEventManager manager];
+    
+    FetchEventQueryType lQueryType = EFetchEventsLive;
+    if (indexPath.section == 1)
+        lQueryType = EFetchEventsCompleted;
+    else if (indexPath.section == 2)
+        lQueryType = EFetchEventsUpcomming;
+    else
+        lQueryType = EFetchEventsLive;
+    
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: lQueryType forSource: kGEChannelID];
+    GEEventListPage* lEventPage = [lEventObj.eventListPages objectAtIndex: indexPath.section];
+    GTLYouTubeSearchResult* lSearchResult = [lEventPage.eventList objectAtIndex: indexPath.row];
+    UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
+    FetchEventQueryType lEventType = EFetchEventsNone;
+    if (indexPath.section == 0) {
+        lEventType = EFetchEventsLive;
+    }
+    else if (indexPath.section == 1) {
+        lEventType = EFetchEventsUpcomming;
+    }
+    else {
+        lEventType = EFetchEventsCompleted;
+    }
+
+    lGEVideoPlayerCtr.eventType = lEventType;
+    lGEVideoPlayerCtr.videoItem = lSearchResult;
+    lGEVideoPlayerCtr.view.frame = self.view.bounds;
+    [self.navigationDelegate moveToViewController: lGEVideoPlayerCtr fromViewCtr: self];
+}
+
 
 #pragma mark-
 #pragma mark- GEEventHeaderDelegate

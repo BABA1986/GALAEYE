@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "GEEventHeader.h"
 #import "DGActivityIndicatorView.h"
-
+#import "GENavigatorProtocol.h"
 
 @interface GEEventVC : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GEEventHeaderDelegate>
 {
     IBOutlet UICollectionView*          mEventListView;
     DGActivityIndicatorView*            mIndicator;
 }
+
+@property(nonatomic, weak)id<GENavigatorProtocol>           navigationDelegate;
 
 - (void)applyTheme;
 

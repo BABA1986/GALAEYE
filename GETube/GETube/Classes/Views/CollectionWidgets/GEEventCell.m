@@ -33,32 +33,31 @@
     self.statusLabel.backgroundColor = [lNavColor colorWithAlphaComponent: 0.5];
     self.statusLabel.textColor = lNavTextColor;
     self.contentView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.2];
-    self.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
 {
-//    SDImageCache* lShCacheImage = [SDImageCache sharedImageCache];
-//    SDWebImageManager* lManager = [SDWebImageManager sharedManager];
-//    NSString* lKey= [lManager cacheKeyForURL: thumbUrl];
-//    UIImage* lImage = [lShCacheImage imageFromDiskCacheForKey: lKey];
-//    if (lImage) {
-//        self.videoIcon.image = lImage;
-//        return;
-//    }
+    SDImageCache* lShCacheImage = [SDImageCache sharedImageCache];
+    SDWebImageManager* lManager = [SDWebImageManager sharedManager];
+    NSString* lKey= [lManager cacheKeyForURL: thumbUrl];
+    UIImage* lImage = [lShCacheImage imageFromDiskCacheForKey: lKey];
+    if (lImage) {
+        self.videoIcon.image = lImage;
+        return;
+    }
     
     UIImage* lLoadingImage = [UIImage imageWithName: @"loadingthumbnailurl.png"];
     [self.videoIcon sd_setImageWithURL:thumbUrl placeholderImage:lLoadingImage completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
-//         if (image)
-//         {
-//             [UIView transitionWithView:self.videoIcon
-//                               duration:0.5
-//                                options:UIViewAnimationOptionTransitionCrossDissolve
-//                             animations:^{
-//                                 [self.videoIcon setImage:image];
-//                             } completion:NULL];
-//         }
+         if (image)
+         {
+             [UIView transitionWithView:self.videoIcon
+                               duration:0.3
+                                options:UIViewAnimationOptionTransitionCrossDissolve
+                             animations:^{
+                                 [self.videoIcon setImage:image];
+                             } completion:NULL];
+         }
      }];
 }
 

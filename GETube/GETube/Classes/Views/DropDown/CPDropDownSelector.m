@@ -93,6 +93,7 @@
     CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
     CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect) - 4.0);
     CGContextStrokePath(context);
+    self.selectedContentLabel.textColor = lNavTextColor;
 }
 
 - (void)dealloc
@@ -130,12 +131,12 @@
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
     CGRect lLaberRect = self.bounds;
-    lLaberRect.origin.x = 15;
-    lLaberRect.size.width -= 30;
+    lLaberRect.origin.x = 5;
+    lLaberRect.size.width -= 10;
     self.selectedContentLabel = [[UILabel alloc] initWithFrame:lLaberRect];
     self.selectedContentLabel.userInteractionEnabled = YES;
     self.selectedContentLabel.backgroundColor = [UIColor clearColor];
-    self.selectedContentLabel.font = [UIFont systemFontOfSize: 12.0];;
+    self.selectedContentLabel.font = [UIFont systemFontOfSize: 14.0];;
     self.selectedContentLabel.text = self.selectorTitle;
     self.selectedContentLabel.textAlignment = NSTextAlignmentCenter;
     self.selectedContentLabel.textColor = lNavTextColor;
@@ -548,7 +549,7 @@
     }
     
     lCell.backgroundColor = [UIColor clearColor];
-    lCell.textLabel.font = [UIFont systemFontOfSize: 12.0];;
+    lCell.textLabel.font = [UIFont systemFontOfSize: 14.0];;
     lCell.textLabel.numberOfLines = 3;
     lCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     

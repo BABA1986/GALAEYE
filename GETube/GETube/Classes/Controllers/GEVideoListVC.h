@@ -10,6 +10,7 @@
 #import "DGActivityIndicatorView.h"
 #import "GTLYouTube.h"
 #import "GEEventManager.h"
+#import "GENavigatorProtocol.h"
 
 @interface GEVideoListVC : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 {
@@ -23,6 +24,7 @@
 
 @property(nonatomic, copy)NSString*                     channelSource;
 @property(nonatomic, assign)FetchEventQueryType         videoEventType;
+@property(nonatomic, weak)id<GENavigatorProtocol>       navigationDelegate;
 
 - (void)applyTheme;
 
