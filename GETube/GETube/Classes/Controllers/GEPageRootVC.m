@@ -115,8 +115,11 @@
     
     NSArray* lCtrs = [self pageCtrsForLeftMenuIndex: leftMenuIndex withFilter: filter];
     mPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:lCtrs frame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height) options:parameters];
-    [mPageMenu moveToPage: lCurrentIndex];
     [self.view addSubview:mPageMenu.view];
+    
+    if (leftMenuIndex != 0) {
+        [mPageMenu moveToPage: lCurrentIndex];
+    }
 }
 
 - (void)applyTheme
@@ -192,11 +195,28 @@
     {
         if ([lPageMenu.subMenuType isEqualToString: @"events"])
         {
-            GEEventVC* lGEEventVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEEventVCID"];
-            lGEEventVC.title = lPageMenu.subMenuName;
-            lGEEventVC.navigationDelegate = self;
-            [lPageCtrs addObject: lGEEventVC];
-            continue;
+            if([lPageMenu.subMenuName isEqualToString: @"All Events"])
+            {
+                GEEventVC* lGEEventVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEEventVCID"];
+                lGEEventVC.title = lPageMenu.subMenuName;
+                lGEEventVC.navigationDelegate = self;
+                [lPageCtrs addObject: lGEEventVC];
+            }
+            else if([lPageMenu.subMenuName isEqualToString: @"Popular"])
+            {
+                GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
+                lGEVideoListVC.title = lPageMenu.subMenuName;
+                lGEVideoListVC.channelSource = kGEChannelID;
+                lGEVideoListVC.navigationDelegate = self;
+                lGEVideoListVC.videoEventType = EFetchEventsPopularCompleted;
+                [lPageCtrs addObject: lGEVideoListVC];
+            }
+            else
+            {
+                UIViewController* lCtr = [[UIViewController alloc] init];
+                lCtr.title = lPageMenu.subMenuName;
+                [lPageCtrs addObject: lCtr];
+            }
         }
         else if ([lPageMenu.subMenuType isEqualToString: @"playlist"])
         {
@@ -216,13 +236,7 @@
                 lGEVideoListVC.navigationDelegate = self;
                 [lPageCtrs addObject: lGEVideoListVC];
             }
-            
-            continue;
         }
-        
-        UIViewController* lCtr = [[UIViewController alloc] init];
-        lCtr.title = lPageMenu.subMenuName;
-        [lPageCtrs addObject: lCtr];
     }
     
     return lPageCtrs;

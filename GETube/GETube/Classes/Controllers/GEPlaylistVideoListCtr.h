@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "DGActivityIndicatorView.h"
 #import "GTLYouTube.h"
+#import "GEYoutubeResult.h"
 
 @interface GEPlaylistVideoListCtr : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 {
-    IBOutlet UICollectionView*      mVideoListView;
-    DGActivityIndicatorView*        mIndicator;
-    __weak GTLYouTubePlaylist*      mFromPlayList;
+    IBOutlet UICollectionView*              mVideoListView;
+    DGActivityIndicatorView*                mIndicator;
+    __weak NSObject <GEYoutubeResult>*      mFromPlayList;
 }
 
-@property(nonatomic, weak)GTLYouTubePlaylist*       fromPlayList;
+@property(nonatomic, weak)NSObject <GEYoutubeResult>*       fromPlayList;
 
 - (void)applyTheme;
 

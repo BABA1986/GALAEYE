@@ -15,9 +15,7 @@
 @interface GEVideoListVC : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 {
     IBOutlet UICollectionView*      mVideoListView;
-    DGActivityIndicatorView*        mIndicator;
-    __weak GTLYouTubePlaylist*      mFromPlayList;
-    
+    DGActivityIndicatorView*        mIndicator;    
     NSString*                       mChannelSource;
     FetchEventQueryType             mVideoEventType;
 }

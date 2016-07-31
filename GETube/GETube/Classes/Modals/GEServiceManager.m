@@ -14,6 +14,7 @@
 
 @interface GEServiceManager ()
 - (void)initialiseYTService;
+- (GTLQueryYouTube*)queryForVideoListFromSearch: (GTLYouTubeSearchListResponse*)result;
 - (GTLQueryYouTube*)queryForEventFetchType: (FetchEventQueryType)eventType
                                  channelId: (NSString*)channelId
                                  pageToken: (NSString*)pageToken;
@@ -53,23 +54,48 @@
     mYTService.APIKey = kGEAPIKey;
 }
 
+- (GTLQueryYouTube*)queryForVideoListFromSearch: (GTLYouTubeSearchListResponse*)result
+{
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForVideosListWithPart: @"id,snippet,liveStreamingDetails,statistics"];
+    lQuery.maxResults = 20;
+    lQuery.type = @"video";
+    NSString* lVideos = @"";
+    for (GTLYouTubeSearchResult* lItem in result)
+    {
+        if ([result.items lastObject] != lItem) {
+            lVideos = [lVideos stringByAppendingFormat: @"%@,", lItem.identifier.videoId];
+            continue;
+        }
+        lVideos = [lVideos stringByAppendingFormat: @"%@", lItem.identifier.videoId];
+    }
+    lQuery.identifier = lVideos;
+    return lQuery;
+}
+
 - (GTLQueryYouTube*)queryForEventFetchType: (FetchEventQueryType)eventType
                                  channelId: (NSString*)channelId
                                  pageToken: (NSString*)pageToken
 {
-    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForSearchListWithPart: @"id,snippet"];
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForSearchListWithPart: @"id"];
     lQuery.maxResults = 20;
     lQuery.type = @"video";
     lQuery.channelId = channelId;
-    if (eventType == EFetchEventsLive)
+    lQuery.order = @"date";
+    if (eventType == EFetchEventsLive) {
         lQuery.eventType = kGTLYouTubeEventTypeLive;
-    else if (eventType == EFetchEventsUpcomming)
+    }
+    else if (eventType == EFetchEventsUpcomming) {
         lQuery.eventType = kGTLYouTubeEventTypeUpcoming;
-    else if (eventType == EFetchEventsCompleted)
+    }
+    else if (eventType == EFetchEventsCompleted) {
         lQuery.eventType = kGTLYouTubeEventTypeCompleted;
+    }
+    else if (eventType == EFetchEventsPopularCompleted) {
+        lQuery.eventType = kGTLYouTubeEventTypeCompleted;
+        lQuery.order = kGTLYouTubeOrderViewCount;
+    }
     
     lQuery.pageToken = pageToken;
-    lQuery.order = @"date";
     return lQuery;
 }
 
@@ -135,23 +161,33 @@
     NSString* lPageToken = [lManager pageTokenForEventOfType: queryType forSource: kGEChannelID canFetchMore: &lCanFetchPage];
     
     if (!lCanFetchPage)
+    {
         finishCallback(queryType);
+        return;
+    }
 
     [self channelIdFroChannelSource: kGEChannelID onCompletion: ^(NSString* channelId)
      {
          if (!channelId.length)
          {
-             finishCallback(queryType);
-             return;
+             channelId = kGEChannelID;
          }
-         
+    
          GTLQueryYouTube* lQuery = [self queryForEventFetchType: queryType channelId: channelId pageToken: lPageToken];
          [mYTService executeQuery: lQuery
                 completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
           {
               GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
-              [lManager addEventSearchResponse: lResult forEventType: queryType forSource: kGEChannelID];
-              finishCallback(queryType);
+              GTLQueryYouTube* lVideoListQuery = [self queryForVideoListFromSearch: lResult];
+              [mYTService executeQuery: lVideoListQuery
+                     completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+               {
+                   GTLYouTubeVideoListResponse* lResponse = (GTLYouTubeVideoListResponse*)object;
+                   lResponse.nextPageToken = lResult.nextPageToken;
+                   lResponse.prevPageToken = lResult.prevPageToken;
+                  [lManager addEventSearchResponse: lResponse forEventType: queryType forSource: channelId];
+                  finishCallback(queryType);
+               }];
           }];
      }];
 }
@@ -172,7 +208,10 @@
          NSString* lPageToken = [lSharedPlaylist pageTokenForPlaylistForSource: channelSource canFetchMore: &lCanFetchPage];
          
          if (!lCanFetchPage)
+         {
              finishCallback(FALSE);
+             return;
+         }
          
          GTLQueryYouTube* lQuery = [self queryForPlaylistListOfChannel: channelId pageToken: lPageToken];
          [mYTService executeQuery: lQuery
@@ -185,21 +224,27 @@
      }];
 }
 
-- (void)loadVideolistFromSource: (GTLYouTubePlaylist*)playlist
+- (void)loadVideolistFromSource: (NSObject<GEYoutubeResult>*)playlist
                    onCompletion: (GEServiceVideoLoadedFromPlaylistCallbacks)finishCallback
 {
     GESharedVideoList* lSharedVideoList = [GESharedVideoList sharedVideoList];
     BOOL lCanFetchPage = TRUE;
-    NSString* lPageToken = [lSharedVideoList pageTokenForVideoListForSource: playlist.identifier canFetchMore: &lCanFetchPage];
+    NSString* lIdentifier = [playlist GEId];
+    NSString* lPageToken = [lSharedVideoList pageTokenForVideoListForSource: lIdentifier canFetchMore: &lCanFetchPage];
     
     if (!lCanFetchPage)
+    {
         finishCallback(FALSE);
-    GTLQueryYouTube* lQuery = [self queryForVideoListOfPlaylist: playlist.identifier pageToken: lPageToken];
+        return;
+    }
+    
+    
+    GTLQueryYouTube* lQuery = [self queryForVideoListOfPlaylist: lIdentifier pageToken: lPageToken];
     [mYTService executeQuery: lQuery
            completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
      {
          GTLYouTubeVideoListResponse* lResult = (GTLYouTubeVideoListResponse*)object;
-         [lSharedVideoList addVideoListSearchResponse: lResult forSource: playlist.identifier];
+         [lSharedVideoList addVideoListSearchResponse: lResult forSource: lIdentifier];
          finishCallback(TRUE);
      }];
 }
@@ -212,24 +257,35 @@
      {
          if (!channelId.length)
          {
-             finishCallback(FALSE);
-             return;
+             channelId = channelSource;
          }
-         
+    
          GEEventManager* lManager = [GEEventManager manager];
          BOOL lCanFetchPage = TRUE;
          NSString* lPageToken = [lManager pageTokenForEventOfType: eventType forSource: channelSource canFetchMore: &lCanFetchPage];
          
          if (!lCanFetchPage)
+         {
              finishCallback(FALSE);
+             return;
+         }
          
          GTLQueryYouTube* lQuery = [self queryForEventFetchType: eventType channelId: channelId pageToken: lPageToken];
          [mYTService executeQuery: lQuery
                 completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
           {
               GTLYouTubeSearchListResponse* lResult = (GTLYouTubeSearchListResponse*)object;
-              [lManager addEventSearchResponse: lResult forEventType: eventType forSource: channelSource];
-              finishCallback(TRUE);
+              GTLQueryYouTube* lVideoListQuery = [self queryForVideoListFromSearch: lResult];
+              [mYTService executeQuery: lVideoListQuery
+                     completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+               {
+                   GTLYouTubeVideoListResponse* lResponse = (GTLYouTubeVideoListResponse*)object;
+                   lResponse.nextPageToken = lResult.nextPageToken;
+                   lResponse.prevPageToken = lResult.prevPageToken;
+                   
+                   [lManager addEventSearchResponse: lResponse forEventType: eventType forSource: channelSource];
+                   finishCallback(eventType);
+               }];
           }];
      }];
 }

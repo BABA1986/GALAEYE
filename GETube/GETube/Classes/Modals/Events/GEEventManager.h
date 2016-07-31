@@ -11,10 +11,11 @@
 #import "GEEventManager.h"
 
 typedef enum : NSUInteger {
+    EFetchEventsNone = 0,
     EFetchEventsCompleted,
     EFetchEventsUpcomming,
-    EFetchEventsLive,
-    EFetchEventsNone
+    EFetchEventsPopularCompleted,
+    EFetchEventsLive
 } FetchEventQueryType;
 
 @interface GEEventListPage : NSObject
@@ -33,10 +34,10 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong)NSString*           channelSource;
 @property(nonatomic, assign)NSUInteger          totalResult;
 
-- (id)initWithResponse: (GTLYouTubeSearchListResponse*)response
+- (id)initWithResponse: (GTLYouTubeVideoListResponse*)response
              eventType: (FetchEventQueryType)eventQueryType
          channelSource: (NSString*)channelId;
-- (void)addEventsFromResponse: (GTLYouTubeSearchListResponse*)response;
+- (void)addEventsFromResponse: (GTLYouTubeVideoListResponse*)response;
 @end
 
 
@@ -52,7 +53,7 @@ typedef enum : NSUInteger {
 - (NSString*)pageTokenForEventOfType: (FetchEventQueryType)eventQueryType
                            forSource: (NSString*)channelId
                         canFetchMore: (BOOL*)canFetch;
-- (void)addEventSearchResponse: (GTLYouTubeSearchListResponse*)response
+- (void)addEventSearchResponse: (GTLYouTubeVideoListResponse*)response
                   forEventType: (FetchEventQueryType)eventQueryType
                      forSource: (NSString*)channelId;
 - (GEEventListObj*)eventListObjForEventType: (FetchEventQueryType)fetchType

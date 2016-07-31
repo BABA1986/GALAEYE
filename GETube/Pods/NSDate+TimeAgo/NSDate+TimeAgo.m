@@ -18,6 +18,15 @@
 NSLocalizedStringFromTableInBundle(key, @"NSDateTimeAgo", [NSBundle bundleWithPath:[[[NSBundle bundleForClass:[DummyClass class]] resourcePath] stringByAppendingPathComponent:@"NSDateTimeAgo.bundle"]], nil)
 #endif
 
+- (NSString*)dateString
+{
+    NSString* dateString = [NSDateFormatter localizedStringFromDate:self
+                                                          dateStyle:NSDateFormatterLongStyle
+                                                          timeStyle:NSDateFormatterShortStyle];
+    
+    return dateString;
+}
+
 // shows 1 or two letter abbreviation for units.
 // does not include 'ago' text ... just {value}{unit-abbreviation}
 // does not include interim summary options such as 'Just now'

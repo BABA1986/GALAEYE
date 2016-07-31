@@ -17,5 +17,6 @@
 @property(nonatomic, strong)IBOutlet UILabel*       listTitleLbl;
 @property(nonatomic, strong)IBOutlet UILabel*       channelNameLbl;
 @property(nonatomic, strong)IBOutlet UILabel*       noOfVideosLbl;
+@property(nonatomic, strong)IBOutlet NSLayoutConstraint*       titleHeight;
 
 @end

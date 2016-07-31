@@ -9,7 +9,7 @@ target 'GETube' do
 	      pod 'NSDate+TimeAgo'
 		pod 'DGActivityIndicatorView'
 	pod 'MMDrawerController', '~> 0.5.7'
-pod "youtube-ios-player-helper", “0.1.5”
+pod "youtube-ios-player-helper", “0.1.6”
   # Pods for GETube
 
   target 'GETubeTests' do

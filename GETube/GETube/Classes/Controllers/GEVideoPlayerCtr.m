@@ -23,16 +23,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    mLoadingIconView.image = [UIImage imageWithName: @"loadingthumbnailurl.png"];
     mBrandLogoView.image = [UIImage imageWithName: @"smalllogo.png"];
-    
-    UIBarButtonItem* lBackItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageWithName: @"backarrow.png"]
-                                                                  style: UIBarButtonItemStyleDone
-                                                                 target: self
-                                                                 action: @selector(backButtonAction:)];
-    
-    self.navigationItem.leftBarButtonItem = lBackItem;
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,17 +36,15 @@
 {
     [super viewWillAppear: animated];
     
-    NSString* lChannelTitle = @"";
-    
-    if (self.eventType == EFetchEventsNone) {
-        GTLYouTubePlaylistItem* lVideoItem = (GTLYouTubePlaylistItem*)mVideoItem;
-        lChannelTitle = lVideoItem.snippet.channelTitle;
-    }
-    else {
-        GTLYouTubeSearchResult* lVideoItem = (GTLYouTubeSearchResult*)mVideoItem;
-        lChannelTitle = lVideoItem.snippet.channelTitle;
-    }
+    NSString* lChannelTitle = [self.videoItem GETitle];
     self.title = lChannelTitle;
+    self.navigationController.navigationBarHidden = TRUE;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = FALSE;
+    [super viewWillDisappear: animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -75,21 +64,13 @@
     mPlayerView.delegate = self;
     mPlayerView.translatesAutoresizingMaskIntoConstraints = TRUE;
     
-    NSString* lVideoId = @"";
-    if (self.eventType == EFetchEventsNone) {
-        GTLYouTubePlaylistItem* lVideoItem = (GTLYouTubePlaylistItem*)mVideoItem;
-        lVideoId = lVideoItem.contentDetails.videoId;
-    }
-    else {
-        GTLYouTubeSearchResult* lVideoItem = (GTLYouTubeSearchResult*)mVideoItem;
-        lVideoId = lVideoItem.identifier.videoId;
-    }
-    
+    NSString* lVideoId = [self.videoItem GEId];
     [mPlayerView loadWithVideoId: lVideoId playerVars: lPlayerVars];
-    [self.view bringSubviewToFront: mPlayerBaseView];
+    
+    [mPlayerIndicator startAnimating];
 }
 
-- (void)backButtonAction: (id)sender
+- (IBAction)backButtonAction: (id)sender
 {
     [self.navigationController popViewControllerAnimated: TRUE];
 }
@@ -100,12 +81,12 @@
 
 - (void)playerViewDidBecomeReady:(YTPlayerView *)playerView
 {
+    [mPlayerIndicator stopAnimating];
     [mPlayerView playVideo];
 }
 
 - (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
 {
-
 }
 
 - (void)playerView:(YTPlayerView *)playerView didChangeToQuality:(YTPlaybackQuality)quality
@@ -125,12 +106,14 @@
 
 - (UIColor *)playerViewPreferredWebViewBackgroundColor:(YTPlayerView *)playerView
 {
-    return [UIColor clearColor];
+    return [UIColor blackColor];
 }
 
 - (nullable UIView *)playerViewPreferredInitialLoadingView:(nonnull YTPlayerView *)playerView
 {
-    return mLoadingIconView;
+    UIImageView* lPlaceHolderView = [[UIImageView alloc] initWithImage: [UIImage imageWithName: @"loadingthumbnailurl.png"]];
+    lPlaceHolderView.backgroundColor = [UIColor blackColor];
+    return lPlaceHolderView;
 }
 
 @end

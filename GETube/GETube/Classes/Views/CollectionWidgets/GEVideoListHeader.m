@@ -15,6 +15,7 @@
 @synthesize listTitleLbl;
 @synthesize channelNameLbl;
 @synthesize noOfVideosLbl;
+@synthesize titleHeight;
 
 - (void)layoutSubviews
 {

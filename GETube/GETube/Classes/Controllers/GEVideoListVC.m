@@ -7,12 +7,13 @@
 //
 
 #import "GEVideoListVC.h"
-#import "GEVideoListCell.h"
 #import "GEServiceManager.h"
 #import "NSDate+TimeAgo.h"
 #import "GEVideoPlayerCtr.h"
 #import "GELoadingFooter.h"
 #import "UIImage+ImageMask.h"
+#import "GEYoutubeResult.h"
+#import "GEEventCell.h"
 
 @interface GEVideoListVC ()
 {
@@ -29,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    mVideoEventType = EFetchEventsNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,7 +41,6 @@
 {
     [super viewDidAppear: animated];
     
-    GEEventManager* lManager = [GEEventManager manager];
     if (mRequesting)
         return;
 
@@ -104,29 +103,56 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"GESearchVideoCellID";
+    static NSString *identifier = @"GEEventCellID";
     
-    GEVideoListCell* lCell = (GEVideoListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    lCell.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
     
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
     GEEventListPage* lEventPageObj = [lEventObj.eventListPages objectAtIndex: indexPath.section];
-    GTLYouTubeSearchResult* lEvent = [lEventPageObj.eventList objectAtIndex: indexPath.row];
-    
-    lCell.titleLabel.text = lEvent.snippet.title;
-    lCell.timeLabel.text = [lEvent.snippet.publishedAt.date dateTimeAgo];
-    if (indexPath.section == 0) {
+    NSObject <GEYoutubeResult>* lResult = [lEventPageObj.eventList objectAtIndex: indexPath.row];
+    lCell.titleLabel.text = [lResult GETitle];
+    NSString* lDateStr = [[lResult GEPublishedAt] dateString];
+    lCell.statusLabel.hidden = TRUE;
+    lCell.alarmBtn.hidden = TRUE;
+    lCell.timeLabelMaxX.constant = 0.0;
+    if (mVideoEventType == EFetchEventsLive) {
         lCell.statusLabel.text = @"Live";
+        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
+        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
+        lCell.timeLabel.attributedText = lAttStr;
     }
-    else if (indexPath.section == 1) {
+    else if (mVideoEventType == EFetchEventsUpcomming) {
         lCell.statusLabel.text = @"Upcomming";
+        lCell.videoPlayIcon.image = nil;
+        lCell.timeLabelMaxX.constant = -30.0;
+        NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
+        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
+        
+        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
+        lCell.timeLabel.attributedText = lAttStr;
+        lCell.alarmBtn.hidden = FALSE;
     }
-    else if (indexPath.section == 2) {
+    else if (mVideoEventType == EFetchEventsCompleted) {
         lCell.statusLabel.text = @"Completed";
+        NSString* lEndOn = [[lResult eventEndStreamDate] dateString];
+        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
+        
+        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
+        lCell.timeLabel.attributedText = lAttStr;
+    }
+    else
+    {
+       lCell.timeLabel.text = lDateStr;
     }
     
-    NSURL* lThumbUrl = [NSURL URLWithString: lEvent.snippet.thumbnails.medium.url];
+    NSURL* lThumbUrl = [NSURL URLWithString: [lResult GEThumbnailUrl]];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
+    
     return lCell;
 }
 
@@ -180,20 +206,24 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 60.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
+    if (mVideoEventType == EFetchEventsUpcomming) lHeight += 10.0;
+    
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
     GEEventListPage* lEventPageObj = [lEventObj.eventListPages objectAtIndex: indexPath.section];
-    if (lEventPageObj.eventList.count < 4 && lEventPageObj.eventList.count % 2 != 0 && indexPath.row == 0)
+    if (lEventPageObj.eventList.count < 20 && lEventPageObj.eventList.count % 2 != 0 && indexPath.row == 0)
     {
         lWidth = self.view.bounds.size.width - 3.0;
-        lHeight = 9.0*lWidth/16.0 + 50.0;
+        lHeight = 9.0*lWidth/16.0 + 80.0;
         lItemSize = CGSizeMake(lWidth, lHeight);
     }
+
     
     return lItemSize;
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
@@ -231,14 +261,20 @@
     
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: mVideoEventType forSource: self.channelSource];
     GEEventListPage* lEventPage = [lEventObj.eventListPages objectAtIndex: indexPath.section];
-    GTLYouTubeSearchResult* lSearchResult = [lEventPage.eventList objectAtIndex: indexPath.row];
+    NSObject<GEYoutubeResult>* lSearchResult = [lEventPage.eventList objectAtIndex: indexPath.row];
     
     UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
     lGEVideoPlayerCtr.eventType = EFetchEventsCompleted;
     lGEVideoPlayerCtr.videoItem = lSearchResult;
     lGEVideoPlayerCtr.view.frame = self.view.bounds;
-    [self.navigationDelegate moveToViewController: lGEVideoPlayerCtr fromViewCtr: self];
+    
+    if (self.navigationDelegate) {
+        [self.navigationDelegate moveToViewController: lGEVideoPlayerCtr fromViewCtr: self];
+        return;
+    }
+    
+    [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
 }
 
 

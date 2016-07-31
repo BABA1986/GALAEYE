@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GEConstants.h"
 #import "GEEventManager.h"
+#import "GEYoutubeResult.h"
 
 typedef void (^GEServiceEventsLoadedCallbacks)(FetchEventQueryType fetchType);
 typedef void (^GEServicePlaylistLoadedCallbacks)(BOOL success);
@@ -28,7 +29,7 @@ typedef void (^GEServiceVideoLoadedFromChannelCallbacks)(BOOL success);
 - (void)loadPlaylistFromSource: (NSString*)channelSource
                   onCompletion: (GEServicePlaylistLoadedCallbacks)finishCallback;
 
-- (void)loadVideolistFromSource: (GTLYouTubePlaylist*)playlist
+- (void)loadVideolistFromSource: (NSObject<GEYoutubeResult>*)playlist
                    onCompletion: (GEServiceVideoLoadedFromPlaylistCallbacks)finishCallback;
 
 - (void)loadVideosFromChannelSource: (NSString*)channelSource

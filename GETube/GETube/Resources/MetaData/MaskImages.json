@@ -3,42 +3,52 @@
                {
                "id": "1",
                "name": "disclosureicon.png",
+               "color": "dafault"
                },
                {
                "id": "3",
                "name": "play-Icon.png",
+               "color": "dafault"
                },
                {
                "id": "3",
                "name": "playlistIcon.png",
+               "color": "dafault"
                },
                {
                "id": "4",
                "name": "loadingthumbnailurl.png",
+               "color": "dafault"
                },
                {
                "id": "5",
                "name": "dramamenuicon.png",
+               "color": "dafault"
                },
                {
                "id": "6",
                "name": "livemenuicon.png",
+               "color": "dafault"
                },
                {
                "id": "7",
                "name": "backarrow.png",
+               "color": "dafault"
                },
                {
                "id": "8",
                "name": "smalllogo.png",
+               "color": "dafault"
                },
                {
                "id": "9",
                "name": "downarrow.png",
+               "color": "dafault"
                },
                {
                "id": "10",
                "name": "tick.png",
-               }
+               "color": "dafault"
+               },
               ]
 }

@@ -34,7 +34,7 @@
 @synthesize  eventType;
 @synthesize  totalResult;
 
-- (id)initWithResponse: (GTLYouTubeSearchListResponse*)response
+- (id)initWithResponse: (GTLYouTubeVideoListResponse*)response
              eventType: (FetchEventQueryType)eventQueryType
          channelSource: (NSString*)channelId
 {
@@ -52,7 +52,7 @@
     return self;
 }
 
-- (void)addEventsFromResponse: (GTLYouTubeSearchListResponse*)response
+- (void)addEventsFromResponse: (GTLYouTubeVideoListResponse*)response
 {
     GEEventListPage* lGEEventListPage = [[GEEventListPage alloc] initWithList: response.items nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
     [self.eventListPages addObject: lGEEventListPage];
@@ -128,7 +128,7 @@
     return nil;
 }
 
-- (void)addEventSearchResponse: (GTLYouTubeSearchListResponse*)response
+- (void)addEventSearchResponse: (GTLYouTubeVideoListResponse*)response
                   forEventType: (FetchEventQueryType)eventQueryType
                      forSource: (NSString*)channelId;
 {

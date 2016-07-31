@@ -19,6 +19,11 @@
 {
     BOOL        mRequesting;
 }
+
+- (CGSize)sizeOfString: (NSString*)str
+              withFont: (UIFont*)font
+           inContWidth: (CGFloat)constWidth;
+
 @end
 
 @implementation GEPlaylistVideoListCtr
@@ -40,10 +45,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    self.title = self.fromPlayList.snippet.channelTitle;
+    self.title = [self.fromPlayList GEChannelTitle];
     
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
 
     if (mRequesting || lListObject.videoListPages.count)
         return;
@@ -85,6 +90,27 @@
     [self.view addSubview: mIndicator];
 }
 
+- (CGSize)sizeOfString: (NSString*)str
+              withFont: (UIFont*)font
+           inContWidth: (CGFloat)constWidth
+{
+    // set paragraph style
+    NSMutableParagraphStyle* lStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [lStyle setLineBreakMode:NSLineBreakByWordWrapping];
+    // make dictionary of attributes with paragraph style
+    NSDictionary* lSizeAttributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName: lStyle};
+    // get the CGSize
+    CGSize lAdjustedSize = CGSizeMake(constWidth, CGFLOAT_MAX);
+
+    // alternatively you can also get a CGRect to determine height
+    CGRect lRect = [str boundingRectWithSize:lAdjustedSize
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:lSizeAttributes
+                                             context:nil];
+    
+    return CGSizeMake(lRect.size.width, lRect.size.height);
+}
+
 #pragma mark-
 #pragma mark- UICollectionViewDelegate and UICollectionViewDatasource
 #pragma mark-
@@ -92,14 +118,14 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     return lListObject.videoListPages.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: section];
     return lGEVideoListPage.videoList.count;
 }
@@ -111,7 +137,7 @@
     GEVideoListCell* lCell = (GEVideoListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
     
     GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
@@ -125,7 +151,7 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath
 {
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     
     if (elementKind == UICollectionElementKindSectionFooter && indexPath.section == lListObject.videoListPages.count - 1)
     {
@@ -156,12 +182,19 @@
     {
         GEVideoListHeader* lHeaderView = (GEVideoListHeader*)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GEVideoListHeaderID" forIndexPath:indexPath];
         
-        lHeaderView.channelNameLbl.text = self.fromPlayList.snippet.channelTitle;
-        lHeaderView.listTitleLbl.text = self.fromPlayList.snippet.title;
+        lHeaderView.channelNameLbl.text = [self.fromPlayList GEChannelTitle];
+        lHeaderView.listTitleLbl.text = [self.fromPlayList GETitle];
         
-        NSString* lTotalVideo = [self.fromPlayList.contentDetails.itemCount stringValue];
+        NSString* lTotalVideo = [NSString stringWithFormat: @"%d", [self.fromPlayList GETotalItemCount]];
         lHeaderView.noOfVideosLbl.text = [NSString stringWithFormat: @"%@ Videos", lTotalVideo];
         reusableview = lHeaderView;
+        
+        if (indexPath.section == 0) {
+            NSString* lPlaylistTitle = [self.fromPlayList GETitle];
+            UIFont* lFont = [UIFont fontWithName: @"HelveticaNeue" size: 15.0];
+            CGSize lPlaylistSize = [self sizeOfString: lPlaylistTitle withFont: lFont inContWidth: collectionView.frame.size.width];
+            lHeaderView.titleHeight.constant = lPlaylistSize.height + 5.0;
+        }
     }
     
     return reusableview;
@@ -169,8 +202,20 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return CGSizeMake(collectionView.frame.size.width, 44);
+    if (section == 0)
+    {
+        NSString* lChannelTitle = [self.fromPlayList GEChannelTitle];
+        NSString* lPlaylistTitle = [self.fromPlayList GETitle];
+        UIFont* lFont = [UIFont fontWithName: @"HelveticaNeue" size: 15.0];
+        CGSize lPlaylistSize = [self sizeOfString: lPlaylistTitle withFont: lFont inContWidth: collectionView.frame.size.width];
+        lFont = [UIFont fontWithName: @"HelveticaNeue-Light" size: 14.0];
+        CGSize lChannelSize = [self sizeOfString: lChannelTitle withFont: lFont inContWidth: collectionView.frame.size.width/2];
+        
+        CGFloat lTotalHeight = lChannelSize.height + lPlaylistSize.height;
+        
+        lTotalHeight = (lTotalHeight < 40.0) ? 40.0 : lTotalHeight;
+        lTotalHeight += 10.0;
+        return CGSizeMake(collectionView.frame.size.width, lTotalHeight);
     }
     return CGSizeMake(collectionView.frame.size.width, 0);
 }
@@ -178,10 +223,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     
     BOOL lCanFetchMore = FALSE;
-    [lSharedList pageTokenForVideoListForSource: self.fromPlayList.identifier canFetchMore: &lCanFetchMore];
+    [lSharedList pageTokenForVideoListForSource: [self.fromPlayList GEId] canFetchMore: &lCanFetchMore];
     
     if (!lCanFetchMore || (section < lListObject.videoListPages.count - 1))
         return CGSizeMake(collectionView.frame.size.width, 0);
@@ -194,16 +239,16 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 60.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
-    if (lGEVideoListPage.videoList.count < 10 && lGEVideoListPage.videoList.count % 2 != 0 && indexPath.row == 0)
+    if (lGEVideoListPage.videoList.count < 20 && lGEVideoListPage.videoList.count % 2 != 0 && indexPath.row == 0)
     {
         lWidth = self.view.bounds.size.width - 3.0;
-        lHeight = 9.0*lWidth/16.0 + 50.0;
+        lHeight = 9.0*lWidth/16.0 + 70.0;
         lItemSize = CGSizeMake(lWidth, lHeight);
     }
     
@@ -228,10 +273,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
-    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: self.fromPlayList.identifier];
+    GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
     
-    GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
+    NSObject<GEYoutubeResult>* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
     
     UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];

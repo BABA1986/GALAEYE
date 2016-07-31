@@ -12,6 +12,7 @@
 #import "GEServiceManager.h"
 #import "GESharedPlaylist.h"
 #import "GEPlaylistVideoListCtr.h"
+#import "GEYoutubeResult.h"
 
 @interface GEPlaylistVC ()
 {
@@ -111,11 +112,11 @@
     GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
     GEPlaylistListPage* lPlaylistListPage = [lPlaylistObject.playlistListPages objectAtIndex: indexPath.section];
     
-    GTLYouTubePlaylist* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
-    NSURL* lThumbUrl = [NSURL URLWithString: lPlayList.snippet.thumbnails.medium.url];
+    NSObject <GEYoutubeResult>* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
+    NSURL* lThumbUrl = [NSURL URLWithString: [lPlayList GEThumbnailUrl]];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
-    lCell.videoTileLbl.text = lPlayList.snippet.title;
-    lCell.noOfVideoLbl.text = [lPlayList.contentDetails.itemCount stringValue];
+    lCell.videoTileLbl.text = [lPlayList GETitle];
+    lCell.noOfVideoLbl.text = [NSString stringWithFormat: @"%ld", [lPlayList GETotalItemCount]];
     return lCell;
 }
 
@@ -224,7 +225,7 @@
         GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
         GEPlaylistListPage* lPlaylistListPage = [lPlaylistObject.playlistListPages objectAtIndex: indexPath.section];
         
-        GTLYouTubePlaylist* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
+        NSObject <GEYoutubeResult>* lPlayList = [lPlaylistListPage.playlistList objectAtIndex: indexPath.row];
         
         UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         GEPlaylistVideoListCtr* lVideoListCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEPlaylistVideoListCtrID"];

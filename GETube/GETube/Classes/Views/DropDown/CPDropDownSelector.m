@@ -75,24 +75,23 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context,[UIColor clearColor].CGColor);
     
-    UIImage* lImage = [UIImage imageWithName: @"downarrow.png"];
-    CGRect lRect = rect;
-    lRect.size.width = 10;
-    lRect.size.height = 10;
-    lRect.origin.x = CGRectGetWidth(rect) - 12;
-    lRect.origin.y = (CGRectGetHeight(rect) - 10)/2;
-    [lImage drawInRect: lRect];
-    
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
     CGContextSetLineWidth(context, 2.0);
     CGContextSetStrokeColorWithColor(context, lNavTextColor.CGColor);
-    CGContextMoveToPoint(context, 0.0, CGRectGetHeight(rect) - 4.0);    // This sets up the start point
+
+    CGContextMoveToPoint(context, 0.0, CGRectGetHeight(rect));    // This sets up the start point
     CGContextAddLineToPoint(context, 0.0, CGRectGetHeight(rect));
     CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
-    CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect) - 4.0);
     CGContextStrokePath(context);
+    
+    CGContextSetFillColorWithColor(context, lNavTextColor.CGColor);
+    CGContextMoveToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect));
+    CGContextAddLineToPoint(context, CGRectGetWidth(rect), CGRectGetHeight(rect) - 9.0);
+    CGContextAddLineToPoint(context, CGRectGetWidth(rect) - 12.0, CGRectGetHeight(rect));
+    CGContextClosePath(context);
+    CGContextFillPath(context);
     self.selectedContentLabel.textColor = lNavTextColor;
 }
 
