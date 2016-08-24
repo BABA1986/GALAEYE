@@ -11,11 +11,19 @@
 #import "GESharedMenu.h"
 #import "GEConstants.h"
 #import "GESettingViewCtr.h"
+#import "UIImageView+WebCache.h"
 #import "UIImage+ImageMask.h"
+#import "UserDataManager.h"
 
 @interface GEMenuVC ()
 {
     NSMutableArray*            mFooterItems;
+    
+    IBOutlet UIView*            mLoginBaseView;
+    IBOutlet UIImageView*       mProfileImgView;
+    IBOutlet UILabel*           mWelcomeLbl;
+    IBOutlet UIButton*          mLoginBtn;
+    IBOutlet UIView*            mSeperatorView;
 }
 - (void)initialiseFooterItems;
 
@@ -28,13 +36,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = TRUE;
     [self applyTheme];
     mMenuListView.backgroundColor = [UIColor clearColor];
     mFooterListView.backgroundColor = [UIColor clearColor];
-    
+    mProfileImgView.image = [UIImage imageWithName: @"userprofile.png"];
     [self initialiseFooterItems];
+    
+    mProfileImgView.clipsToBounds = YES;
+    mProfileImgView.layer.cornerRadius = mProfileImgView.frame.size.width/2.0;
+
+    [GIDSignIn sharedInstance].uiDelegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,7 +61,7 @@
     NSString* lBundlePath = [[NSBundle mainBundle] pathForResource:@"MenuFooter" ofType:@"json"];
     NSFileManager* lFileManager = [NSFileManager defaultManager];
     if (![lFileManager fileExistsAtPath: lBundlePath])
-    return;
+        return;
 
     NSData* lJsonData = [lFileManager contentsAtPath: lBundlePath];
     NSError* lError;
@@ -72,13 +86,52 @@
     [mMenuListView reloadData];
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIColor* lTextColor = [lThemeManager selectedTextColor];
     self.view.backgroundColor = lNavColor;
+    mWelcomeLbl.textColor = lTextColor;
+    [mLoginBtn setTitleColor: lTextColor forState: UIControlStateNormal];
+    mSeperatorView.backgroundColor = lTextColor;
+    [self onLoginUpdate];
+}
+
+- (void)onLoginUpdate
+{
+    UIImage* lPlaceholderImg = [UIImage imageWithName: @"userprofile.png"];
+    UserDataManager* lUserManager = [UserDataManager userDataManager];
+    NSURL* lPicUrl = [lUserManager.userData imageUrl];
+    if ([GIDSignIn sharedInstance].currentUser)
+    {
+        mWelcomeLbl.text = [lUserManager.userData.name capitalizedString];
+        mLoginBtn.selected = TRUE;
+    }
+    else
+    {
+        mWelcomeLbl.text = @"Welcome!";
+        mLoginBtn.selected = FALSE;
+    }
+    
+    [mProfileImgView sd_setImageWithURL:lPicUrl placeholderImage:lPlaceholderImg completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+     {
+         
+     }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)signInButtonClicked:(id)sender
+{
+    if (!mLoginBtn.isSelected) {
+        [[GIDSignIn sharedInstance] signIn];
+        return;
+    }
+
+    mLoginBtn.selected = FALSE;
+    [[GIDSignIn sharedInstance] signOut];
+    [self onLoginUpdate];
 }
 
 /*
@@ -161,6 +214,33 @@
         lGESettingViewCtr.view.frame = self.view.bounds;
         [self.navigationController pushViewController: lGESettingViewCtr animated: TRUE];
     }
+}
+
+#pragma mark-
+#pragma mark- GIDSignInDelegate
+#pragma mark-
+
+// Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+// UIViewController.
+
+// Stop the UIActivityIndicatorView animation that was started when the user
+// pressed the Sign In button
+- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error
+{
+    
+}
+
+// Present a view that prompts the user to sign in with Google
+- (void)signIn:(GIDSignIn *)signIn
+presentViewController:(UIViewController *)viewController
+{
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+// Dismiss the "Sign in with Google" view
+- (void)signIn:(GIDSignIn *)signIn
+dismissViewController:(UIViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

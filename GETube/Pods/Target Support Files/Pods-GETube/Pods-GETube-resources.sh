@@ -80,10 +80,12 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
   install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
   install_resource "youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "GoogleSignIn/Resources/GoogleSignIn.bundle"
   install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
   install_resource "youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle"
 fi

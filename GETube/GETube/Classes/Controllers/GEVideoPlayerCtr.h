@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DGActivityIndicatorView.h"
 #import "GTLYouTube.h"
 #import "YTPlayerView.h"
 #import "GEEventManager.h"
 #import "GEYoutubeResult.h"
 
-@interface GEVideoPlayerCtr : UIViewController<YTPlayerViewDelegate>
+@interface GEVideoPlayerCtr : UIViewController<YTPlayerViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
 {
     IBOutlet UIView*                        mPlayerBaseView;
     IBOutlet UIImageView*                   mBrandLogoView;
@@ -20,9 +21,11 @@
     __weak NSObject<GEYoutubeResult>*       mVideoItem;
     FetchEventQueryType                     mEventType;
     
-    IBOutlet UIImageView*                   mTestImageView;
     IBOutlet UIButton*                      mBackBtn;
     IBOutlet UIActivityIndicatorView*       mPlayerIndicator;
+    
+    IBOutlet UICollectionView*              mVideoListView;
+    DGActivityIndicatorView*                mIndicator;    
 }
 
 @property(nonatomic, weak)NSObject<GEYoutubeResult>*         videoItem;

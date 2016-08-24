@@ -45,4 +45,9 @@
     return self.snippet.channelTitle;
 }
 
+- (NSString*)GEChannelId
+{
+    return self.snippet.channelId;
+}
+
 @end

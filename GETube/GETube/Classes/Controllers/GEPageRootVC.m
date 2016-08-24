@@ -232,6 +232,7 @@
             {
                 GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
                 lGEVideoListVC.title = lPageMenu.subMenuName;
+                lGEVideoListVC.videoEventType = EFetchEventsNone;
                 lGEVideoListVC.channelSource = lPageMenu.subMenuSrc;
                 lGEVideoListVC.navigationDelegate = self;
                 [lPageCtrs addObject: lGEVideoListVC];

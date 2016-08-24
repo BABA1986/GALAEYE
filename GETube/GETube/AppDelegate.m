@@ -11,6 +11,7 @@
 #import "UIImage+ImageMask.h"
 #import "UIImageView+WebCache.h"
 #import "ThemeManager.h"
+#import "UserDataManager.h"
 
 @interface AppDelegate ()
 
@@ -70,7 +71,22 @@
                                                  name:@"onThemeChange"
                                                object:nil];
     
+    NSError* configureError;
+    [[GGLContext sharedInstance] configureWithError: &configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    [GIDSignIn sharedInstance].delegate = self;
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:sourceApplication
+                                      annotation:annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -235,6 +251,35 @@
             abort();
         }
     }
+}
+
+#pragma mark-
+#pragma mark- GIDSignInDelegate
+#pragma mark-
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations on signed in user here.
+    UserDataManager* lManager = [UserDataManager userDataManager];
+    [lManager setUserId: user.userID];
+    [lManager setClientId: user.authentication.clientID];
+    [lManager setIdToken: user.authentication.idToken];
+    [lManager setIdTokenExpDate: user.authentication.idTokenExpirationDate];
+    [lManager setAccessToken: user.authentication.accessToken];
+    [lManager setAccessTokenExpDate: user.authentication.accessTokenExpirationDate];
+    [lManager setName: user.profile.name];
+    [lManager setEmail: user.profile.email];
+    [lManager setImageUrl: [user.profile imageURLWithDimension: 100]];
+    
+    [mDrawerLeftMenuCtr onLoginUpdate];
+}
+
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    // ...
 }
 
 @end

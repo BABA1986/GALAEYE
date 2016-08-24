@@ -6,10 +6,11 @@ target 'GETube' do
   # use_frameworks!
 		pod 'GoogleAPIClient/Drive'
 		pod 'GoogleAPIClient/YouTube’
-	      pod 'NSDate+TimeAgo'
+		pod 'NSDate+TimeAgo'
 		pod 'DGActivityIndicatorView'
-	pod 'MMDrawerController', '~> 0.5.7'
-pod "youtube-ios-player-helper", “0.1.6”
+		pod 'MMDrawerController', '~> 0.5.7'
+		pod "youtube-ios-player-helper", “0.1.6”
+		pod 'Google/SignIn'
   # Pods for GETube
 
   target 'GETubeTests' do

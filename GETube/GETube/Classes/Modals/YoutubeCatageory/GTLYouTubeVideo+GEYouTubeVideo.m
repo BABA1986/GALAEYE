@@ -55,4 +55,24 @@
     return self.liveStreamingDetails.actualEndTime.date;
 }
 
+- (NSString*)GEChannelId
+{
+    return self.snippet.channelId;
+}
+
+- (NSString*)GEChannelTitle
+{
+    return self.snippet.channelTitle;
+}
+
+- (NSUInteger)GETotalViews;
+{
+    return [self.statistics.viewCount integerValue];
+}
+
+- (NSUInteger)GETotalLiveViewers
+{
+    return [self.liveStreamingDetails.concurrentViewers integerValue];
+}
+
 @end

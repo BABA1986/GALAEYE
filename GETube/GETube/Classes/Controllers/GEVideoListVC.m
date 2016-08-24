@@ -265,7 +265,7 @@
     
     UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
-    lGEVideoPlayerCtr.eventType = EFetchEventsCompleted;
+    lGEVideoPlayerCtr.eventType = self.videoEventType;
     lGEVideoPlayerCtr.videoItem = lSearchResult;
     lGEVideoPlayerCtr.view.frame = self.view.bounds;
     

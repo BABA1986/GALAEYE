@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MenuListHeader.h"
+#import <Google/SignIn.h>
+
 
 @class GEMenuVC;
 @protocol GEMenuVCDelegate <NSObject>
@@ -16,7 +18,7 @@
 
 @end
 
-@interface GEMenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface GEMenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate, GIDSignInUIDelegate>
 {
     IBOutlet UITableView*           mMenuListView;
     IBOutlet UITableView*           mFooterListView;
@@ -26,6 +28,8 @@
 
 @property(nonatomic, weak)id<GEMenuVCDelegate>     delegate;
 
+- (IBAction)signInButtonClicked:(id)sender;
 - (void)applyTheme;
+- (void)onLoginUpdate;
 
 @end

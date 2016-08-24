@@ -47,7 +47,17 @@
                },
                {
                "id": "10",
+               "name": "uparrow.png",
+               "color": "dafault"
+               },
+               {
+               "id": "11",
                "name": "tick.png",
+               "color": "dafault"
+               },
+               {
+               "id": "12",
+               "name": "userprofile.png",
                "color": "dafault"
                },
               ]

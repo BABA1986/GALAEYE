@@ -185,7 +185,7 @@
         lHeaderView.channelNameLbl.text = [self.fromPlayList GEChannelTitle];
         lHeaderView.listTitleLbl.text = [self.fromPlayList GETitle];
         
-        NSString* lTotalVideo = [NSString stringWithFormat: @"%d", [self.fromPlayList GETotalItemCount]];
+        NSString* lTotalVideo = [NSString stringWithFormat: @"%ld", [self.fromPlayList GETotalItemCount]];
         lHeaderView.noOfVideosLbl.text = [NSString stringWithFormat: @"%@ Videos", lTotalVideo];
         reusableview = lHeaderView;
         

@@ -18,7 +18,10 @@
 
 @optional
 - (NSString*)GEChannelTitle;
+- (NSString*)GEChannelId;
 - (NSNumber*)GEViewCount;
 - (NSDate*)eventStartStreamDate;
 - (NSDate*)eventEndStreamDate;
+- (NSUInteger)GETotalViews;
+- (NSUInteger)GETotalLiveViewers;
 @end

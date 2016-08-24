@@ -16,9 +16,10 @@
 #import "GEPageRootVC.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import <Google/SignIn.h>
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, GEMenuVCDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GEMenuVCDelegate, GIDSignInDelegate>
 {
     MMDrawerController*             mAppDrawer;
     GEMenuVC*                       mDrawerLeftMenuCtr;

@@ -15,6 +15,7 @@
 @interface GEServiceManager ()
 - (void)initialiseYTService;
 - (GTLQueryYouTube*)queryForVideoListFromSearch: (GTLYouTubeSearchListResponse*)result;
+- (GTLQueryYouTube*)queryForVideoListFromPlaylistVideoList: (GTLYouTubePlaylistItemListResponse*)result;
 - (GTLQueryYouTube*)queryForEventFetchType: (FetchEventQueryType)eventType
                                  channelId: (NSString*)channelId
                                  pageToken: (NSString*)pageToken;
@@ -53,6 +54,25 @@
     mYTService = [[GTLServiceYouTube alloc] init];
     mYTService.APIKey = kGEAPIKey;
 }
+
+- (GTLQueryYouTube*)queryForVideoListFromPlaylistVideoList: (GTLYouTubePlaylistItemListResponse*)result
+{
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForVideosListWithPart: @"id,snippet,statistics"];
+    lQuery.maxResults = 20;
+    lQuery.type = @"video";
+    NSString* lVideos = @"";
+    for (GTLYouTubePlaylistItem* lItem in result)
+    {
+        if ([result.items lastObject] != lItem) {
+            lVideos = [lVideos stringByAppendingFormat: @"%@,", lItem.snippet.resourceId.videoId];
+            continue;
+        }
+        lVideos = [lVideos stringByAppendingFormat: @"%@", lItem.snippet.resourceId.videoId];
+    }
+    lQuery.identifier = lVideos;
+    return lQuery;
+}
+
 
 - (GTLQueryYouTube*)queryForVideoListFromSearch: (GTLYouTubeSearchListResponse*)result
 {
@@ -113,7 +133,7 @@
 - (GTLQueryYouTube*)queryForVideoListOfPlaylist: (NSString*)playlistId
                                       pageToken: (NSString*)pageToken
 {
-    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistItemsListWithPart: @"id,snippet,contentDetails"];
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForPlaylistItemsListWithPart: @"id, snippet"];
     lQuery.maxResults = 20;
     lQuery.playlistId = playlistId;
     lQuery.pageToken = pageToken;
@@ -238,14 +258,21 @@
         return;
     }
     
-    
     GTLQueryYouTube* lQuery = [self queryForVideoListOfPlaylist: lIdentifier pageToken: lPageToken];
     [mYTService executeQuery: lQuery
            completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
      {
-         GTLYouTubeVideoListResponse* lResult = (GTLYouTubeVideoListResponse*)object;
-         [lSharedVideoList addVideoListSearchResponse: lResult forSource: lIdentifier];
-         finishCallback(TRUE);
+         GTLYouTubePlaylistItemListResponse* lResult = (GTLYouTubePlaylistItemListResponse*)object;
+         GTLQueryYouTube* lVideoListQuery = [self queryForVideoListFromPlaylistVideoList: lResult];
+         [mYTService executeQuery: lVideoListQuery
+                completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+          {
+              GTLYouTubeVideoListResponse* lVideoList = (GTLYouTubeVideoListResponse*)object;
+              lVideoList.nextPageToken = lResult.nextPageToken;
+              lVideoList.prevPageToken = lResult.prevPageToken;
+              [lSharedVideoList addVideoListSearchResponse: lVideoList forSource: lIdentifier];
+              finishCallback(TRUE);
+          }];
      }];
 }
 

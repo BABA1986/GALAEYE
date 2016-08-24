@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0008E4811D323351002DDE8B /* GEVideoPlayerCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */; };
+		0018E4651D656D3200CAFEA8 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018E4641D656D3200CAFEA8 /* UserDataManager.m */; };
 		001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1691D15678700DDD39F /* MMNavigationController.m */; };
 		001BD16D1D1567BA00DDD39F /* GEMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD16C1D1567BA00DDD39F /* GEMenuVC.m */; };
 		001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD16F1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m */; };
@@ -83,9 +84,11 @@
 		00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */; };
 		00BE6BD81D1540A50019D907 /* GETubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BD71D1540A50019D907 /* GETubeTests.m */; };
 		00BE6BE31D1540A50019D907 /* GETubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BE21D1540A50019D907 /* GETubeUITests.m */; };
+		00C84C651D5F9031000DD01B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C84C641D5F9031000DD01B /* GoogleService-Info.plist */; };
 		00DF23B41D486EC00073E86F /* back_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DF23B31D486EC00073E86F /* back_white.png */; };
 		00F5E5CB1D3189AF00B87FE7 /* dramamenuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */; };
 		00F5E5CC1D3189AF00B87FE7 /* livemenuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */; };
+		00F6B8F31D5D72F900784EBA /* userprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F6B8F21D5D72F900784EBA /* userprofile.png */; };
 		7816A3460E664526E10853A7 /* libPods-GETubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE7861B3DF6A6B8B981041 /* libPods-GETubeTests.a */; };
 		9A14700DFB305F88F1931ECE /* libPods-GETubeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 343CFD89483153C29D72872F /* libPods-GETubeUITests.a */; };
 		D45B828CC805462814942A6E /* libPods-GETube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B69523F67549DDD39AA98B2 /* libPods-GETube.a */; };
@@ -111,6 +114,8 @@
 /* Begin PBXFileReference section */
 		0008E47F1D323351002DDE8B /* GEVideoPlayerCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoPlayerCtr.h; sourceTree = "<group>"; };
 		0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoPlayerCtr.m; sourceTree = "<group>"; };
+		0018E4631D656D3200CAFEA8 /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataManager.h; sourceTree = "<group>"; };
+		0018E4641D656D3200CAFEA8 /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDataManager.m; sourceTree = "<group>"; };
 		001BD1681D15678700DDD39F /* MMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNavigationController.h; sourceTree = "<group>"; };
 		001BD1691D15678700DDD39F /* MMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNavigationController.m; sourceTree = "<group>"; };
 		001BD16B1D1567BA00DDD39F /* GEMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEMenuVC.h; sourceTree = "<group>"; };
@@ -247,9 +252,11 @@
 		00BE6BDE1D1540A50019D907 /* GETubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BE6BE21D1540A50019D907 /* GETubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GETubeUITests.m; sourceTree = "<group>"; };
 		00BE6BE41D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00C84C641D5F9031000DD01B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00DF23B31D486EC00073E86F /* back_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_white.png; sourceTree = "<group>"; };
 		00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dramamenuicon.png; sourceTree = "<group>"; };
 		00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = livemenuicon.png; sourceTree = "<group>"; };
+		00F6B8F21D5D72F900784EBA /* userprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userprofile.png; sourceTree = "<group>"; };
 		184FB69CD61EDE80E14B5E51 /* Pods-GETubeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeUITests/Pods-GETubeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B69523F67549DDD39AA98B2 /* libPods-GETube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		343CFD89483153C29D72872F /* libPods-GETubeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GETubeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +297,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0018E4621D656D0E00CAFEA8 /* UserModal */ = {
+			isa = PBXGroup;
+			children = (
+				0018E4631D656D3200CAFEA8 /* UserDataManager.h */,
+				0018E4641D656D3200CAFEA8 /* UserDataManager.m */,
+			);
+			path = UserModal;
+			sourceTree = "<group>";
+		};
 		001BD15D1D1555E900DDD39F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +347,7 @@
 		001BD15F1D1555E900DDD39F /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				0018E4621D656D0E00CAFEA8 /* UserModal */,
 				0041AAE71D41BE8400D59AB6 /* YoutubeCatageory */,
 				008B3E531D283C5400DBD93C /* VideoList */,
 				00706FA01D179D4F003AF084 /* Playlists */,
@@ -440,6 +457,7 @@
 		001BD1641D1555F700DDD39F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00F6B8F21D5D72F900784EBA /* userprofile.png */,
 				00DF23B31D486EC00073E86F /* back_white.png */,
 				00B196451D470F7600D09E9F /* alarmOff.png */,
 				00B196461D470F7600D09E9F /* alarmOn.png */,
@@ -528,6 +546,7 @@
 		00BE6BAE1D1540A50019D907 = {
 			isa = PBXGroup;
 			children = (
+				00C84C641D5F9031000DD01B /* GoogleService-Info.plist */,
 				00BE6BB91D1540A50019D907 /* GETube */,
 				00BE6BD61D1540A50019D907 /* GETubeTests */,
 				00BE6BE11D1540A50019D907 /* GETubeUITests */,
@@ -727,6 +746,7 @@
 			files = (
 				00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */,
 				00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */,
+				00F6B8F31D5D72F900784EBA /* userprofile.png in Resources */,
 				00A6025E1D2D037000A62423 /* backarrow.png in Resources */,
 				00B196481D470F7600D09E9F /* alarmOn.png in Resources */,
 				00B196471D470F7600D09E9F /* alarmOff.png in Resources */,
@@ -741,6 +761,7 @@
 				008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */,
 				005104701D3B5F0600C5ACCD /* tick.png in Resources */,
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
+				00C84C651D5F9031000DD01B /* GoogleService-Info.plist in Resources */,
 				00DF23B41D486EC00073E86F /* back_white.png in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
 				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
@@ -935,6 +956,7 @@
 				0041AB071D41D91500D59AB6 /* GTLYouTubeVideo+GEYouTubeVideo.m in Sources */,
 				00706FF51D19B8B1003AF084 /* SDWebImageDownloader.m in Sources */,
 				00A1DCA51D3A7F0A00C3C710 /* GEVideoListVC.m in Sources */,
+				0018E4651D656D3200CAFEA8 /* UserDataManager.m in Sources */,
 				00706FF81D19B8B1003AF084 /* SDWebImagePrefetcher.m in Sources */,
 				00A602691D2D1B1300A62423 /* GESettingThemeCell.m in Sources */,
 				00BE6BC81D1540A50019D907 /* GETube.xcdatamodeld in Sources */,
@@ -1019,8 +1041,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Himanshu Kansara (62349692CK)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1065,8 +1087,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Himanshu Kansara (62349692CK)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1093,7 +1115,7 @@
 			baseConfigurationReference = B965180A4A98C511FC2DE882 /* Pods-GETube.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
 				INFOPLIST_FILE = GETube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1107,7 +1129,7 @@
 			baseConfigurationReference = 3636D0B901C7767BAF0DDFD0 /* Pods-GETube.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
 				INFOPLIST_FILE = GETube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

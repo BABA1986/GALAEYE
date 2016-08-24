@@ -104,8 +104,8 @@
     static NSString *identifier = @"GEEventCellID";
     
     GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    lCell.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
 
+    lCell.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
     GEEventListPage* lEventPageObj = [lEventObj.eventListPages firstObject];
@@ -115,6 +115,7 @@
     lCell.statusLabel.hidden = TRUE;
     lCell.alarmBtn.hidden = TRUE;
     lCell.timeLabelMaxX.constant = 0.0;
+    lCell.videoPlayIcon.hidden = FALSE;
     if (indexPath.section == 0) {
         lCell.statusLabel.text = @"Live";
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
@@ -123,6 +124,7 @@
         lCell.timeLabel.attributedText = lAttStr;
     }
     else if (indexPath.section == 1) {
+        lCell.videoPlayIcon.hidden = TRUE;
         lCell.statusLabel.text = @"Upcomming";
         lCell.videoPlayIcon.image = nil;
         lCell.timeLabelMaxX.constant = -30.0;
