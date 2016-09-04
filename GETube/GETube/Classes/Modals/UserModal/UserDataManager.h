@@ -18,6 +18,7 @@
 @property(nonatomic, strong)NSDate*         accessTokenExpDate;
 @property(nonatomic, copy)NSString*         idToken;
 @property(nonatomic, strong)NSDate*         idTokenExpDate;
+@property(nonatomic, copy)NSString*         refreshToken;
 @end
 
 @interface UserDataManager : NSObject
@@ -28,6 +29,7 @@
 @property(nonatomic, readonly)GEUserData*       userData;
 
 + (UserDataManager*)userDataManager;
+- (void)flushUserData;
 
 - (void)setUserId: (NSString*)userId;
 - (void)setEmail: (NSString*)email;
@@ -38,5 +40,6 @@
 - (void)setAccessTokenExpDate: (NSDate*)accessTokenExpDate;
 - (void)setIdToken: (NSString*)idToken;
 - (void)setIdTokenExpDate: (NSDate*)idTokenExpDate;
+- (void)setRefreshToken: (NSString*)refreshToken;
 
 @end

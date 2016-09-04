@@ -13,6 +13,7 @@
 #import "GEPlaylistVC.h"
 #import "GEPlaylistVideoListCtr.h"
 #import "GEVideoListVC.h"
+#import "GEVideoPlayerCtr.h"
 #import "MMDrawerBarButtonItem.h"
 #import "AppDelegate.h"
 
@@ -157,6 +158,13 @@
                 [(GEEventVC*)lCtr applyTheme];
             }
         }
+        else if ([lCtr isKindOfClass: [GEVideoPlayerCtr class]])
+        {
+            if ([lCtr respondsToSelector: @selector(applyTheme)])
+            {
+                [(GEVideoPlayerCtr*)lCtr applyTheme];
+            }
+        }
     }
     
     NSArray* lNavControllers = self.navigationController.viewControllers;
@@ -174,6 +182,13 @@
             if ([lNavCtr respondsToSelector: @selector(applyTheme)])
             {
                 [(GEVideoListVC*)lNavCtr applyTheme];
+            }
+        }
+        else if ([lNavCtr isKindOfClass: [GEVideoPlayerCtr class]])
+        {
+            if ([lNavCtr respondsToSelector: @selector(applyTheme)])
+            {
+                [(GEVideoPlayerCtr*)lNavCtr applyTheme];
             }
         }
     }

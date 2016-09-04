@@ -60,5 +60,25 @@
                "name": "userprofile.png",
                "color": "dafault"
                },
-              ]
+               {
+               "id": "13",
+               "name": "like-selected.png",
+               "color": "dafault"
+               },
+               {
+               "id": "14",
+               "name": "like-unselected.png",
+               "color": "dafault"
+               },
+               {
+               "id": "15",
+               "name": "dislike-unselected.png",
+               "color": "dafault"
+               },
+               {
+               "id": "16",
+               "name": "dislike-selected.png",
+               "color": "dafault"
+               }
+               ]
 }

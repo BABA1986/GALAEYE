@@ -12,6 +12,8 @@
 #import "UIImageView+WebCache.h"
 #import "ThemeManager.h"
 #import "UserDataManager.h"
+#import "GEServiceManager.h"
+#import "MBProgressHUD.h"
 
 @interface AppDelegate ()
 
@@ -19,13 +21,16 @@
 
 @implementation AppDelegate
 
+@synthesize showLoginToast = mShowLoginToast;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    mShowLoginToast = FALSE;
+    
     SDImageCache* lImageCache = [SDImageCache sharedImageCache];
     [lImageCache clearMemory];
     [lImageCache clearDisk];
-
+    
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     lThemeManager.selectedIndex = 2;
     [self createIconsForTheme];
@@ -75,7 +80,9 @@
     [[GGLContext sharedInstance] configureWithError: &configureError];
     NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     
+    [[GIDSignIn sharedInstance] setScopes:[NSArray arrayWithObjects:@"https://www.googleapis.com/auth/youtube", @"https://www.googleapis.com/auth/youtubepartner", @"https://www.googleapis.com/auth/youtube.force-ssl", nil]];
     [GIDSignIn sharedInstance].delegate = self;
+    [[GIDSignIn sharedInstance] signInSilently];
     
     return YES;
 }
@@ -253,6 +260,21 @@
     }
 }
 
+- (void)showLoginSuccessMsg
+{
+    if (mShowLoginToast)
+    {
+        MBProgressHUD* lHud = [MBProgressHUD showHUDAddedTo:self.window  animated:YES];
+        lHud.mode = MBProgressHUDModeText;
+        lHud.labelText = @"Logged in successfull.";
+        lHud.labelFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
+        lHud.removeFromSuperViewOnHide = YES;
+        lHud.yOffset = CGRectGetMidY(self.window.frame) - 55.0;
+        [lHud hide:YES afterDelay:1];
+        mShowLoginToast = FALSE;
+    }
+}
+
 #pragma mark-
 #pragma mark- GIDSignInDelegate
 #pragma mark-
@@ -260,6 +282,9 @@
 - (void)signIn:(GIDSignIn *)signIn
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
+    if (error) {
+        return;
+    }
     // Perform any operations on signed in user here.
     UserDataManager* lManager = [UserDataManager userDataManager];
     [lManager setUserId: user.userID];
@@ -271,13 +296,18 @@ didSignInForUser:(GIDGoogleUser *)user
     [lManager setName: user.profile.name];
     [lManager setEmail: user.profile.email];
     [lManager setImageUrl: [user.profile imageURLWithDimension: 100]];
+    [lManager setRefreshToken: user.authentication.refreshToken];
     
     [mDrawerLeftMenuCtr onLoginUpdate];
+    GEServiceManager* lGEServiceManager = [GEServiceManager sharedManager];
+    [lGEServiceManager loginDone];
+    [self showLoginSuccessMsg];
 }
 
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
+     withError:(NSError *)error
+{
     // Perform any operations when the user disconnects from app here.
     // ...
 }

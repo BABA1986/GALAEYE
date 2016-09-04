@@ -22,7 +22,7 @@
 
 - (NSString*)GEDescription
 {
-    return self.snippet.description;
+    return self.snippet.descriptionProperty;
 }
 
 - (NSString*)GEThumbnailUrl

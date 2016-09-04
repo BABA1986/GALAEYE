@@ -14,7 +14,10 @@
 #import "GELoadingFooter.h"
 #import "GEYoutubeResult.h"
 #import "GEEventCell.h"
-
+#import "UserDataManager.h"
+#import "MBProgressHUD.h"
+#import <Google/SignIn.h>
+#import "AppDelegate.h"
 
 @interface GEVideoPlayerCtr ()
 {
@@ -27,8 +30,18 @@
     IBOutlet UITextView*                mDescriptionView;
     IBOutlet UIButton*                  mExpandBtn;
     
+    IBOutlet UILabel*                   mLikeCountLbl;
+    IBOutlet UIButton*                  mLikeBtn;
+    IBOutlet UIView*                    mLikeBaseView;
+    
+    IBOutlet UILabel*                   mDisLikeCountLbl;
+    IBOutlet UIButton*                  mDisLikeBtn;
+    IBOutlet UIView*                    mDisLikeBaseView;
+
+    
     IBOutlet NSLayoutConstraint*     mTitleBaseHeight;
     IBOutlet NSLayoutConstraint*     mTitleHeight;
+    IBOutlet NSLayoutConstraint*     mDislikeBaseWidth;
     BOOL                             mIsHeaderExpanded;
 }
 
@@ -41,6 +54,8 @@
               withFont: (UIFont*)font
            inContWidth: (CGFloat)constWidth;
 - (void)loadTitleAndDescription;
+- (void)getRating;
+- (void)raiseLiginAlert;
 @end
 
 @implementation GEVideoPlayerCtr
@@ -54,6 +69,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mBrandLogoView.image = [UIImage imageWithName: @"smalllogo.png"];
+    
+    UITapGestureRecognizer* lLikeGesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(likeActionFound:)];
+    [mLikeBaseView addGestureRecognizer: lLikeGesture];
+    
+    UITapGestureRecognizer* lDisLikeGesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(dislikeActionFound:)];
+    [mDisLikeBaseView addGestureRecognizer: lDisLikeGesture];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +91,7 @@
     self.title = lChannelTitle;
     
     [self loadTitleAndDescription];
+    [self getRating];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -80,6 +102,33 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
+    
+    [self reloadVideo];
+    
+    
+    [mPlayerIndicator startAnimating];
+    
+    if (mRequesting)
+        return;
+    
+    mRequesting = TRUE;
+    
+    [self addIndicatorView];
+    [mIndicator startAnimating];
+    mIndicator.hidden = FALSE;
+    self.listSource = self.videoItem.GEChannelId;
+    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+    [lServiceMngr loadVideosFromChannelSource: self.listSource eventType: self.eventType onCompletion: ^(BOOL success)
+     {
+         [mVideoListView reloadData];
+         [mIndicator stopAnimating];
+         mIndicator.hidden = TRUE;
+         mRequesting = FALSE;
+     }];
+}
+
+- (void)reloadVideo
+{
     NSDictionary* lPlayerVars = @{
                                   @"playsinline" : @1,
                                   @"enablejsapi": @1,
@@ -97,26 +146,14 @@
     NSString* lVideoId = [self.videoItem GEId];
     [mPlayerView loadWithVideoId: lVideoId playerVars: lPlayerVars];
     
-    [mPlayerIndicator startAnimating];
-    
-    if (mRequesting)
-        return;
-    
-    mRequesting = TRUE;
-    
-    [self addIndicatorView];
-    [mIndicator startAnimating];
-    mIndicator.hidden = FALSE;
-    
-    self.listSource = self.videoItem.GEChannelId;
-    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
-    [lServiceMngr loadVideosFromChannelSource: self.listSource eventType: self.eventType onCompletion: ^(BOOL success)
-     {
-         [mVideoListView reloadData];
-         [mIndicator stopAnimating];
-         mIndicator.hidden = TRUE;
-         mRequesting = FALSE;
-     }];
+    [self loadTitleAndDescription];
+    [self getRating];
+}
+
+- (void)applyTheme
+{
+    [mVideoListView reloadData];
+    [self loadTitleAndDescription];
 }
 
 - (void)loadTitleAndDescription
@@ -129,30 +166,63 @@
     mTitleLbl.textColor = lNavTextColor;
     mNoOfViewLbl.textColor = lNavTextColor;
     mDescriptionView.textColor = lNavTextColor;
+    mLikeCountLbl.textColor = lNavTextColor;
+    mDisLikeCountLbl.textColor = lNavTextColor;
     
     mTitleLbl.text = self.videoItem.GETitle;
     mDescriptionView.text = self.videoItem.GEDescription;
     mNoOfViewLbl.text = [NSString stringWithFormat: @"Views %ld", self.videoItem.GETotalViews];
+    mLikeCountLbl.text = self.videoItem.GETotalLikes;
+    mDisLikeCountLbl.text = self.videoItem.GETotalDisLikes;
+    
     if (self.eventType == EFetchEventsLive)
     {
         mNoOfViewLbl.text = [NSString stringWithFormat: @"Views %ld", self.videoItem.GETotalLiveViewers];
     }
     
     UIFont* lFont = [UIFont fontWithName: @"HelveticaNeue" size: 15.0];
-    CGSize lTitleSize = [self sizeOfString: self.videoItem.GETitle withFont: lFont inContWidth: self.view.frame.size.width - 25];
+    CGSize lTitleSize = [self sizeOfString: self.videoItem.GETitle withFont: lFont inContWidth: self.view.frame.size.width - 50.0];
 
-    mTitleHeight.constant = lTitleSize.height;
-    mTitleBaseHeight.constant = lTitleSize.height + 25.0;
+    mTitleHeight.constant = lTitleSize.height + 10.0;
+    mTitleBaseHeight.constant = lTitleSize.height + 35.0;
     mDescriptionView.hidden = FALSE;
+    
+    CGSize lDislikeCountSize = [self sizeOfString: mDisLikeCountLbl.text withFont: mDisLikeCountLbl.font inContWidth: 80.0];
+    mDislikeBaseWidth.constant = lDislikeCountSize.width + 35.0;
     
     [mExpandBtn setImage: [UIImage imageWithName: @"downarrow.png"] forState: UIControlStateNormal];
     [mExpandBtn setImage: [UIImage imageWithName: @"uparrow.png"] forState: UIControlStateSelected];
+    
+    [mLikeBtn setImage: [UIImage imageWithName: @"like-unselected.png"] forState: UIControlStateNormal];
+    [mLikeBtn setImage: [UIImage imageWithName: @"like-selected.png"] forState: UIControlStateSelected];
+    
+    [mDisLikeBtn setImage: [UIImage imageWithName: @"dislike-unselected.png"] forState: UIControlStateNormal];
+    [mDisLikeBtn setImage: [UIImage imageWithName: @"dislike-selected.png"] forState: UIControlStateSelected];
+}
+
+- (void)getRating
+{
+    mLikeBtn.selected = FALSE;
+    mDisLikeBtn.selected = FALSE;
+    
+    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+    [lServiceMngr getMyRatingForVideo: self.videoItem onCompletion: ^(NSString* myRating)
+     {
+         if ([myRating isEqualToString: @"like"])
+         {
+             mLikeBtn.selected = TRUE;
+         }
+         else if ([myRating isEqualToString: @"dislike"])
+         {
+             mDisLikeBtn.selected = TRUE;
+         }
+     }];
 }
 
 - (IBAction)titleExpandCollapseAction:(id)sender
 {
     UIFont* lFont = [UIFont fontWithName: @"Helvetica-Light" size: 15.0];
-    CGSize lDescSize = [self sizeOfString: self.videoItem.GEDescription withFont: lFont inContWidth: self.view.frame.size.width - 25];
+    CGSize lDescSize = [self sizeOfString: self.videoItem.GEDescription withFont: lFont inContWidth: self.view.frame.size.width - 25.0];
     [mTitleBaseView layoutIfNeeded];
 
     [self.view layoutIfNeeded];
@@ -169,6 +239,120 @@
                              [self.view layoutIfNeeded];
                             mExpandBtn.selected = !mExpandBtn.selected;
                      }];
+}
+
+- (void)likeActionFound: (UITapGestureRecognizer*)gesture
+{
+    if (mLikeBtn.selected)
+        return;
+    
+    UserDataManager* lUserManager = [UserDataManager userDataManager];
+    if (!lUserManager.userData.userId.length)
+    {
+        [self raiseLiginAlert];
+        return;
+    }
+    
+    [self.videoItem GESetLike];
+    mLikeCountLbl.text = self.videoItem.GETotalLikes;
+    mLikeBtn.selected = TRUE;
+    
+    if (mDisLikeBtn.selected)
+    {
+        [self.videoItem GESetMyDisLikeRemove];
+        mDisLikeCountLbl.text = self.videoItem.GETotalDisLikes;
+        mDisLikeBtn.selected = FALSE;
+    }
+
+    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+    [lServiceMngr addMyRating: @"like" forVideo: self.videoItem onCompletion: ^(bool success)
+     {
+         if (!success)
+         {
+             [self.videoItem GESetDisLike];
+             
+             if (mLikeBtn.selected)
+             {
+                 [self.videoItem GESetMyLikeRemove];
+                 mLikeCountLbl.text = self.videoItem.GETotalLikes;
+                 mLikeBtn.selected = FALSE;
+             }
+             
+             mDisLikeCountLbl.text = self.videoItem.GETotalDisLikes;
+             mDisLikeBtn.selected = TRUE;
+         }
+         else
+         {
+             MBProgressHUD* lHud = [MBProgressHUD showHUDAddedTo:self.view  animated:YES];
+             lHud.mode = MBProgressHUDModeText;
+             lHud.labelText = @"Added to liked videos";
+             lHud.labelFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
+             lHud.removeFromSuperViewOnHide = YES;
+             lHud.yOffset = CGRectGetMidY(self.view.frame) - 55.0;
+             [lHud hide:YES afterDelay:1];
+         }
+     }];
+}
+
+- (void)dislikeActionFound: (UITapGestureRecognizer*)gesture
+{
+    if (mDisLikeBtn.selected)
+        return;
+    
+    UserDataManager* lUserManager = [UserDataManager userDataManager];
+    if (!lUserManager.userData.userId.length)
+    {
+        [self raiseLiginAlert];
+        return;
+    }
+    
+    [self.videoItem GESetDisLike];
+    
+    if (mLikeBtn.selected)
+    {
+        [self.videoItem GESetMyLikeRemove];
+        mLikeCountLbl.text = self.videoItem.GETotalLikes;
+        mLikeBtn.selected = FALSE;
+    }
+    
+    mDisLikeCountLbl.text = self.videoItem.GETotalDisLikes;
+    mDisLikeBtn.selected = TRUE;
+
+    
+    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+    [lServiceMngr addMyRating: @"dislike" forVideo: self.videoItem onCompletion: ^(bool success)
+     {
+         if (!success)
+         {
+             [self.videoItem GESetLike];
+             mLikeCountLbl.text = self.videoItem.GETotalLikes;
+             mLikeBtn.selected = TRUE;
+             
+             if (mDisLikeBtn.selected)
+             {
+                 [self.videoItem GESetMyDisLikeRemove];
+                 mDisLikeCountLbl.text = self.videoItem.GETotalDisLikes;
+                 mDisLikeBtn.selected = FALSE;
+             }
+         }
+         else
+         {
+             MBProgressHUD* lHud = [MBProgressHUD showHUDAddedTo:self.view  animated:YES];
+             lHud.mode = MBProgressHUDModeText;
+             lHud.labelText = @"You dislike this video";
+             lHud.yOffset = CGRectGetMidY(self.view.frame) - 55.0;
+             lHud.labelFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
+             lHud.removeFromSuperViewOnHide = YES;
+             [lHud hide:YES afterDelay:1];
+         }
+     }];
+}
+
+- (void)raiseLiginAlert
+{
+    UIAlertView* lAlertView = [[UIAlertView alloc] initWithTitle: @"SignIn Required" message: @"To like or dislike this video. Please do google signin." delegate: self cancelButtonTitle: @"Cancel" otherButtonTitles: @"Google Signin", nil];
+    lAlertView.tag = 101;
+    [lAlertView show];
 }
 
 - (void)addIndicatorView
@@ -276,7 +460,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"GEEventCellID";
+    static NSString *identifier = @"GEPlayerCellID";
     
     GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     lCell.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
@@ -437,19 +621,22 @@
     GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.eventType forSource: self.listSource];
     GEEventListPage* lEventPage = [lEventObj.eventListPages objectAtIndex: indexPath.section];
     NSObject<GEYoutubeResult>* lSearchResult = [lEventPage.eventList objectAtIndex: indexPath.row];
+    self.eventType = self.eventType;
+    self.videoItem = lSearchResult;
     
-    UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    GEVideoPlayerCtr* lGEVideoPlayerCtr = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEVideoPlayerCtrID"];
-    lGEVideoPlayerCtr.eventType = EFetchEventsCompleted;
-    lGEVideoPlayerCtr.videoItem = lSearchResult;
-    lGEVideoPlayerCtr.view.frame = self.view.bounds;
-    
-//    if (self.navigationDelegate) {
-//        [self.navigationDelegate moveToViewController: lGEVideoPlayerCtr fromViewCtr: self];
-//        return;
-//    }
-//    
-    [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
+    [self reloadVideo];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        UIApplication* lApplication = [UIApplication sharedApplication];
+        AppDelegate* lAppDelegate = (AppDelegate*)[lApplication delegate];
+        lAppDelegate.showLoginToast = TRUE;
+        
+        [[GIDSignIn sharedInstance] signIn];
+    }
 }
 
 @end

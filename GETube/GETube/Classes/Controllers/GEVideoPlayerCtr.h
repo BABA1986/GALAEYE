@@ -32,5 +32,6 @@
 @property(nonatomic, assign)FetchEventQueryType              eventType;
 
 - (IBAction)backButtonAction: (id)sender;
+- (void)applyTheme;
 
 @end

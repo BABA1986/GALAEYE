@@ -10,10 +10,13 @@
 #import "GEEventManager.h"
 #import "GESharedPlaylist.h"
 #import "GESharedVideoList.h"
+#import "UserDataManager.h"
 #import "GEConstants.h"
+#import <GTMOAuth2/GTMOAuth2Authentication.h>
 
 @interface GEServiceManager ()
 - (void)initialiseYTService;
+- (void)subscribeMe;
 - (GTLQueryYouTube*)queryForVideoListFromSearch: (GTLYouTubeSearchListResponse*)result;
 - (GTLQueryYouTube*)queryForVideoListFromPlaylistVideoList: (GTLYouTubePlaylistItemListResponse*)result;
 - (GTLQueryYouTube*)queryForEventFetchType: (FetchEventQueryType)eventType
@@ -54,6 +57,87 @@
     mYTService = [[GTLServiceYouTube alloc] init];
     mYTService.APIKey = kGEAPIKey;
 }
+
+- (void)loginDone
+{
+    UserDataManager* lManager = [UserDataManager userDataManager];
+    GTMOAuth2Authentication* lAuth = [[GTMOAuth2Authentication alloc] init];
+    [lAuth setClientID: lManager.userData.clientId];
+    [lAuth setUserEmail: lManager.userData.email];
+    [lAuth setUserID: lManager.userData.userId];
+    [lAuth setAccessToken: lManager.userData.accessToken];
+    [lAuth setRefreshToken: lManager.userData.refreshToken];
+    [lAuth setExpirationDate: lManager.userData.accessTokenExpDate];
+    [mYTService setAuthorizer: lAuth];
+    
+    [self subscribeMe];
+}
+
+- (void)subscribeMe
+{
+    GTLYouTubeSubscriptionSnippet* lSnippet = [GTLYouTubeSubscriptionSnippet object];
+    GTLYouTubeResourceId* lResourceObject = [GTLYouTubeResourceId object];
+    lResourceObject.channelId = kGEChannelID;
+    lSnippet.resourceId = lResourceObject;
+    
+    GTLYouTubeSubscription* lSubscription = [GTLYouTubeSubscription object];
+    lSubscription.snippet = lSnippet;
+    
+    GTLQueryYouTube *query = [GTLQueryYouTube queryForSubscriptionsInsertWithObject:lSubscription part:@"contentDetails,snippet"];
+    
+    [mYTService executeQuery:query
+        completionHandler:^(GTLServiceTicket *ticket,
+                            GTLYouTubeSubscription *subscription,
+                            NSError *error) {
+            /* Callback */
+            NSLog(@"subscription:%@", subscription);
+            NSLog(@"error:%@", error);
+            
+        }];
+}
+
+- (void)getMyRatingForVideo: (NSObject<GEYoutubeResult>*)videoItem
+               onCompletion: (void(^)(NSString* rating))finishCallback
+{
+    GTLQueryYouTube *query = [GTLQueryYouTube queryForVideosGetRatingWithIdentifier: videoItem.GEId];
+    
+    [mYTService executeQuery:query
+           completionHandler:^(GTLServiceTicket *ticket,
+                               GTLYouTubeVideoGetRatingResponse *ratingResponse,
+                               NSError *error) {
+               if(error)
+               {
+                   finishCallback(@"None");
+               }
+               else
+               {
+                   GTLYouTubeVideoRating* lRating = [ratingResponse.items firstObject];
+                   finishCallback(lRating.rating);
+               }
+           }];
+}
+
+- (void)addMyRating: (NSString*)rating
+           forVideo: (NSObject<GEYoutubeResult>*)videoItem
+       onCompletion: (void(^)(bool sucess))finishCallback
+{
+    GTLQueryYouTube *query = [GTLQueryYouTube queryForVideosRateWithIdentifier: videoItem.GEId rating: rating];
+    
+    [mYTService executeQuery:query
+           completionHandler:^(GTLServiceTicket *ticket,
+                               id response,
+                               NSError *error) {
+               if(error)
+               {
+                   finishCallback(FALSE);
+               }
+               else
+               {
+                   finishCallback(TRUE);
+               }
+           }];
+}
+
 
 - (GTLQueryYouTube*)queryForVideoListFromPlaylistVideoList: (GTLYouTubePlaylistItemListResponse*)result
 {

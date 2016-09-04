@@ -74,6 +74,72 @@
                                          "src": "SETIndia",
                                          }
                                          ]
+                            },
+                            {
+                            "id": "",
+                            "name": "News",
+                            "image": "dramamenuicon.png",
+                            "submenus": [
+                                         {
+                                         "id": "",
+                                         "name": "ColorsTV",
+                                         "type": "playlist",
+                                         "src": "colorstv"
+                                         },
+                                         {
+                                         "id": "",
+                                         "name": "STARPlus",
+                                         "type": "playlist",
+                                         "src": "STARPlus",
+                                         
+                                         },
+                                         {
+                                         "id": "",
+                                         "name": "ZTv",
+                                         "type": "playlist",
+                                         "src": "zeetv",
+                                         
+                                         },
+                                         {
+                                         "id": "",
+                                         "name": "Sony",
+                                         "type": "playlist",
+                                         "src": "SETIndia",
+                                         }
+                                         ]
+                            },
+                            {
+                            "id": "",
+                            "name": "Kids",
+                            "image": "dramamenuicon.png",
+                            "submenus": [
+                                         {
+                                         "id": "",
+                                         "name": "ColorsTV",
+                                         "type": "playlist",
+                                         "src": "colorstv"
+                                         },
+                                         {
+                                         "id": "",
+                                         "name": "STARPlus",
+                                         "type": "playlist",
+                                         "src": "STARPlus",
+                                         
+                                         },
+                                         {
+                                         "id": "",
+                                         "name": "ZTv",
+                                         "type": "playlist",
+                                         "src": "zeetv",
+                                         
+                                         },
+                                         {
+                                         "id": "",
+                                         "name": "Sony",
+                                         "type": "playlist",
+                                         "src": "SETIndia",
+                                         }
+                                         ]
                             }
                             ]
                   }

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C9AAEA49E364DA6331D3B852E1C091F0'
+               BlueprintIdentifier = '526EAFA17DF15E9B725FA853AF41E7E2'
                BlueprintName = 'Pods-GETube'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-GETube.a'>

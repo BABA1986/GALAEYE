@@ -24,4 +24,11 @@
 - (NSDate*)eventEndStreamDate;
 - (NSUInteger)GETotalViews;
 - (NSUInteger)GETotalLiveViewers;
+- (NSString*)GETotalLikes;
+- (NSString*)GETotalDisLikes;
+- (void)GESetLike;
+- (void)GESetMyLikeRemove;
+- (void)GESetDisLike;
+- (void)GESetMyDisLikeRemove;
+
 @end

@@ -99,7 +99,7 @@
     UIImage* lPlaceholderImg = [UIImage imageWithName: @"userprofile.png"];
     UserDataManager* lUserManager = [UserDataManager userDataManager];
     NSURL* lPicUrl = [lUserManager.userData imageUrl];
-    if ([GIDSignIn sharedInstance].currentUser)
+    if (lUserManager.userData.userId)
     {
         mWelcomeLbl.text = [lUserManager.userData.name capitalizedString];
         mLoginBtn.selected = TRUE;
@@ -131,6 +131,7 @@
 
     mLoginBtn.selected = FALSE;
     [[GIDSignIn sharedInstance] signOut];
+    [[UserDataManager userDataManager] flushUserData];
     [self onLoginUpdate];
 }
 

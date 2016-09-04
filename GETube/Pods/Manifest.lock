@@ -13,9 +13,6 @@ PODS:
     - GoogleSignIn (~> 4.0)
   - GoogleAPIClient/Core (1.0.4):
     - GTMSessionFetcher (~> 1.1)
-  - GoogleAPIClient/Drive (1.0.4):
-    - GoogleAPIClient/Core
-    - GTMSessionFetcher (~> 1.1)
   - GoogleAPIClient/YouTube (1.0.4):
     - GoogleAPIClient/Core
     - GTMSessionFetcher (~> 1.1)
@@ -36,6 +33,8 @@ PODS:
   - GoogleSymbolUtilities (1.1.1)
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
+  - GTMOAuth2 (1.1.1):
+    - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.4):
     - GTMSessionFetcher/Full (= 1.1.4)
   - GTMSessionFetcher/Core (1.1.4)
@@ -59,8 +58,8 @@ PODS:
 DEPENDENCIES:
   - DGActivityIndicatorView
   - Google/SignIn
-  - GoogleAPIClient/Drive
   - GoogleAPIClient/YouTube
+  - GTMOAuth2
   - MMDrawerController (~> 0.5.7)
   - NSDate+TimeAgo
   - youtube-ios-player-helper (= 0.1.6)
@@ -78,11 +77,12 @@ SPEC CHECKSUMS:
   GoogleSignIn: 09036ed61f8e75f1424100d63f7719480b2428c3
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  GTMOAuth2: bdb12f3e0d2110bfe585f6151230b883beb4d042
   GTMSessionFetcher: 174bc61d5238f81f9ddb807b0b0170420f67de85
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 446b4ff7e80f112bcc747b684724761a5faff48a
+PODFILE CHECKSUM: 38a3497826d01e3146289ce92dde3cacf47e0599
 
 COCOAPODS: 1.0.0

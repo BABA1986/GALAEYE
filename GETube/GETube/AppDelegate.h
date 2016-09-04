@@ -24,6 +24,8 @@
     MMDrawerController*             mAppDrawer;
     GEMenuVC*                       mDrawerLeftMenuCtr;
     GEPageRootVC*                   mDrawerCenterCtr;
+    
+    BOOL                            mShowLoginToast;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -32,9 +34,12 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, assign)BOOL         showLoginToast;
+
 - (void)saveContext;
 - (NSURL*)applicationDocumentsDirectory;
 - (void)openCloseLeftMenuDrawer;
+
 
 @end
 

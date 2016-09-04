@@ -27,7 +27,7 @@
 
 #define kGEUserId           @"ydb_5JpzCvZtyB2TN973jg"
 //#define kGEChannelID        @"UCydb_5JpzCvZtyB2TN973jg"
-#define kGEChannelID        @"UCT_QwW7Tbew5qrYNb2auqAQ"//@"UCvqRdlKsE5Q8mf8YXbdIJLw"
+#define kGEChannelID        @"UCT_QwW7Tbew5qrYNb2auqAQ"//@"UCvqRdlKsE5Q8mf8YXbdIJLw"//@"UCydb_5JpzCvZtyB2TN973jg"//
 #define kGEAPIKey           @"AIzaSyC6yMGiXNg3fdcsrQfSSTovWstKNXBN7Rk"
 #define kGEClientId         @"342351758071-eh37s0qsulpbl3g6ei6m752cu189g2jp.apps.googleusercontent.com"
 

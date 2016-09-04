@@ -24,6 +24,8 @@ typedef void (^GEServiceVideoLoadedFromChannelCallbacks)(BOOL success);
 
 + (id)sharedManager;
 
+- (void)loginDone;
+
 - (void)loadAllEventsForFirstPage: (GEServiceEventsLoadedCallbacks)finishCallback;
 
 - (void)loadPlaylistFromSource: (NSString*)channelSource
@@ -35,5 +37,12 @@ typedef void (^GEServiceVideoLoadedFromChannelCallbacks)(BOOL success);
 - (void)loadVideosFromChannelSource: (NSString*)channelSource
                           eventType: (FetchEventQueryType)eventType
                        onCompletion: (GEServiceVideoLoadedFromChannelCallbacks)finishCallback;
+
+- (void)getMyRatingForVideo: (NSObject<GEYoutubeResult>*)videoItem
+               onCompletion: (void(^)(NSString* rating))finishCallback;
+
+- (void)addMyRating: (NSString*)rating
+           forVideo: (NSObject<GEYoutubeResult>*)videoItem
+       onCompletion: (void(^)(bool sucess))finishCallback;
 
 @end

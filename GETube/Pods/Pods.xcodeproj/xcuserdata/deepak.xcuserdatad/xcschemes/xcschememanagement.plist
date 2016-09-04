@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,12 +72,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B87CF15F87FE6324C93DF47C4D68BCF</key>
+		<key>3EC508E2AD93A8B7862551E8450FF1A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4DD033235C77D13CFBB56E34CDF75D77</key>
+		<key>429B5EEE1E2E1E5171930A6E5B61DCB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>526EAFA17DF15E9B725FA853AF41E7E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53C882D1CFD41BC3947C1D2B147F3DBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8951F135D389225DB08A737F161DB9FE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C9AAEA49E364DA6331D3B852E1C091F0</key>
+		<key>98153875EFC06576B7A2A63513686061</key>
 		<dict>
 			<key>primary</key>
 			<true/>

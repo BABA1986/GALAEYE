@@ -78,6 +78,20 @@
     mGEUserData = [[GEUserData alloc] init];
 }
 
+- (void)flushUserData
+{
+    [self setUserId: nil];
+    [self setEmail: nil];
+    [self setName: nil];
+    [self setImageUrl: nil];
+    [self setClientId: nil];
+    [self setAccessToken: nil];
+    [self setAccessTokenExpDate: nil];
+    [self setIdToken: nil];
+    [self setIdTokenExpDate: nil];
+    [self setRefreshToken: nil];
+}
+
 -(void)initUserPlist
 {
     NSFileManager* lManager = [NSFileManager defaultManager];
@@ -180,6 +194,12 @@
 - (void)setIdTokenExpDate: (NSDate*)idTokenExpDate
 {
     mGEUserData.idTokenExpDate = idTokenExpDate;
+    [self saveState];
+}
+
+- (void)setRefreshToken: (NSString*)refreshToken
+{
+    mGEUserData.refreshToken = refreshToken;
     [self saveState];
 }
 

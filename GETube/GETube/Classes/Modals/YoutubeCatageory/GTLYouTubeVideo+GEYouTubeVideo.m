@@ -22,7 +22,7 @@
 
 - (NSString*)GEDescription
 {
-    return self.snippet.description;
+    return self.snippet.descriptionProperty;
 }
 
 - (NSString*)GEThumbnailUrl
@@ -73,6 +73,46 @@
 - (NSUInteger)GETotalLiveViewers
 {
     return [self.liveStreamingDetails.concurrentViewers integerValue];
+}
+
+- (NSString*)GETotalLikes
+{
+    NSUInteger lCount = [self.statistics.likeCount integerValue];
+    return [NSString stringWithFormat: @"%ld", lCount];
+}
+
+- (NSString*)GETotalDisLikes
+{
+    NSUInteger lCount = [self.statistics.dislikeCount integerValue];
+    return [NSString stringWithFormat: @"%ld", lCount];
+}
+
+- (void)GESetLike
+{
+    NSUInteger lCount = [self.statistics.likeCount integerValue];
+    lCount += 1;
+    self.statistics.likeCount = [NSNumber numberWithInteger: lCount];
+}
+
+- (void)GESetMyLikeRemove
+{
+    NSUInteger lCount = [self.statistics.likeCount integerValue];
+    lCount -= 1;
+    self.statistics.likeCount = [NSNumber numberWithInteger: lCount];
+}
+
+- (void)GESetDisLike
+{
+    NSUInteger lCount = [self.statistics.dislikeCount integerValue];
+    lCount += 1;
+    self.statistics.dislikeCount = [NSNumber numberWithInteger: lCount];
+}
+
+- (void)GESetMyDisLikeRemove
+{
+    NSUInteger lCount = [self.statistics.dislikeCount integerValue];
+    lCount -= 1;
+    self.statistics.dislikeCount = [NSNumber numberWithInteger: lCount];
 }
 
 @end
