@@ -12,8 +12,10 @@
 
 @interface GEPlaylistVC : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 {
-    IBOutlet UICollectionView*      mPlaylistListView;
-    DGActivityIndicatorView*        mIndicator;
+    IBOutlet UICollectionView*          mPlaylistListView;
+    DGActivityIndicatorView*            mIndicator;
+    
+    IBOutlet UIView*                    mConnectionErrView;
 }
 
 @property(nonatomic, copy)NSString*                         listSource;

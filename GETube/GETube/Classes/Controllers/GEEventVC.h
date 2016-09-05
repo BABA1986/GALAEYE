@@ -15,6 +15,8 @@
 {
     IBOutlet UICollectionView*          mEventListView;
     DGActivityIndicatorView*            mIndicator;
+    
+    IBOutlet UIView*                    mConnectionErrView;
 }
 
 @property(nonatomic, weak)id<GENavigatorProtocol>           navigationDelegate;

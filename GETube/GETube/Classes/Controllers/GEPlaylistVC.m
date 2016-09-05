@@ -13,11 +13,17 @@
 #import "GESharedPlaylist.h"
 #import "GEPlaylistVideoListCtr.h"
 #import "GEYoutubeResult.h"
+#import "Reachability.h"
 
 @interface GEPlaylistVC ()
 {
     BOOL        mRequesting;
 }
+
+- (void)loadData;
+- (BOOL)checkForInternetConnection;
+- (IBAction)tryAgainBtnClicked:(id)sender;
+
 @end
 
 @implementation GEPlaylistVC
@@ -39,26 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    
-    GESharedPlaylistList* lSharedPlaylist = [GESharedPlaylistList sharedPlaylistList];
-    GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
-
-    if (mRequesting || lPlaylistObject.playlistListPages.count)
-        return;
-
-    [self addIndicatorView];
-    [mIndicator startAnimating];
-    mIndicator.hidden = FALSE;
-    
-    mRequesting = TRUE;
-    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
-    [lServiceMngr loadPlaylistFromSource: self.listSource onCompletion: ^(BOOL success)
-     {
-         [mPlaylistListView reloadData];
-        [mIndicator stopAnimating];
-         mIndicator.hidden = TRUE;
-         mRequesting = FALSE;
-     }];
+    [self loadData];
 }
 
 - (void)applyTheme
@@ -81,6 +68,51 @@
     lIndicatorFrame.origin.y = (CGRectGetHeight(self.view.bounds) - lIndicatorFrame.size.height)/2;
     mIndicator.frame = lIndicatorFrame;
     [self.view addSubview: mIndicator];
+}
+
+- (void)loadData
+{
+    if (![self checkForInternetConnection])
+        return;
+    
+    GESharedPlaylistList* lSharedPlaylist = [GESharedPlaylistList sharedPlaylistList];
+    GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
+    
+    if (mRequesting || lPlaylistObject.playlistListPages.count)
+        return;
+    
+    [self addIndicatorView];
+    [mIndicator startAnimating];
+    mIndicator.hidden = FALSE;
+    
+    mRequesting = TRUE;
+    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+    [lServiceMngr loadPlaylistFromSource: self.listSource onCompletion: ^(BOOL success)
+     {
+         [mPlaylistListView reloadData];
+         [mIndicator stopAnimating];
+         mIndicator.hidden = TRUE;
+         mRequesting = FALSE;
+     }];
+}
+
+- (BOOL)checkForInternetConnection
+{
+    Reachability* lNetReach = [Reachability reachabilityWithHostName: @"www.google.com"];
+    NetworkStatus lNetStatus = [lNetReach currentReachabilityStatus];
+    if (lNetStatus == NotReachable)
+    {
+        [self.view bringSubviewToFront: mConnectionErrView];
+        return NO;
+    }
+    
+    [self.view bringSubviewToFront: mPlaylistListView];
+    return YES;
+}
+
+- (IBAction)tryAgainBtnClicked:(id)sender
+{
+    [self loadData];
 }
 
 #pragma mark-
@@ -127,6 +159,9 @@
 
     if (elementKind == UICollectionElementKindSectionFooter && indexPath.section == lPlaylistObject.playlistListPages.count - 1)
     {
+        if (![self checkForInternetConnection])
+            return;
+        
         if (mRequesting)
             return;
         

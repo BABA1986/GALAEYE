@@ -16,6 +16,13 @@
 #import "GEVideoListVC.h"
 #import "GEYoutubeResult.h"
 #import "GEConstants.h"
+#import "Reachability.h"
+
+@interface GEEventVC()
+- (void)loadData;
+- (BOOL)checkForInternetConnection;
+- (IBAction)tryAgainBtnClicked:(id)sender;
+@end
 
 @implementation GEEventVC
 
@@ -29,15 +36,25 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    
+    if (![self checkForInternetConnection])
+        return;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
+    [self loadData];
+}
+
+- (void)loadData
+{
+    if (![self checkForInternetConnection])
+        return;
     
     GEEventManager* lManager = [GEEventManager manager];
     if (lManager.eventListObjs.count)
-    return;
+        return;
     
     [self addIndicatorView];
     [mIndicator startAnimating];
@@ -72,6 +89,25 @@
     lIndicatorFrame.origin.y = (CGRectGetHeight(self.view.bounds) - lIndicatorFrame.size.height)/2;
     mIndicator.frame = lIndicatorFrame;
     [self.view addSubview: mIndicator];
+}
+
+- (BOOL)checkForInternetConnection
+{
+    Reachability* lNetReach = [Reachability reachabilityWithHostName: @"www.google.com"];
+    NetworkStatus lNetStatus = [lNetReach currentReachabilityStatus];
+    if (lNetStatus == NotReachable)
+    {
+        [self.view bringSubviewToFront: mConnectionErrView];
+        return NO;
+    }
+    
+    [self.view bringSubviewToFront: mEventListView];
+    return YES;
+}
+
+- (IBAction)tryAgainBtnClicked:(id)sender
+{
+    [self loadData];
 }
 
 #pragma mark-

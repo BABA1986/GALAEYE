@@ -112,6 +112,11 @@
     }
     
     GEEventListPage* lLastPage = [lGEEventListObj.eventListPages lastObject];
+    
+    if (!lLastPage.eventList.count) {
+        *canFetch = TRUE;
+        return nil;
+    }
     if (!lLastPage)
     {
         *canFetch = TRUE;

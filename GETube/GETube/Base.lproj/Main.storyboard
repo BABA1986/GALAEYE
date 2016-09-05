@@ -37,6 +37,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01U-Ie-ReE" customClass="GEFullScreenAlert">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="networkerror.png" translatesAutoresizingMaskIntoConstraints="NO" id="mhK-6j-kWj">
+                                        <rect key="frame" x="236" y="142" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="n9x-gs-eQR"/>
+                                            <constraint firstAttribute="width" constant="128" id="ppy-Ey-KSN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Connection" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4C5-AC-PYM">
+                                        <rect key="frame" x="25" y="280" width="550" height="23"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please check your internet connectivity and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtK-LT-WDA">
+                                        <rect key="frame" x="25" y="313" width="550" height="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vdw-S0-iEj">
+                                        <rect key="frame" x="256" y="341" width="88" height="88"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="88" id="AW7-Qd-kuY"/>
+                                            <constraint firstAttribute="width" constant="88" id="Pe0-a4-ONR"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                        <state key="normal" image="retry-normal.png"/>
+                                        <state key="highlighted" image="retry-highlighted.png"/>
+                                        <connections>
+                                            <action selector="tryAgainBtnClicked:" destination="2tO-C5-Jfa" eventType="touchUpInside" id="ks1-ud-b79"/>
+                                            <action selector="tryAgainBtnClicked:" destination="4KU-T6-SeY" eventType="touchUpInside" id="pVR-2n-uWk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="RtK-LT-WDA" firstAttribute="leading" secondItem="4C5-AC-PYM" secondAttribute="leading" id="5CX-dK-3OL"/>
+                                    <constraint firstItem="mhK-6j-kWj" firstAttribute="centerX" secondItem="01U-Ie-ReE" secondAttribute="centerX" id="Dlw-td-FWX"/>
+                                    <constraint firstItem="4C5-AC-PYM" firstAttribute="leading" secondItem="01U-Ie-ReE" secondAttribute="leading" constant="25" id="S5D-An-unv"/>
+                                    <constraint firstItem="4C5-AC-PYM" firstAttribute="top" secondItem="mhK-6j-kWj" secondAttribute="bottom" constant="10" id="Z0U-Rv-3tP"/>
+                                    <constraint firstItem="Vdw-S0-iEj" firstAttribute="top" secondItem="RtK-LT-WDA" secondAttribute="bottom" constant="10" id="Zds-fM-LRV"/>
+                                    <constraint firstItem="RtK-LT-WDA" firstAttribute="top" secondItem="4C5-AC-PYM" secondAttribute="bottom" constant="10" id="gre-cK-rq1"/>
+                                    <constraint firstAttribute="trailing" secondItem="4C5-AC-PYM" secondAttribute="trailing" constant="25" id="hdD-mB-fA5"/>
+                                    <constraint firstItem="RtK-LT-WDA" firstAttribute="width" secondItem="4C5-AC-PYM" secondAttribute="width" id="kaf-7I-xY9"/>
+                                    <constraint firstItem="Vdw-S0-iEj" firstAttribute="centerX" secondItem="01U-Ie-ReE" secondAttribute="centerX" id="uh5-mn-ibu"/>
+                                    <constraint firstItem="mhK-6j-kWj" firstAttribute="centerY" secondItem="01U-Ie-ReE" secondAttribute="centerY" constant="-94" id="uxo-Ls-fvF"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="mDescLabel" destination="RtK-LT-WDA" id="njC-jU-PlY"/>
+                                    <outlet property="mIconView" destination="mhK-6j-kWj" id="x4s-wE-w8S"/>
+                                    <outlet property="mTitleLabel" destination="4C5-AC-PYM" id="8lk-df-sTI"/>
+                                </connections>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Na6-G2-28a">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -168,11 +223,16 @@
                         <constraints>
                             <constraint firstItem="yUn-vq-lZc" firstAttribute="top" secondItem="Na6-G2-28a" secondAttribute="bottom" id="3RW-n8-oGk"/>
                             <constraint firstAttribute="trailing" secondItem="Na6-G2-28a" secondAttribute="trailing" id="7yt-n6-6ZH"/>
+                            <constraint firstItem="yUn-vq-lZc" firstAttribute="top" secondItem="01U-Ie-ReE" secondAttribute="bottom" id="B13-Nx-Dig"/>
+                            <constraint firstAttribute="trailing" secondItem="01U-Ie-ReE" secondAttribute="trailing" id="TH6-j1-ylK"/>
+                            <constraint firstItem="01U-Ie-ReE" firstAttribute="top" secondItem="F9s-2z-hcG" secondAttribute="top" id="X03-tI-dKW"/>
                             <constraint firstItem="Na6-G2-28a" firstAttribute="top" secondItem="ukE-SW-QMl" secondAttribute="bottom" id="f7F-3z-81k"/>
+                            <constraint firstItem="01U-Ie-ReE" firstAttribute="leading" secondItem="F9s-2z-hcG" secondAttribute="leading" id="r3D-db-kRe"/>
                             <constraint firstItem="Na6-G2-28a" firstAttribute="leading" secondItem="F9s-2z-hcG" secondAttribute="leading" id="w65-kJ-y7H"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mConnectionErrView" destination="01U-Ie-ReE" id="kO0-9B-bMb"/>
                         <outlet property="mPlaylistListView" destination="Na6-G2-28a" id="Yvy-VN-cY9"/>
                     </connections>
                 </viewController>
@@ -210,6 +270,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmS-09-0mU" customClass="GEFullScreenAlert">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="networkerror.png" translatesAutoresizingMaskIntoConstraints="NO" id="NF9-LR-4y9">
+                                        <rect key="frame" x="236" y="132" width="128" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="128" id="d8p-sT-0ey"/>
+                                            <constraint firstAttribute="height" constant="128" id="qWH-lV-Bqb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Connection" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-Cs-zJm">
+                                        <rect key="frame" x="25" y="270" width="550" height="23"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please check your internet connectivity and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5Q-JF-PRU">
+                                        <rect key="frame" x="25" y="303" width="550" height="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dez-hm-BHF">
+                                        <rect key="frame" x="256" y="331" width="88" height="88"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="88" id="Rz8-eg-Qka"/>
+                                            <constraint firstAttribute="width" constant="88" id="SNt-Mj-uFE"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                        <state key="normal" image="retry-normal.png"/>
+                                        <state key="highlighted" image="retry-highlighted.png"/>
+                                        <connections>
+                                            <action selector="tryAgainBtnClicked:" destination="4KU-T6-SeY" eventType="touchUpInside" id="gZj-DH-irF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dez-hm-BHF" firstAttribute="top" secondItem="M5Q-JF-PRU" secondAttribute="bottom" constant="10" id="87D-WO-xo4"/>
+                                    <constraint firstItem="M5Q-JF-PRU" firstAttribute="top" secondItem="LU1-Cs-zJm" secondAttribute="bottom" constant="10" id="EZf-O8-rUI"/>
+                                    <constraint firstItem="M5Q-JF-PRU" firstAttribute="leading" secondItem="LU1-Cs-zJm" secondAttribute="leading" id="IYC-Qr-z5P"/>
+                                    <constraint firstItem="dez-hm-BHF" firstAttribute="centerX" secondItem="lmS-09-0mU" secondAttribute="centerX" id="LGe-7j-i3B"/>
+                                    <constraint firstItem="NF9-LR-4y9" firstAttribute="centerY" secondItem="lmS-09-0mU" secondAttribute="centerY" constant="-94" id="VPj-vB-hOP"/>
+                                    <constraint firstItem="M5Q-JF-PRU" firstAttribute="width" secondItem="LU1-Cs-zJm" secondAttribute="width" id="VyS-wt-6qF"/>
+                                    <constraint firstItem="LU1-Cs-zJm" firstAttribute="leading" secondItem="lmS-09-0mU" secondAttribute="leading" constant="25" id="WIq-g1-eJl"/>
+                                    <constraint firstItem="NF9-LR-4y9" firstAttribute="centerX" secondItem="lmS-09-0mU" secondAttribute="centerX" id="e62-or-Mea"/>
+                                    <constraint firstItem="LU1-Cs-zJm" firstAttribute="top" secondItem="NF9-LR-4y9" secondAttribute="bottom" constant="10" id="oOM-qs-wpn"/>
+                                    <constraint firstAttribute="trailing" secondItem="LU1-Cs-zJm" secondAttribute="trailing" constant="25" id="piB-LW-kHg"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="mDescLabel" destination="M5Q-JF-PRU" id="Dme-8u-Iw4"/>
+                                    <outlet property="mIconView" destination="NF9-LR-4y9" id="rnn-tB-TPX"/>
+                                    <outlet property="mTitleLabel" destination="LU1-Cs-zJm" id="PKK-gf-Jbu"/>
+                                </connections>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yg2-Yb-aE5">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -379,13 +493,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lmS-09-0mU" secondAttribute="trailing" id="2A3-ZF-CWr"/>
                             <constraint firstItem="SID-52-NOT" firstAttribute="top" secondItem="Yg2-Yb-aE5" secondAttribute="bottom" id="7Sr-s1-fa8"/>
+                            <constraint firstItem="lmS-09-0mU" firstAttribute="leading" secondItem="2RM-3t-tgN" secondAttribute="leading" id="A3H-ws-P91"/>
+                            <constraint firstItem="lmS-09-0mU" firstAttribute="top" secondItem="EVw-Lz-7RV" secondAttribute="bottom" id="C94-da-D8R"/>
+                            <constraint firstItem="SID-52-NOT" firstAttribute="top" secondItem="lmS-09-0mU" secondAttribute="bottom" id="PaG-Ft-vRV"/>
                             <constraint firstItem="Yg2-Yb-aE5" firstAttribute="leading" secondItem="2RM-3t-tgN" secondAttribute="leading" id="Ucw-vj-f7F"/>
                             <constraint firstAttribute="trailing" secondItem="Yg2-Yb-aE5" secondAttribute="trailing" id="mHw-7u-Fpx"/>
                             <constraint firstItem="Yg2-Yb-aE5" firstAttribute="top" secondItem="EVw-Lz-7RV" secondAttribute="bottom" id="xub-0E-Fiw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mConnectionErrView" destination="lmS-09-0mU" id="Jva-EP-nG4"/>
                         <outlet property="mEventListView" destination="Yg2-Yb-aE5" id="qPX-8b-fNv"/>
                     </connections>
                 </viewController>
@@ -1497,7 +1616,10 @@
         <image name="downarrow.png" width="128" height="128"/>
         <image name="like-selected.png" width="44" height="44"/>
         <image name="like-unselected.png" width="44" height="44"/>
+        <image name="networkerror.png" width="512" height="512"/>
         <image name="play-Icon.png" width="35" height="35"/>
         <image name="playlistIcon.png" width="50" height="50"/>
+        <image name="retry-highlighted.png" width="100" height="100"/>
+        <image name="retry-normal.png" width="100" height="100"/>
     </resources>
 </document>
