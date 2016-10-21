@@ -20,12 +20,14 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    self.backgroundColor = [UIColor clearColor];
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
 
-    self.titleBaseView.backgroundColor = lNavColor;
-    self.titleLabel.textColor = lNavTextColor;
+    self.titleBaseView.backgroundColor = [UIColor clearColor];
+    self.titleLabel.textColor = [UIColor darkGrayColor];
     [self.seeMoreBtn setBackgroundColor: lNavColor];
     [self.seeMoreBtn setTitleColor: lNavTextColor forState: UIControlStateNormal];
 }

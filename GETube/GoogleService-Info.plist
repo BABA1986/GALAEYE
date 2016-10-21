@@ -2,27 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>342351758071-92f2gvhb9pvuph73af24ln21esph6jic.apps.googleusercontent.com</string>
+	<string>526568270970-0bsj2j844rdd9tjchbbj8ul7t8pb8f6j.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.342351758071-92f2gvhb9pvuph73af24ln21esph6jic</string>
+	<string>com.googleusercontent.apps.526568270970-0bsj2j844rdd9tjchbbj8ul7t8pb8f6j</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAIqCjqiB_ryEhhL-gEQdiNBd0tWRemJNg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>526568270970</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.crescerance.GETube</string>
+	<string>com.crescerance.Embr</string>
 	<key>PROJECT_ID</key>
-	<string>getube-1349</string>
+	<string>galaeye-143509</string>
+	<key>STORAGE_BUCKET</key>
+	<string>galaeye-143509.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
 	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:342351758071:ios:83edc20bc8eaf8ab</string>
+	<string>1:526568270970:ios:ff3f12d5b3648acb</string>
+	<key>DATABASE_URL</key>
+	<string>https://galaeye-143509.firebaseio.com</string>
 </dict>
 </plist>

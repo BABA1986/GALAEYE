@@ -21,5 +21,6 @@
 @property(nonatomic, weak)NSObject <GEYoutubeResult>*       fromPlayList;
 
 - (void)applyTheme;
+- (void)onLoginLogout: (BOOL)isLoggedIn;
 
 @end

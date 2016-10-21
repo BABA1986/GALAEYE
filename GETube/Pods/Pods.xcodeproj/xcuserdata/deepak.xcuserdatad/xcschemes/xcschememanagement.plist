@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MYBlurIntroductionView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NSDate+TimeAgo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,6 +77,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>37BCFCFBA8937BAA27C1AC0454F6817D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3EC508E2AD93A8B7862551E8450FF1A8</key>
 		<dict>
 			<key>primary</key>
@@ -82,22 +92,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>526EAFA17DF15E9B725FA853AF41E7E2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>53C882D1CFD41BC3947C1D2B147F3DBD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>550F7EEAEEA17E3F92C873912E23B01C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>78889745395CDA712857DE03944F5710</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>98153875EFC06576B7A2A63513686061</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E35CA22FC3EBAFAD9C7021768BBF7525</key>
 		<dict>
 			<key>primary</key>
 			<true/>

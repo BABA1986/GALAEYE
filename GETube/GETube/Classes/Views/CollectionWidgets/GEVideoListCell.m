@@ -25,14 +25,12 @@
 {
     [super layoutSubviews];
     
-    ThemeManager* lThemeManager = [ThemeManager themeManager];
-    UIColor* lNavColor = [lThemeManager selectedNavColor];
-    self.contentView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.2];
-    self.titleLabel.textColor = [UIColor blackColor];
-    self.timeLabel.textColor = [UIColor blackColor];
+    self.titleLabel.textColor = [UIColor darkGrayColor];
+    self.timeLabel.textColor = [UIColor darkGrayColor];
     self.statusLabel.alpha = 0.5;
     self.statusLabel.textColor = [UIColor blackColor];
     self.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
+    self.contentView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
@@ -46,7 +44,10 @@
         return;
     }
     
-    UIImage* lLoadingImage = [UIImage imageWithName: @"loadingthumbnailurl.png"];    
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIImage* lLoadingImage = [UIImage createImageFromMask: [UIImage imageNamed: @"loadingthumbnailurl.png"] withFillColor: lNavColor];
+    
     [self.videoIcon sd_setImageWithURL:thumbUrl placeholderImage:lLoadingImage completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
          if (image)

@@ -20,14 +20,13 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    ThemeManager* lThemeManager = [ThemeManager themeManager];
-    UIColor* lNavColor = [lThemeManager selectedNavColor];
-    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
-
-    self.baseView.backgroundColor = lNavColor;
-    self.listTitleLbl.textColor = lNavTextColor;
-    self.channelNameLbl.textColor = lNavTextColor;
-    self.noOfVideosLbl.textColor = lNavTextColor;
+    
+    self.baseView.backgroundColor = [UIColor clearColor];
+    self.listTitleLbl.textColor = [UIColor darkGrayColor];
+    self.channelNameLbl.textColor = [UIColor darkGrayColor];;
+    self.noOfVideosLbl.textColor = [UIColor darkGrayColor];;
+    
+    self.backgroundColor = [UIColor clearColor];
 }
 
 @end

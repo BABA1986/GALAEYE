@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "GTLYouTube.h"
 #import "GEEventManager.h"
+#import "GEYoutubeResult.h"
 
 typedef enum : NSUInteger {
     EFetchEventsNone = 0,
     EFetchEventsCompleted,
     EFetchEventsUpcomming,
     EFetchEventsPopularCompleted,
+    EFetchEventsPrivate,
+    EFetchEventsLiked,
+    EFetchEventsReminders,
     EFetchEventsLive,
     EFetchEventsPlaylistItem
 } FetchEventQueryType;
@@ -59,4 +63,8 @@ typedef enum : NSUInteger {
                      forSource: (NSString*)channelId;
 - (GEEventListObj*)eventListObjForEventType: (FetchEventQueryType)fetchType
                                   forSource: (NSString*)channelId;
+
+- (void)likeCachedVideoItem: (NSObject<GEYoutubeResult>*)videoItem;
+- (void)unlikeCachedVideoItem: (NSObject<GEYoutubeResult>*)videoItem;
+
 @end

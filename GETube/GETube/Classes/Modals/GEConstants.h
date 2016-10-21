@@ -25,10 +25,11 @@
 
 #define kDefaultTitleColor [UIColor whiteColor]
 
-#define kGEUserId           @"ydb_5JpzCvZtyB2TN973jg"
-//#define kGEChannelID        @"UCydb_5JpzCvZtyB2TN973jg"
-#define kGEChannelID        @"UCT_QwW7Tbew5qrYNb2auqAQ"//@"UCvqRdlKsE5Q8mf8YXbdIJLw"//@"UCydb_5JpzCvZtyB2TN973jg"//
-#define kGEAPIKey           @"AIzaSyC6yMGiXNg3fdcsrQfSSTovWstKNXBN7Rk"
-#define kGEClientId         @"342351758071-eh37s0qsulpbl3g6ei6m752cu189g2jp.apps.googleusercontent.com"
+//#define kGEChannelID        @"UCYANsgh-rW4bFPsZlgK827A"
+#define kGEChannelID        @"UCYE8GO8URXHt3eLkqeo3uSw"
+//#define kGEChannelID        @"UCddiUEpeqJcYeBxX1IVBKvQ"
+
+#define kGEAPIKey           @"AIzaSyAIqCjqiB_ryEhhL-gEQdiNBd0tWRemJNg"
+#define kGEClientId         @"526568270970-0bsj2j844rdd9tjchbbj8ul7t8pb8f6j.apps.googleusercontent.com"
 
 #endif /* GEConstants_h */

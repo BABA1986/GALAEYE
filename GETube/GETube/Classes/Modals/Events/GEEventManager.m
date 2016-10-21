@@ -7,6 +7,7 @@
 //
 
 #import "GEEventManager.h"
+#import "GEConstants.h"
 
 @implementation GEEventListPage : NSObject
 @synthesize eventList;
@@ -43,7 +44,14 @@
     {
         self.eventType = eventQueryType;
         self.totalResult = [response.pageInfo.totalResults integerValue];
-        GEEventListPage* lGEEventListPage = [[GEEventListPage alloc] initWithList: response.items nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
+        
+        NSArray* lFilteredVideo = nil;
+        if (eventQueryType == EFetchEventsLiked)
+            lFilteredVideo = [self videoFromGalaChannelFrom: response.items];
+        else
+            lFilteredVideo = response.items;
+        
+        GEEventListPage* lGEEventListPage = [[GEEventListPage alloc] initWithList: lFilteredVideo nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
         self.eventListPages = [[NSMutableArray alloc] init];
         [self.eventListPages addObject: lGEEventListPage];
         self.channelSource = channelId;
@@ -52,14 +60,34 @@
     return self;
 }
 
+- (NSArray*)videoFromGalaChannelFrom: (NSArray*)videoList
+{
+    NSMutableArray* lFilterdVideo = [[NSMutableArray alloc] init];
+
+    for (NSObject <GEYoutubeResult>* lVideoItem in videoList)
+    {
+        if ([[lVideoItem GEChannelId] isEqualToString: kGEChannelID])
+        {
+            [lFilterdVideo addObject: lVideoItem];
+        }
+    }
+    
+    return lFilterdVideo;
+}
+
 - (void)addEventsFromResponse: (GTLYouTubeVideoListResponse*)response
 {
-    GEEventListPage* lGEEventListPage = [[GEEventListPage alloc] initWithList: response.items nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
+    NSArray* lFilteredVideo = nil;
+    if (self.eventType == EFetchEventsLiked)
+        lFilteredVideo = [self videoFromGalaChannelFrom: response.items];
+    else
+        lFilteredVideo = response.items;
+    
+    GEEventListPage* lGEEventListPage = [[GEEventListPage alloc] initWithList: lFilteredVideo nextPage: response.nextPageToken andPrevPageToken: response.prevPageToken];
     [self.eventListPages addObject: lGEEventListPage];
 }
 
 @end
-
 
 @interface GEEventManager ()
 - (void)initialiseListObjs;
@@ -111,18 +139,7 @@
         return nil;
     }
     
-    GEEventListPage* lLastPage = [lGEEventListObj.eventListPages lastObject];
-    
-    if (!lLastPage.eventList.count) {
-        *canFetch = TRUE;
-        return nil;
-    }
-    if (!lLastPage)
-    {
-        *canFetch = TRUE;
-        return nil;
-    }
-    
+    GEEventListPage* lLastPage = [lGEEventListObj.eventListPages lastObject];    
     if (lLastPage.nextPageToken.length)
     {
         *canFetch = TRUE;
@@ -137,6 +154,11 @@
                   forEventType: (FetchEventQueryType)eventQueryType
                      forSource: (NSString*)channelId;
 {
+    if (![response.pageInfo.totalResults integerValue] && (eventQueryType == EFetchEventsPrivate || eventQueryType == EFetchEventsLiked))
+    {
+        return;
+    }
+    
     GEEventListObj* lGEEventListObj = [self eventListObjForEventType: eventQueryType forSource: channelId];
     
     if(!lGEEventListObj)
@@ -149,5 +171,55 @@
         [lGEEventListObj addEventsFromResponse: response];
     }
 }
+
+- (void)likeCachedVideoItem: (NSObject<GEYoutubeResult>*)videoItem
+{
+    NSString* lChannelId = videoItem.GEChannelId;
+    if (![lChannelId isEqualToString: kGEChannelID])
+    {
+        return;
+    }
+    
+    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: EFetchEventsLiked forSource: kGEChannelID];
+    GEEventListPage* lLastPage = [lGEEventListObj.eventListPages lastObject];
+    NSMutableArray* lNewList = [[NSMutableArray alloc] initWithArray: lLastPage.eventList];
+    [lNewList addObject: videoItem];
+    lLastPage.eventList = lNewList;
+}
+
+- (void)unlikeCachedVideoItem: (NSObject<GEYoutubeResult>*)videoItem
+{
+    NSString* lChannelId = videoItem.GEChannelId;
+    if (![lChannelId isEqualToString: kGEChannelID])
+    {
+        return;
+    }
+    
+    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: EFetchEventsLiked forSource: kGEChannelID];
+    for (GEEventListPage* lPage in lGEEventListObj.eventListPages)
+    {
+        NSMutableArray* lNewList = [[NSMutableArray alloc] init];
+        BOOL lIsFound = FALSE;
+        
+        for (NSObject<GEYoutubeResult>* lItem in lPage.eventList)
+        {
+            if ([lItem.GEId isEqualToString: videoItem.GEId])
+            {
+                lIsFound = TRUE;
+            }
+            else
+            {
+                [lNewList addObject: lItem];
+            }
+        }
+        
+        if (lIsFound)
+        {
+            lPage.eventList = lNewList;
+            break;
+        }
+    }
+}
+
 
 @end

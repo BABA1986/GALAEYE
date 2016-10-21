@@ -18,4 +18,5 @@
 
 - (void)initialisePagesForLeftMenuIndex: (NSInteger)leftMenuIndex;
 - (void)applyTheme;
+- (void)onLoginLogout: (BOOL)isLoggedIn;
 @end

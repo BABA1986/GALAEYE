@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Google/SignIn.h>
 
-@interface GESettingViewCtr : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GESettingViewCtr : UIViewController<UITableViewDelegate, UITableViewDataSource, GIDSignInUIDelegate>
 {
-    IBOutlet UICollectionView*      mCollectionView;
+    IBOutlet UITableView*      mSettingListView;
+    NSMutableArray*            mSettingList;
 }
 
 @end

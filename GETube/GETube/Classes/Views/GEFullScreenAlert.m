@@ -11,12 +11,17 @@
 
 @implementation GEFullScreenAlert
 
+@synthesize titleLabel = mTitleLabel;
+@synthesize descLabel = mDescLabel;
+@synthesize iconView = mIconView;
+@synthesize actionBtn = mActionBtn;
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     
-    [mActionBtn setImage: [UIImage imageWithName: @"networkerror.png"] forState: UIControlStateNormal];
-    [mActionBtn setImage: [UIImage imageWithName: @"networkerror.png"] forState: UIControlStateHighlighted];
+    mTitleLabel.textColor = [UIColor darkGrayColor];
+    mDescLabel.textColor = [UIColor darkGrayColor];
 }
 
 /*

@@ -11,10 +11,13 @@
 #import "GTLYouTube.h"
 #import "GEEventManager.h"
 #import "GENavigatorProtocol.h"
+#import "GEFullScreenAlert.h"
 
 @interface GEVideoListVC : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 {
     IBOutlet UICollectionView*      mVideoListView;
+    IBOutlet GEFullScreenAlert*     mFullPageErrView;
+    
     DGActivityIndicatorView*        mIndicator;    
     NSString*                       mChannelSource;
     FetchEventQueryType             mVideoEventType;
@@ -25,5 +28,7 @@
 @property(nonatomic, weak)id<GENavigatorProtocol>       navigationDelegate;
 
 - (void)applyTheme;
+- (void)onLoginLogout: (BOOL)isLoggedIn;
+- (void)loadData;
 
 @end

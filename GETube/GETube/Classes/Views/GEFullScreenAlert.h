@@ -16,4 +16,9 @@
     IBOutlet UIButton*           mActionBtn;
 }
 
+@property(nonatomic, strong)UILabel*        titleLabel;
+@property(nonatomic, strong)UILabel*        descLabel;
+@property(nonatomic, strong)UIImageView*    iconView;
+@property(nonatomic, strong)UIButton*       actionBtn;
+
 @end

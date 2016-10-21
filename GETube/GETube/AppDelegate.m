@@ -6,6 +6,7 @@
 //  Copyright © 2016 Deepak. All rights reserved.//
 
 #import "AppDelegate.h"
+#import "NavigationController.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "GEConstants.h"
 #import "UIImage+ImageMask.h"
@@ -14,6 +15,27 @@
 #import "UserDataManager.h"
 #import "GEServiceManager.h"
 #import "MBProgressHUD.h"
+
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+@import UserNotifications;
+#endif
+
+@import Firebase;
+@import FirebaseInstanceID;
+@import FirebaseMessaging;
+
+// Implement UNUserNotificationCenterDelegate to receive display notification via APNS for devices
+// running iOS 10 and above. Implement FIRMessagingDelegate to receive data message via FCM for
+// devices running iOS 10 and above.
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+@interface AppDelegate () <UNUserNotificationCenterDelegate, FIRMessagingDelegate>
+@end
+#endif
+
+// Copied from Apple's header in case it is missing in some cases (e.g. pre-Xcode 8 builds).
+#ifndef NSFoundationVersionNumber_iOS_9_x_Max
+#define NSFoundationVersionNumber_iOS_9_x_Max 1299
+#endif
 
 @interface AppDelegate ()
 
@@ -43,33 +65,11 @@
     [[UINavigationBar appearance] setTintColor:lNavTextColor];
     [[UINavigationBar appearance] setTitleTextAttributes:
      @{NSForegroundColorAttributeName: lNavTextColor}];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+                                                         forBarMetrics:UIBarMetricsDefault];
 
-    UIStoryboard* lSb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    mDrawerCenterCtr = (GEPageRootVC*)[lSb instantiateViewControllerWithIdentifier:@"GEPageRootVCID"];
-    MMNavigationController* lCenterNavCtr = [[MMNavigationController alloc] initWithRootViewController: mDrawerCenterCtr];
-            
-    mDrawerLeftMenuCtr = (GEMenuVC*)[lSb instantiateViewControllerWithIdentifier:@"GEMenuVCID"];
-    mDrawerLeftMenuCtr.delegate = self;
-    MMNavigationController* lLeftNavCtr = [[MMNavigationController alloc] initWithRootViewController: mDrawerLeftMenuCtr];
-    mAppDrawer = [[MMDrawerController alloc] initWithCenterViewController: lCenterNavCtr leftDrawerViewController: lLeftNavCtr];
-    
-    [mAppDrawer setShowsShadow:NO];
-    [mAppDrawer setRestorationIdentifier:@"MMDrawer"];
-    [mAppDrawer setMaximumLeftDrawerWidth:160.0];
-    [mAppDrawer setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    [mAppDrawer setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    
-    [mAppDrawer
-     setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
-         MMDrawerControllerDrawerVisualStateBlock block;
-         block = [[MMExampleDrawerVisualStateManager sharedManager]
-                  drawerVisualStateBlockForDrawerSide:drawerSide];
-         if(block){
-             block(drawerController, drawerSide, percentVisible);
-         }
-     }];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:mAppDrawer];
+    [self launchAppIntro];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onThemeChange:)
@@ -84,7 +84,93 @@
     [GIDSignIn sharedInstance].delegate = self;
     [[GIDSignIn sharedInstance] signInSilently];
     
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+        // iOS 7.1 or earlier. Disable the deprecation warnings.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        UIRemoteNotificationType allNotificationTypes =
+        (UIRemoteNotificationTypeSound |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeBadge);
+        [application registerForRemoteNotificationTypes:allNotificationTypes];
+#pragma clang diagnostic pop
+    } else {
+        // iOS 8 or later
+        // [START register_for_notifications]
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+            UIUserNotificationType allNotificationTypes =
+            (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+            UIUserNotificationSettings *settings =
+            [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        } else {
+            // iOS 10 or later
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+            UNAuthorizationOptions authOptions =
+            UNAuthorizationOptionAlert
+            | UNAuthorizationOptionSound
+            | UNAuthorizationOptionBadge;
+            [[UNUserNotificationCenter currentNotificationCenter]
+             requestAuthorizationWithOptions:authOptions
+             completionHandler:^(BOOL granted, NSError * _Nullable error) {
+             }
+             ];
+            
+            // For iOS 10 display notification (sent via APNS)
+            [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
+            // For iOS 10 data message (sent via FCM)
+            [[FIRMessaging messaging] setRemoteMessageDelegate:self];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+#endif
+        }
+    }
+    
+    // [START configure_firebase]
+    [FIRApp configure];
+    // [END configure_firebase]
+    // Add observer for InstanceID token refresh callback.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
+                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
+
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+
     return YES;
+}
+
+- (void)launchToGEHome
+{
+    UIStoryboard* lSb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    mDrawerCenterCtr = (GEPageRootVC*)[lSb instantiateViewControllerWithIdentifier:@"GEPageRootVCID"];
+    NavigationController* lNavCtr = [[NavigationController alloc] initWithRootViewController:mDrawerCenterCtr];
+    
+    mDrawerLeftMenuCtr = (GEMenuVC*)[lSb instantiateViewControllerWithIdentifier:@"GEMenuVCID"];
+    mDrawerLeftMenuCtr.delegate = self;
+    
+    mAppDrawer = [[RESideMenu alloc] initWithContentViewController: lNavCtr leftMenuViewController: mDrawerLeftMenuCtr rightMenuViewController: nil];
+    
+    mAppDrawer.fadeMenuView = TRUE;
+    mAppDrawer.scaleMenuView = FALSE;
+    mAppDrawer.panGestureEnabled = TRUE;
+    mAppDrawer.panFromEdge = TRUE;
+    mAppDrawer.delegate = self;
+    mAppDrawer.bouncesHorizontally = NO;
+    
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    mAppDrawer.view.backgroundColor = lNavColor;
+    mAppDrawer.backgroundImageView.alpha = 0.8;
+    mAppDrawer.backgroundImage = [UIImage imageNamed: @"menuBck.png"];
+    [self.window setRootViewController:mAppDrawer];
+}
+
+- (void)launchAppIntro
+{
+    UIStoryboard* lSb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    GEIntoductionViewCtr* lIntroCtr = (GEIntoductionViewCtr*)[lSb instantiateViewControllerWithIdentifier:@"GEIntoductionViewCtrID"];
+    lIntroCtr.delegate = self;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:lIntroCtr];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -119,6 +205,70 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+// [START receive_message]
+// To receive notifications for iOS 9 and below.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Print full message.
+    NSLog(@"%@", userInfo);
+}
+
+// [START ios_10_message_handling]
+// Receive displayed notifications for iOS 10 devices.
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    // Print message ID.
+    NSDictionary *userInfo = notification.request.content.userInfo;
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Pring full message.
+    NSLog(@"%@", userInfo);
+}
+
+// Receive data message on iOS 10 devices.
+- (void)applicationReceivedRemoteMessage:(FIRMessagingRemoteMessage *)remoteMessage {
+    // Print full message
+    NSLog(@"%@", [remoteMessage appData]);
+}
+#endif
+// [END ios_10_message_handling]
+
+// [START refresh_token]
+- (void)tokenRefreshNotification:(NSNotification *)notification {
+    // Note that this callback will be fired everytime a new token is generated, including the first
+    // time. So if you need to retrieve the token as soon as it is available this is where that
+    // should be done.
+    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+    NSLog(@"InstanceID token: %@", refreshedToken);
+    
+    // Connect to FCM since connection may have failed when attempted before having a token.
+    [self connectToFcm];
+    
+    // TODO: If necessary send token to application server.
+}
+// [END refresh_token]
+
+// [START connect_to_fcm]
+- (void)connectToFcm {
+    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Unable to connect to FCM. %@", error);
+        } else {
+            NSLog(@"Connected to FCM.");
+        }
+    }];
+}
+// [END connect_to_fcm]
 
 - (void)createIconsForTheme
 {
@@ -162,13 +312,38 @@
     mDrawerLeftMenuCtr.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: lNavTextColor};
 
     [mDrawerLeftMenuCtr applyTheme];
+    
+    mAppDrawer.view.backgroundColor = lNavColor;
+    mAppDrawer.backgroundImageView.alpha = 0.8;
+    mAppDrawer.backgroundImage = [UIImage imageNamed: @"menuBck.png"];
+
     [self.window setTintColor:lNavColor];
 }
 
 - (void)openCloseLeftMenuDrawer
 {
-    [mAppDrawer toggleDrawerSide: MMDrawerSideLeft animated: TRUE completion: nil];
+    if (mIsMenuOpen) {
+        [mAppDrawer hideMenuViewController];
+    }
+    else{
+        [mAppDrawer presentLeftMenuViewController];
+    }
 }
+
+#pragma mark-
+#pragma mark- RESideMenuDelegate
+#pragma mark-
+
+- (void)sideMenu:(RESideMenu *)sideMenu didShowMenuViewController:(UIViewController *)menuViewController
+{
+    mIsMenuOpen = TRUE;
+}
+
+- (void)sideMenu:(RESideMenu *)sideMenu didHideMenuViewController:(UIViewController *)menuViewController
+{
+    mIsMenuOpen = FALSE;
+}
+
 
 #pragma mark-
 #pragma mark- GEMenuVCDelegate
@@ -177,7 +352,7 @@
 - (void)GEMenuVC: (GEMenuVC*)menuVC didSelectAtIndex: (NSIndexPath*)indexPath
 {
     [mDrawerCenterCtr initialisePagesForLeftMenuIndex: indexPath.row];
-    [mAppDrawer closeDrawerAnimated: TRUE completion: nil];
+    [mAppDrawer hideMenuViewController];
 }
 
 #pragma mark - Core Data stack
@@ -298,7 +473,10 @@ didSignInForUser:(GIDGoogleUser *)user
     [lManager setImageUrl: [user.profile imageURLWithDimension: 100]];
     [lManager setRefreshToken: user.authentication.refreshToken];
     
-    [mDrawerLeftMenuCtr onLoginUpdate];
+    [mDrawerCenterCtr onLoginLogout: !error];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"onSucessfullLogin" object: nil];
+    
     GEServiceManager* lGEServiceManager = [GEServiceManager sharedManager];
     [lGEServiceManager loginDone];
     [self showLoginSuccessMsg];
@@ -311,5 +489,25 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     // Perform any operations when the user disconnects from app here.
     // ...
 }
+
+#pragma mark-
+#pragma mark- GEIntoductionViewCtrDelegate
+#pragma mark-
+
+- (void)introductionDidFinish: (GEIntoductionViewCtr*)introCtr
+{
+//    [self launchToGEHome];
+}
+
+- (void)introductionDidSkip: (GEIntoductionViewCtr*)introCtr
+{
+    [self launchToGEHome];
+}
+
+- (void)clickLoginOnIntroduction: (GEIntoductionViewCtr*)introCtr
+{
+    
+}
+
 
 @end

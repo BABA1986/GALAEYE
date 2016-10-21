@@ -14,6 +14,7 @@
 #import "GEPlaylistVideoListCtr.h"
 #import "GEVideoListVC.h"
 #import "GEVideoPlayerCtr.h"
+#import "GEMyLikeCtr.h"
 #import "MMDrawerBarButtonItem.h"
 #import "AppDelegate.h"
 
@@ -21,10 +22,12 @@
 {
     NSUInteger          mLeftMenuIndex;
 }
+
 - (NSArray*)pageCtrsForLeftMenuIndex: (NSInteger)leftMenuIndex
                           withFilter: (NSString*)filter;
 - (void)addSortFilter;
 - (void)removeSortFilter;
+
 @end
 
 @implementation GEPageRootVC
@@ -45,6 +48,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    
+    NSArray* lControllers = mPageMenu.controllerArray;
+    if (lControllers.count > mPageMenu.currentPageIndex)
+    {
+        UIViewController* lCtr = [lControllers objectAtIndex: mPageMenu.currentPageIndex];
+        if ([lCtr isKindOfClass: [GEVideoListVC class]])
+        {
+            if ([lCtr respondsToSelector: @selector(loadData)])
+            {
+                [(GEVideoListVC*)lCtr loadData];
+            }
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -120,6 +136,22 @@
     
     if (leftMenuIndex != 0) {
         [mPageMenu moveToPage: lCurrentIndex];
+    }
+}
+
+- (void)onLoginLogout: (BOOL)isLoggedIn
+{
+    NSArray* lControllers = mPageMenu.controllerArray;
+    if (lControllers.count > mPageMenu.currentPageIndex)
+    {
+        UIViewController* lCtr = [lControllers objectAtIndex: mPageMenu.currentPageIndex];
+        if ([lCtr isKindOfClass: [GEVideoListVC class]])
+        {
+            if ([lCtr respondsToSelector: @selector(onLoginLogout:)])
+            {
+                [(GEVideoListVC*)lCtr onLoginLogout: isLoggedIn];
+            }
+        }
     }
 }
 
@@ -217,20 +249,25 @@
                 lGEEventVC.navigationDelegate = self;
                 [lPageCtrs addObject: lGEEventVC];
             }
-            else if([lPageMenu.subMenuName isEqualToString: @"Popular"])
+            else if([lPageMenu.subMenuName isEqualToString: @"Popular"]
+                    || [lPageMenu.subMenuName isEqualToString: @"Private"]
+                    || [lPageMenu.subMenuName isEqualToString: @"Gala Liked"]
+                    || [lPageMenu.subMenuName isEqualToString: @"Reminders"])
             {
                 GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
                 lGEVideoListVC.title = lPageMenu.subMenuName;
                 lGEVideoListVC.channelSource = kGEChannelID;
                 lGEVideoListVC.navigationDelegate = self;
-                lGEVideoListVC.videoEventType = EFetchEventsPopularCompleted;
+                if([lPageMenu.subMenuName isEqualToString: @"Popular"])
+                   lGEVideoListVC.videoEventType = EFetchEventsPopularCompleted;
+                else if([lPageMenu.subMenuName isEqualToString: @"Private"])
+                    lGEVideoListVC.videoEventType = EFetchEventsPrivate;
+                else if([lPageMenu.subMenuName isEqualToString: @"Gala Liked"])
+                    lGEVideoListVC.videoEventType = EFetchEventsLiked;
+                else if([lPageMenu.subMenuName isEqualToString: @"Reminders"])
+                    lGEVideoListVC.videoEventType = EFetchEventsReminders;
+                
                 [lPageCtrs addObject: lGEVideoListVC];
-            }
-            else
-            {
-                UIViewController* lCtr = [[UIViewController alloc] init];
-                lCtr.title = lPageMenu.subMenuName;
-                [lPageCtrs addObject: lCtr];
             }
         }
         else if ([lPageMenu.subMenuType isEqualToString: @"playlist"])
@@ -311,7 +348,5 @@
 {
     return YES;
 }
-
-
 
 @end

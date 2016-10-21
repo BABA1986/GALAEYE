@@ -24,19 +24,19 @@
                                          },
                                          {
                                          "id": "",
-                                         "name": "Catageory",
+                                         "name": "Scheduled",
                                          "type": "events",
                                          "src": ""
                                          },
                                          {
                                          "id": "",
-                                         "name": "Shared",
+                                         "name": "Gala Liked",
                                          "type": "events",
                                          "src": ""
                                          },
                                          {
                                          "id": "",
-                                         "name": "Favorite",
+                                         "name": "Reminders",
                                          "type": "events",
                                          "src": ""
                                          }

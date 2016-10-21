@@ -11,16 +11,18 @@
 #import "DGActivityIndicatorView.h"
 #import "GENavigatorProtocol.h"
 
+@class GEFullScreenAlert;
 @interface GEEventVC : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GEEventHeaderDelegate>
 {
     IBOutlet UICollectionView*          mEventListView;
     DGActivityIndicatorView*            mIndicator;
     
-    IBOutlet UIView*                    mConnectionErrView;
+    IBOutlet GEFullScreenAlert*         mConnectionErrView;
 }
 
 @property(nonatomic, weak)id<GENavigatorProtocol>           navigationDelegate;
 
 - (void)applyTheme;
+- (void)onLoginLogout: (BOOL)isLoggedIn;
 
 @end

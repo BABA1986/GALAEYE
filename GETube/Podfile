@@ -11,6 +11,9 @@ target 'GETube' do
 		pod "youtube-ios-player-helper", “0.1.6”
 		pod 'Google/SignIn'
 		pod 'GTMOAuth2'
+		pod 'Firebase/Core'
+		pod 'Firebase/Messaging'
+		pod 'MYBlurIntroductionView', '~> 1.0.3’
   # Pods for GETube
 
   target 'GETubeTests' do

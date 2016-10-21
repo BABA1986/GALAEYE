@@ -18,7 +18,7 @@
     IBOutlet UIView*                        mPlayerBaseView;
     IBOutlet UIImageView*                   mBrandLogoView;
     IBOutlet YTPlayerView*                  mPlayerView;
-    __weak NSObject<GEYoutubeResult>*       mVideoItem;
+    NSObject<GEYoutubeResult>*              mVideoItem;
     FetchEventQueryType                     mEventType;
     
     IBOutlet UIButton*                      mBackBtn;
@@ -28,10 +28,11 @@
     DGActivityIndicatorView*                mIndicator;    
 }
 
-@property(nonatomic, weak)NSObject<GEYoutubeResult>*         videoItem;
+@property(nonatomic, strong)NSObject<GEYoutubeResult>*         videoItem;
 @property(nonatomic, assign)FetchEventQueryType              eventType;
 
 - (IBAction)backButtonAction: (id)sender;
 - (void)applyTheme;
+- (void)onLoginLogout: (BOOL)isLoggedIn;
 
 @end

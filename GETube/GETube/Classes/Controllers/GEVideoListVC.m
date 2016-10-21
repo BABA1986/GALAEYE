@@ -14,11 +14,20 @@
 #import "UIImage+ImageMask.h"
 #import "GEYoutubeResult.h"
 #import "GEEventCell.h"
+#import "Reachability.h"
+#import "UserDataManager.h"
+#import <Google/SignIn.h>
 
 @interface GEVideoListVC ()
 {
     BOOL        mRequesting;
 }
+
+- (BOOL)checkForInternetConnection;
+- (BOOL)checkForLoginUser;
+- (void)showDataNotAvailable;
+- (IBAction)alertActionBtnClicked:(id)sender;
+
 @end
 
 @implementation GEVideoListVC
@@ -30,39 +39,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    mFullPageErrView.hidden = TRUE;
+    self.view.backgroundColor = [UIColor colorWithRed: 245.0/255.0 green: 245.0/255.0 blue: 245.0/255.0 alpha: 1.0];
+    mVideoListView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    [self loadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
-    
-    if (mRequesting)
-        return;
-
-    mRequesting = TRUE;
-
-    [self addIndicatorView];
-    [mIndicator startAnimating];
-    mIndicator.hidden = FALSE;
-    
-    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
-    [lServiceMngr loadVideosFromChannelSource: self.channelSource eventType: mVideoEventType onCompletion: ^(BOOL success)
-     {
-         [mVideoListView reloadData];
-         [mIndicator stopAnimating];
-         mIndicator.hidden = TRUE;
-         mRequesting = FALSE;
-     }];
 }
 
 - (void)applyTheme
 {
     [mVideoListView reloadData];
+}
+
+- (void)onLoginLogout: (BOOL)isLoggedIn
+{
+    [self loadData];
 }
 
 - (void)addIndicatorView
@@ -80,6 +84,149 @@
     lIndicatorFrame.origin.y = (CGRectGetHeight(self.view.bounds) - lIndicatorFrame.size.height)/2;
     mIndicator.frame = lIndicatorFrame;
     [self.view addSubview: mIndicator];
+}
+
+- (void)loadData
+{
+    if (![self checkForInternetConnection])
+        return;
+    
+    if (mVideoEventType == EFetchEventsPrivate && ![self checkForLoginUser])
+        return;
+    
+    if (mVideoEventType == EFetchEventsLiked && ![self checkForLoginUser])
+        return;
+    
+    GEEventManager* lManager = [GEEventManager manager];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+
+    if (mRequesting || lEventObj.eventListPages.count)
+    {
+        [mVideoListView reloadData];
+        [self showDataNotAvailable];
+        return;
+    }
+    
+    mRequesting = TRUE;
+    
+    [self addIndicatorView];
+    [mIndicator startAnimating];
+    mIndicator.hidden = FALSE;
+    
+    GEServiceManager* lServiceMngr = [GEServiceManager sharedManager];
+    [lServiceMngr loadVideosFromChannelSource: self.channelSource eventType: mVideoEventType onCompletion: ^(BOOL success)
+     {
+         [mVideoListView reloadData];
+         [mIndicator stopAnimating];
+         mIndicator.hidden = TRUE;
+         mRequesting = FALSE;
+         
+         if (mVideoEventType == EFetchEventsPrivate || mVideoEventType == EFetchEventsLiked)
+             [self showDataNotAvailable];
+     }];
+}
+
+- (BOOL)checkForInternetConnection
+{
+    Reachability* lNetReach = [Reachability reachabilityWithHostName: @"www.google.com"];
+    NetworkStatus lNetStatus = [lNetReach currentReachabilityStatus];
+    if (lNetStatus == NotReachable)
+    {
+        mFullPageErrView.titleLabel.text = @"No Connection";
+        mFullPageErrView.descLabel.text = @"Please check your internet connectivity and try again.";
+        mFullPageErrView.iconView.image = [UIImage imageNamed: @"networkerror.png"];
+        [mFullPageErrView.actionBtn setTitle: @"" forState: UIControlStateNormal];
+        [mFullPageErrView.actionBtn setImage: [UIImage imageNamed: @"retry-normal.png"] forState: UIControlStateNormal];
+        [mFullPageErrView.actionBtn setImage: [UIImage imageNamed: @"retry-highlighted.png"] forState: UIControlStateHighlighted];
+
+        mFullPageErrView.hidden = FALSE;
+        [self.view bringSubviewToFront: mFullPageErrView];
+        return NO;
+    }
+    
+    mFullPageErrView.hidden = TRUE;
+    [self.view bringSubviewToFront: mVideoListView];
+    return YES;
+}
+
+- (BOOL)checkForLoginUser
+{
+    UserDataManager* lUserManager = [UserDataManager userDataManager];
+    if (lUserManager.userData.userId)
+    {
+        mFullPageErrView.hidden = TRUE;
+        [self.view bringSubviewToFront: mVideoListView];
+        return YES;
+    }
+    
+    if (self.videoEventType == EFetchEventsLiked)
+    {
+        mFullPageErrView.titleLabel.text = @"Liked Videos";
+        mFullPageErrView.descLabel.text = @"Login required to see your liked video.";
+    }
+    else if (self.videoEventType == EFetchEventsPrivate)
+    {
+        mFullPageErrView.titleLabel.text = @"Private Videos";
+        mFullPageErrView.descLabel.text = @"Login required to see these private video shared by the content owner to you.";
+    }
+    mFullPageErrView.iconView.image = [UIImage imageNamed: @"private.png"];
+    [mFullPageErrView.actionBtn setTitle: @"Sign In" forState: UIControlStateNormal];
+    [mFullPageErrView.actionBtn setImage: nil forState: UIControlStateHighlighted];
+    [mFullPageErrView.actionBtn setImage: nil forState: UIControlStateNormal];
+    mFullPageErrView.hidden = FALSE;
+    [self.view bringSubviewToFront: mFullPageErrView];
+    
+    return NO;
+}
+
+- (void)showDataNotAvailable
+{
+    GEEventManager* lManager = [GEEventManager manager];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: self.videoEventType forSource: self.channelSource];
+    GEEventListPage* lLastPage = [lEventObj.eventListPages lastObject];
+    if (!lEventObj.eventListPages.count || !lLastPage.eventList.count)
+    {
+        if (self.videoEventType == EFetchEventsLiked)
+        {
+            mFullPageErrView.titleLabel.text = @"Videos Not Found";
+            mFullPageErrView.descLabel.text = @"You have no liked videos. Please refresh to get the latest update.";
+        }
+        else if (self.videoEventType == EFetchEventsPrivate)
+        {
+            mFullPageErrView.titleLabel.text = @"Videos Not Found";
+            mFullPageErrView.descLabel.text = @"You have no private shared videos. Please refresh to get the latest update.";
+        }
+        else
+        {
+            mFullPageErrView.titleLabel.text = @"Videos Not Found";
+            mFullPageErrView.descLabel.text = @"We are unable to find the videos. Please refresh to get the latest update.";
+        }
+        mFullPageErrView.iconView.image = [UIImage imageNamed: @"noData.png"];
+        [mFullPageErrView.actionBtn setImage: [UIImage imageNamed: @"retry-normal.png"] forState: UIControlStateNormal];
+        [mFullPageErrView.actionBtn setImage: [UIImage imageNamed: @"retry-highlighted.png"] forState: UIControlStateHighlighted];
+        [mFullPageErrView.actionBtn setTitle: @"" forState: UIControlStateNormal];
+        mFullPageErrView.hidden = FALSE;
+        [self.view bringSubviewToFront: mFullPageErrView];
+        return;
+    }
+    
+    mFullPageErrView.hidden = TRUE;
+    [self.view bringSubviewToFront: mVideoListView];
+}
+
+- (IBAction)alertActionBtnClicked:(id)sender
+{
+    if (![self checkForInternetConnection])
+        return;
+    
+    UserDataManager* lUserManager = [UserDataManager userDataManager];
+    if (!lUserManager.userData.userId && self.videoEventType == EFetchEventsLiked)
+    {
+        [[GIDSignIn sharedInstance] signIn];
+        return;
+    }
+    
+    [self loadData];
 }
 
 #pragma mark-
@@ -117,14 +264,16 @@
     lCell.statusLabel.hidden = TRUE;
     lCell.alarmBtn.hidden = TRUE;
     lCell.timeLabelMaxX.constant = 0.0;
-    if (mVideoEventType == EFetchEventsLive) {
+    if (mVideoEventType == EFetchEventsLive)
+    {
         lCell.statusLabel.text = @"Live";
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
         NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
         lCell.timeLabel.attributedText = lAttStr;
     }
-    else if (mVideoEventType == EFetchEventsUpcomming) {
+    else if (mVideoEventType == EFetchEventsUpcomming)
+    {
         lCell.statusLabel.text = @"Upcomming";
         lCell.videoPlayIcon.image = nil;
         lCell.timeLabelMaxX.constant = -30.0;
@@ -132,17 +281,18 @@
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
         
         NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
         lCell.timeLabel.attributedText = lAttStr;
         lCell.alarmBtn.hidden = FALSE;
     }
-    else if (mVideoEventType == EFetchEventsCompleted) {
+    else if (mVideoEventType == EFetchEventsCompleted)
+    {
         lCell.statusLabel.text = @"Completed";
         NSString* lEndOn = [[lResult eventEndStreamDate] dateString];
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
         
         NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
         lCell.timeLabel.attributedText = lAttStr;
     }
     else
@@ -188,6 +338,9 @@
     
     if (indexPath.section == lEventObj.eventListPages.count - 1)
     {
+        if (![self checkForInternetConnection])
+            return;
+        
         if (mRequesting)
             return;
         
@@ -276,6 +429,5 @@
     
     [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
 }
-
 
 @end

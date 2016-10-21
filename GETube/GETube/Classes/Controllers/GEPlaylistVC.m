@@ -14,6 +14,7 @@
 #import "GEPlaylistVideoListCtr.h"
 #import "GEYoutubeResult.h"
 #import "Reachability.h"
+#import "GEFullScreenAlert.h"
 
 @interface GEPlaylistVC ()
 {
@@ -35,6 +36,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor colorWithRed: 245.0/255.0 green: 245.0/255.0 blue: 245.0/255.0 alpha: 1.0];
+    mPlaylistListView.backgroundColor = [UIColor clearColor];
+    mConnectionErrView.hidden = TRUE;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +56,11 @@
 - (void)applyTheme
 {
     [mPlaylistListView reloadData];
+}
+
+- (void)onLoginLogout: (BOOL)isLoggedIn
+{
+    
 }
 
 - (void)addIndicatorView
@@ -79,7 +89,10 @@
     GEPlaylistListObj* lPlaylistObject =  [lSharedPlaylist playlistObjForChannelSource: self.listSource];
     
     if (mRequesting || lPlaylistObject.playlistListPages.count)
+    {
+        [mPlaylistListView reloadData];
         return;
+    }
     
     [self addIndicatorView];
     [mIndicator startAnimating];
@@ -102,10 +115,12 @@
     NetworkStatus lNetStatus = [lNetReach currentReachabilityStatus];
     if (lNetStatus == NotReachable)
     {
+        mConnectionErrView.hidden = FALSE;
         [self.view bringSubviewToFront: mConnectionErrView];
         return NO;
     }
     
+    mConnectionErrView.hidden = TRUE;
     [self.view bringSubviewToFront: mPlaylistListView];
     return YES;
 }

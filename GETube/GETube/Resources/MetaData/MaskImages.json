@@ -79,6 +79,31 @@
                "id": "16",
                "name": "dislike-selected.png",
                "color": "dafault"
+               },
+               {
+               "id": "17",
+               "name": "menuBck.png",
+               "color": "dafault"
+               },
+               {
+               "id": "18",
+               "name": "alarmOff.png",
+               "color": "dafault"
+               },
+               {
+               "id": "19",
+               "name": "alarmOn.png",
+               "color": "dafault"
+               },
+               {
+               "id": "20",
+               "name": "shareIcon.png",
+               "color": "dafault"
+               },
+               {
+               "id": "20",
+               "name": "setting.png",
+               "color": "dafault"
                }
                ]
 }

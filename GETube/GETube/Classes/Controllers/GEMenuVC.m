@@ -48,12 +48,32 @@
     mProfileImgView.clipsToBounds = YES;
     mProfileImgView.layer.cornerRadius = mProfileImgView.frame.size.width/2.0;
 
-    [GIDSignIn sharedInstance].uiDelegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onSucessfullLogin:)
+                                                 name:@"onSucessfullLogin"
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    [GIDSignIn sharedInstance].uiDelegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear: animated];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
+- (void)onSucessfullLogin: (NSNotification*)notification
+{
+    [self onLoginUpdate];
 }
 
 - (void)initialiseFooterItems
@@ -82,12 +102,11 @@
 
 - (void)applyTheme
 {
+    self.view.backgroundColor = [UIColor clearColor];
     [mFooterListView reloadData];
     [mMenuListView reloadData];
     ThemeManager* lThemeManager = [ThemeManager themeManager];
-    UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lTextColor = [lThemeManager selectedTextColor];
-    self.view.backgroundColor = lNavColor;
     mWelcomeLbl.textColor = lTextColor;
     [mLoginBtn setTitleColor: lTextColor forState: UIControlStateNormal];
     mSeperatorView.backgroundColor = lTextColor;
@@ -151,6 +170,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == mFooterListView)
+    {
+        return 35.0;
+    }
     return 40.0;
 }
 
@@ -188,6 +211,7 @@
             lCell.disclosureIconView.image = [UIImage imageWithName: @"disclosureicon.png"];
             lCell.menuTitleLbl.textColor = lNavTextColor;
             lCell.menuTitleLbl.text = [lFooterItem objectForKey: @"name"];
+            lCell.menuIconView.image = [UIImage imageWithName: [lFooterItem objectForKey: @"image"]];
         }
         else
         {
@@ -212,8 +236,9 @@
     else
     {
         GESettingViewCtr* lGESettingViewCtr = [self.storyboard instantiateViewControllerWithIdentifier: @"GESettingViewCtrID"];
+        UINavigationController* lNavCtr = [[UINavigationController alloc] initWithRootViewController: lGESettingViewCtr];
         lGESettingViewCtr.view.frame = self.view.bounds;
-        [self.navigationController pushViewController: lGESettingViewCtr animated: TRUE];
+        [self presentViewController: lNavCtr animated: TRUE completion: nil];
     }
 }
 

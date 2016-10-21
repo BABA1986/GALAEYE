@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>gala eye</string>
+	<string>Gala Eye</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.342351758071-92f2gvhb9pvuph73af24ln21esph6jic</string>
+				<string>com.googleusercontent.apps.526568270970-0bsj2j844rdd9tjchbbj8ul7t8pb8f6j</string>
 			</array>
 		</dict>
 	</array>
@@ -71,8 +71,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

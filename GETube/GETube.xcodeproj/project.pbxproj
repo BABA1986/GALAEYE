@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0004BE351D98990D007445BF /* GEMyLikeCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0004BE341D98990D007445BF /* GEMyLikeCtr.m */; };
 		0008E4811D323351002DDE8B /* GEVideoPlayerCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */; };
 		0018E4651D656D3200CAFEA8 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0018E4641D656D3200CAFEA8 /* UserDataManager.m */; };
 		001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1691D15678700DDD39F /* MMNavigationController.m */; };
@@ -20,6 +21,8 @@
 		001BD1851D16E03C00DDD39F /* GEEventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1841D16E03C00DDD39F /* GEEventVC.m */; };
 		001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD1871D16FA5900DDD39F /* GEEventHeader.m */; };
 		001BD18B1D16FA7800DDD39F /* GEEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BD18A1D16FA7800DDD39F /* GEEventCell.m */; };
+		0022ECEC1D91B8BD0032C317 /* private.png in Resources */ = {isa = PBXBuildFile; fileRef = 0022ECEB1D91B8BD0032C317 /* private.png */; };
+		0022ECEE1D91BADF0032C317 /* noData.png in Resources */ = {isa = PBXBuildFile; fileRef = 0022ECED1D91BADF0032C317 /* noData.png */; };
 		0027D4B91D2E069E001B5503 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0027D4B81D2E069E001B5503 /* menuicon.png */; };
 		0027D4BB1D2ED9EE001B5503 /* MaskImages.json in Resources */ = {isa = PBXBuildFile; fileRef = 0027D4BA1D2ED9EE001B5503 /* MaskImages.json */; };
 		0027D4BE1D2EE1AA001B5503 /* UIImage+ImageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0027D4BD1D2EE1AA001B5503 /* UIImage+ImageMask.m */; };
@@ -30,6 +33,9 @@
 		0041AB041D41D18700D59AB6 /* GTLYouTubePlaylist+GEPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041AB031D41D18700D59AB6 /* GTLYouTubePlaylist+GEPlaylist.m */; };
 		0041AB071D41D91500D59AB6 /* GTLYouTubeVideo+GEYouTubeVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0041AB061D41D91500D59AB6 /* GTLYouTubeVideo+GEYouTubeVideo.m */; };
 		0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */; };
+		00449AFF1DB1EF0000DA4C98 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 00449AFE1DB1EF0000DA4C98 /* setting.png */; };
+		00449B011DB2368500DA4C98 /* Setting.json in Resources */ = {isa = PBXBuildFile; fileRef = 00449B001DB2368500DA4C98 /* Setting.json */; };
+		00449B041DB28A3800DA4C98 /* GESettingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00449B031DB28A3800DA4C98 /* GESettingListCell.m */; };
 		005104701D3B5F0600C5ACCD /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051046F1D3B5F0600C5ACCD /* tick.png */; };
 		006588C21D70C89900DF0A43 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006588C11D70C89900DF0A43 /* Security.framework */; };
 		006588C41D70C8B100DF0A43 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006588C31D70C8B100DF0A43 /* SystemConfiguration.framework */; };
@@ -91,14 +97,26 @@
 		00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BC31D1540A50019D907 /* Main.storyboard */; };
 		00BE6BC81D1540A50019D907 /* GETube.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BC61D1540A50019D907 /* GETube.xcdatamodeld */; };
 		00BE6BCA1D1540A50019D907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BC91D1540A50019D907 /* Assets.xcassets */; };
-		00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */; };
 		00BE6BD81D1540A50019D907 /* GETubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BD71D1540A50019D907 /* GETubeTests.m */; };
 		00BE6BE31D1540A50019D907 /* GETubeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BE6BE21D1540A50019D907 /* GETubeUITests.m */; };
 		00C84C651D5F9031000DD01B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C84C641D5F9031000DD01B /* GoogleService-Info.plist */; };
 		00DF23B41D486EC00073E86F /* back_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DF23B31D486EC00073E86F /* back_white.png */; };
+		00EF75CB1DB370CB007B9EF3 /* GESelectFromListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EF75CA1DB370CB007B9EF3 /* GESelectFromListVC.m */; };
+		00EF75CE1DB5D74E007B9EF3 /* GEThemeSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EF75CD1DB5D74E007B9EF3 /* GEThemeSelectionVC.m */; };
 		00F5E5CB1D3189AF00B87FE7 /* dramamenuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */; };
 		00F5E5CC1D3189AF00B87FE7 /* livemenuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */; };
 		00F6B8F31D5D72F900784EBA /* userprofile.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F6B8F21D5D72F900784EBA /* userprofile.png */; };
+		00F81A3D1DAD5132008E18D8 /* shareIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00F81A3C1DAD5132008E18D8 /* shareIcon.png */; };
+		00FB3E501DA80AC400D5B8CF /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FB3E4F1DA80AC400D5B8CF /* NavigationController.m */; };
+		00FB3E581DA8194800D5B8CF /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FB3E531DA8194800D5B8CF /* RECommonFunctions.m */; };
+		00FB3E591DA8194800D5B8CF /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FB3E551DA8194800D5B8CF /* RESideMenu.m */; };
+		00FB3E5A1DA8194800D5B8CF /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FB3E571DA8194800D5B8CF /* UIViewController+RESideMenu.m */; };
+		00FB3E5F1DA9837300D5B8CF /* CheckMarkWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FB3E5B1DA9837300D5B8CF /* CheckMarkWhite.png */; };
+		00FB3E601DA9837300D5B8CF /* ForkImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FB3E5C1DA9837300D5B8CF /* ForkImage.png */; };
+		00FB3E611DA9837300D5B8CF /* HeaderImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FB3E5D1DA9837300D5B8CF /* HeaderImage.png */; };
+		00FB3E621DA9837300D5B8CF /* Toronto, ON.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 00FB3E5E1DA9837300D5B8CF /* Toronto, ON.jpg */; };
+		00FB3E651DA98A0600D5B8CF /* GEIntoductionViewCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FB3E641DA98A0600D5B8CF /* GEIntoductionViewCtr.m */; };
+		00FB3E671DAA46D300D5B8CF /* menuBck.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FB3E661DAA46D300D5B8CF /* menuBck.png */; };
 		00FD97AC1D77538B0092B9DA /* like-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FD97AA1D77538B0092B9DA /* like-selected.png */; };
 		00FD97AD1D77538B0092B9DA /* like-unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FD97AB1D77538B0092B9DA /* like-unselected.png */; };
 		7816A3460E664526E10853A7 /* libPods-GETubeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE7861B3DF6A6B8B981041 /* libPods-GETubeTests.a */; };
@@ -124,6 +142,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0004BE331D98990D007445BF /* GEMyLikeCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEMyLikeCtr.h; sourceTree = "<group>"; };
+		0004BE341D98990D007445BF /* GEMyLikeCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEMyLikeCtr.m; sourceTree = "<group>"; };
 		0008E47F1D323351002DDE8B /* GEVideoPlayerCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoPlayerCtr.h; sourceTree = "<group>"; };
 		0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoPlayerCtr.m; sourceTree = "<group>"; };
 		0018E4631D656D3200CAFEA8 /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataManager.h; sourceTree = "<group>"; };
@@ -150,6 +170,8 @@
 		001BD1871D16FA5900DDD39F /* GEEventHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventHeader.m; sourceTree = "<group>"; };
 		001BD1891D16FA7800DDD39F /* GEEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEEventCell.h; sourceTree = "<group>"; };
 		001BD18A1D16FA7800DDD39F /* GEEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEEventCell.m; sourceTree = "<group>"; };
+		0022ECEB1D91B8BD0032C317 /* private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = private.png; sourceTree = "<group>"; };
+		0022ECED1D91BADF0032C317 /* noData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noData.png; sourceTree = "<group>"; };
 		0027D4B81D2E069E001B5503 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuicon.png; sourceTree = "<group>"; };
 		0027D4BA1D2ED9EE001B5503 /* MaskImages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MaskImages.json; sourceTree = "<group>"; };
 		0027D4BC1D2EE1AA001B5503 /* UIImage+ImageMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageMask.h"; sourceTree = "<group>"; };
@@ -169,6 +191,10 @@
 		0042E9B61D2613EF0094DA42 /* GEPlaylistVideoListCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEPlaylistVideoListCtr.h; sourceTree = "<group>"; };
 		0042E9B71D2613EF0094DA42 /* GEPlaylistVideoListCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEPlaylistVideoListCtr.m; sourceTree = "<group>"; };
 		0042E9B91D261B0E0094DA42 /* GENavigatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GENavigatorProtocol.h; sourceTree = "<group>"; };
+		00449AFE1DB1EF0000DA4C98 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		00449B001DB2368500DA4C98 /* Setting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Setting.json; sourceTree = "<group>"; };
+		00449B021DB28A3800DA4C98 /* GESettingListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESettingListCell.h; sourceTree = "<group>"; };
+		00449B031DB28A3800DA4C98 /* GESettingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESettingListCell.m; sourceTree = "<group>"; };
 		0051046F1D3B5F0600C5ACCD /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
 		006588C11D70C89900DF0A43 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		006588C31D70C8B100DF0A43 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -269,7 +295,6 @@
 		00BE6BC41D1540A50019D907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00BE6BC71D1540A50019D907 /* GETube.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GETube.xcdatamodel; sourceTree = "<group>"; };
 		00BE6BC91D1540A50019D907 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		00BE6BCC1D1540A50019D907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00BE6BCE1D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00BE6BD31D1540A50019D907 /* GETubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BE6BD71D1540A50019D907 /* GETubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GETubeTests.m; sourceTree = "<group>"; };
@@ -279,9 +304,29 @@
 		00BE6BE41D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00C84C641D5F9031000DD01B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00DF23B31D486EC00073E86F /* back_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_white.png; sourceTree = "<group>"; };
+		00EF75C91DB370CB007B9EF3 /* GESelectFromListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESelectFromListVC.h; sourceTree = "<group>"; };
+		00EF75CA1DB370CB007B9EF3 /* GESelectFromListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESelectFromListVC.m; sourceTree = "<group>"; };
+		00EF75CC1DB5D74E007B9EF3 /* GEThemeSelectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEThemeSelectionVC.h; sourceTree = "<group>"; };
+		00EF75CD1DB5D74E007B9EF3 /* GEThemeSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEThemeSelectionVC.m; sourceTree = "<group>"; };
 		00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dramamenuicon.png; sourceTree = "<group>"; };
 		00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = livemenuicon.png; sourceTree = "<group>"; };
 		00F6B8F21D5D72F900784EBA /* userprofile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userprofile.png; sourceTree = "<group>"; };
+		00F81A3C1DAD5132008E18D8 /* shareIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareIcon.png; sourceTree = "<group>"; };
+		00FB3E4E1DA80AC400D5B8CF /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		00FB3E4F1DA80AC400D5B8CF /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		00FB3E521DA8194800D5B8CF /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		00FB3E531DA8194800D5B8CF /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		00FB3E541DA8194800D5B8CF /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		00FB3E551DA8194800D5B8CF /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		00FB3E561DA8194800D5B8CF /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		00FB3E571DA8194800D5B8CF /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		00FB3E5B1DA9837300D5B8CF /* CheckMarkWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMarkWhite.png; sourceTree = "<group>"; };
+		00FB3E5C1DA9837300D5B8CF /* ForkImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForkImage.png; sourceTree = "<group>"; };
+		00FB3E5D1DA9837300D5B8CF /* HeaderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeaderImage.png; sourceTree = "<group>"; };
+		00FB3E5E1DA9837300D5B8CF /* Toronto, ON.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Toronto, ON.jpg"; sourceTree = "<group>"; };
+		00FB3E631DA98A0600D5B8CF /* GEIntoductionViewCtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEIntoductionViewCtr.h; sourceTree = "<group>"; };
+		00FB3E641DA98A0600D5B8CF /* GEIntoductionViewCtr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEIntoductionViewCtr.m; sourceTree = "<group>"; };
+		00FB3E661DAA46D300D5B8CF /* menuBck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBck.png; sourceTree = "<group>"; };
 		00FD97AA1D77538B0092B9DA /* like-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-selected.png"; sourceTree = "<group>"; };
 		00FD97AB1D77538B0092B9DA /* like-unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-unselected.png"; sourceTree = "<group>"; };
 		184FB69CD61EDE80E14B5E51 /* Pods-GETubeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GETubeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GETubeUITests/Pods-GETubeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -348,6 +393,9 @@
 		001BD15E1D1555E900DDD39F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				00FB3E511DA8192D00D5B8CF /* ResideMenu */,
+				00FB3E4E1DA80AC400D5B8CF /* NavigationController.h */,
+				00FB3E4F1DA80AC400D5B8CF /* NavigationController.m */,
 				001BD1681D15678700DDD39F /* MMNavigationController.h */,
 				001BD1691D15678700DDD39F /* MMNavigationController.m */,
 				001BD16E1D16414A00DDD39F /* MMExampleDrawerVisualStateManager.h */,
@@ -369,6 +417,14 @@
 				0008E4801D323351002DDE8B /* GEVideoPlayerCtr.m */,
 				00A1DCA31D3A7F0A00C3C710 /* GEVideoListVC.h */,
 				00A1DCA41D3A7F0A00C3C710 /* GEVideoListVC.m */,
+				0004BE331D98990D007445BF /* GEMyLikeCtr.h */,
+				0004BE341D98990D007445BF /* GEMyLikeCtr.m */,
+				00FB3E631DA98A0600D5B8CF /* GEIntoductionViewCtr.h */,
+				00FB3E641DA98A0600D5B8CF /* GEIntoductionViewCtr.m */,
+				00EF75C91DB370CB007B9EF3 /* GESelectFromListVC.h */,
+				00EF75CA1DB370CB007B9EF3 /* GESelectFromListVC.m */,
+				00EF75CC1DB5D74E007B9EF3 /* GEThemeSelectionVC.h */,
+				00EF75CD1DB5D74E007B9EF3 /* GEThemeSelectionVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -413,6 +469,8 @@
 				001BD1631D1555E900DDD39F /* SDImages */,
 				00A3C52B1D7CA5250068C3C2 /* GEFullScreenAlert.h */,
 				00A3C52C1D7CA5250068C3C2 /* GEFullScreenAlert.m */,
+				00449B021DB28A3800DA4C98 /* GESettingListCell.h */,
+				00449B031DB28A3800DA4C98 /* GESettingListCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,6 +550,13 @@
 		001BD1641D1555F700DDD39F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00449AFE1DB1EF0000DA4C98 /* setting.png */,
+				00F81A3C1DAD5132008E18D8 /* shareIcon.png */,
+				00FB3E661DAA46D300D5B8CF /* menuBck.png */,
+				00FB3E5B1DA9837300D5B8CF /* CheckMarkWhite.png */,
+				00FB3E5C1DA9837300D5B8CF /* ForkImage.png */,
+				00FB3E5D1DA9837300D5B8CF /* HeaderImage.png */,
+				00FB3E5E1DA9837300D5B8CF /* Toronto, ON.jpg */,
 				00A3C52E1D7CA7510068C3C2 /* retry-highlighted.png */,
 				00A3C52F1D7CA7510068C3C2 /* retry-normal.png */,
 				00A3C5291D7C92490068C3C2 /* networkerror.png */,
@@ -515,6 +580,8 @@
 				00F5E5C91D3189AF00B87FE7 /* dramamenuicon.png */,
 				00F5E5CA1D3189AF00B87FE7 /* livemenuicon.png */,
 				0051046F1D3B5F0600C5ACCD /* tick.png */,
+				0022ECEB1D91B8BD0032C317 /* private.png */,
+				0022ECED1D91BADF0032C317 /* noData.png */,
 				001BD1771D164CCB00DDD39F /* MetaData */,
 			);
 			path = Resources;
@@ -523,6 +590,7 @@
 		001BD1771D164CCB00DDD39F /* MetaData */ = {
 			isa = PBXGroup;
 			children = (
+				00449B001DB2368500DA4C98 /* Setting.json */,
 				0027D4BA1D2ED9EE001B5503 /* MaskImages.json */,
 				00A602581D2CAFFF00A62423 /* MenuFooter.json */,
 				008B3E601D2971D800DBD93C /* ThemeColor.json */,
@@ -617,7 +685,6 @@
 				00BE6BBE1D1540A50019D907 /* AppDelegate.m */,
 				00BE6BC31D1540A50019D907 /* Main.storyboard */,
 				00BE6BC91D1540A50019D907 /* Assets.xcassets */,
-				00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */,
 				00BE6BCE1D1540A50019D907 /* Info.plist */,
 				00BE6BC61D1540A50019D907 /* GETube.xcdatamodeld */,
 				00BE6BBA1D1540A50019D907 /* Supporting Files */,
@@ -649,6 +716,19 @@
 				00BE6BE41D1540A50019D907 /* Info.plist */,
 			);
 			path = GETubeUITests;
+			sourceTree = "<group>";
+		};
+		00FB3E511DA8192D00D5B8CF /* ResideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				00FB3E521DA8194800D5B8CF /* RECommonFunctions.h */,
+				00FB3E531DA8194800D5B8CF /* RECommonFunctions.m */,
+				00FB3E541DA8194800D5B8CF /* RESideMenu.h */,
+				00FB3E551DA8194800D5B8CF /* RESideMenu.m */,
+				00FB3E561DA8194800D5B8CF /* UIViewController+RESideMenu.h */,
+				00FB3E571DA8194800D5B8CF /* UIViewController+RESideMenu.m */,
+			);
+			path = ResideMenu;
 			sourceTree = "<group>";
 		};
 		12EEAB186007BB9E08F2316D /* Pods */ = {
@@ -788,8 +868,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00FB3E621DA9837300D5B8CF /* Toronto, ON.jpg in Resources */,
 				00B2D07C1D1CD378007F8A9C /* playlistIcon.png in Resources */,
-				00BE6BCD1D1540A50019D907 /* LaunchScreen.storyboard in Resources */,
+				00449B011DB2368500DA4C98 /* Setting.json in Resources */,
+				00449AFF1DB1EF0000DA4C98 /* setting.png in Resources */,
 				00A3C5301D7CA7510068C3C2 /* retry-highlighted.png in Resources */,
 				00A3C52A1D7C92490068C3C2 /* networkerror.png in Resources */,
 				00F6B8F31D5D72F900784EBA /* userprofile.png in Resources */,
@@ -807,14 +889,21 @@
 				00A3C5311D7CA7510068C3C2 /* retry-normal.png in Resources */,
 				00F5E5CB1D3189AF00B87FE7 /* dramamenuicon.png in Resources */,
 				00FD97AC1D77538B0092B9DA /* like-selected.png in Resources */,
+				00FB3E5F1DA9837300D5B8CF /* CheckMarkWhite.png in Resources */,
+				00FB3E601DA9837300D5B8CF /* ForkImage.png in Resources */,
 				00A9F90A1D7B5F86003CAC65 /* dislike-unselected.png in Resources */,
 				00A602511D2C2A9E00A62423 /* uparrow.png in Resources */,
+				0022ECEE1D91BADF0032C317 /* noData.png in Resources */,
+				00F81A3D1DAD5132008E18D8 /* shareIcon.png in Resources */,
 				008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */,
 				005104701D3B5F0600C5ACCD /* tick.png in Resources */,
 				001BD17B1D164D4500DDD39F /* GalaMenuMetaData.json in Resources */,
+				00FB3E671DAA46D300D5B8CF /* menuBck.png in Resources */,
 				00C84C651D5F9031000DD01B /* GoogleService-Info.plist in Resources */,
+				0022ECEC1D91B8BD0032C317 /* private.png in Resources */,
 				00DF23B41D486EC00073E86F /* back_white.png in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
+				00FB3E611DA9837300D5B8CF /* HeaderImage.png in Resources */,
 				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
 				0027D4B91D2E069E001B5503 /* menuicon.png in Resources */,
 				00A602601D2D11E500A62423 /* disclosureicon.png in Resources */,
@@ -970,6 +1059,7 @@
 				00706FFA1D19B8B1003AF084 /* UIImage+GIF.m in Sources */,
 				00706F9F1D17962B003AF084 /* GEEventManager.m in Sources */,
 				001BD1701D16414A00DDD39F /* MMExampleDrawerVisualStateManager.m in Sources */,
+				0004BE351D98990D007445BF /* GEMyLikeCtr.m in Sources */,
 				00A602631D2D143F00A62423 /* GESettingViewCtr.m in Sources */,
 				00A602541D2C305300A62423 /* UIColor+HexColors.m in Sources */,
 				00A602571D2CA5AF00A62423 /* MenuListHeader.m in Sources */,
@@ -982,6 +1072,7 @@
 				00706FF11D19B8B1003AF084 /* NSData+ImageContentType.m in Sources */,
 				00B2D07F1D1CDA5F007F8A9C /* GEPlaylistCell.m in Sources */,
 				001BD1851D16E03C00DDD39F /* GEEventVC.m in Sources */,
+				00FB3E651DA98A0600D5B8CF /* GEIntoductionViewCtr.m in Sources */,
 				0041AAFE1D41CEE900D59AB6 /* GTLYouTubePlaylistItem+GEPlaylistItem.m in Sources */,
 				0042E9B81D2613EF0094DA42 /* GEPlaylistVideoListCtr.m in Sources */,
 				00B2D0771D1C4C41007F8A9C /* GEPlaylistVC.m in Sources */,
@@ -991,12 +1082,15 @@
 				001BD1731D16466600DDD39F /* CAPSPageMenu.m in Sources */,
 				00706FF41D19B8B1003AF084 /* SDWebImageDecoder.m in Sources */,
 				00A602661D2D1AF500A62423 /* GESettingHeader.m in Sources */,
+				00FB3E501DA80AC400D5B8CF /* NavigationController.m in Sources */,
 				001BD1761D164A5700DDD39F /* GEPageRootVC.m in Sources */,
 				00706FF91D19B8B1003AF084 /* UIButton+WebCache.m in Sources */,
 				00706FF71D19B8B1003AF084 /* SDWebImageManager.m in Sources */,
 				001BD1881D16FA5900DDD39F /* GEEventHeader.m in Sources */,
+				00EF75CB1DB370CB007B9EF3 /* GESelectFromListVC.m in Sources */,
 				00706FFE1D19B8B1003AF084 /* UIImageView+WebCache.m in Sources */,
 				008B3E5C1D28C0DE00DBD93C /* GELoadingFooter.m in Sources */,
+				00FB3E591DA8194800D5B8CF /* RESideMenu.m in Sources */,
 				0041AAF81D41CCB000D59AB6 /* GTLYouTubeChannel+GEChannel.m in Sources */,
 				001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */,
 				00BE6BBC1D1540A50019D907 /* main.m in Sources */,
@@ -1006,10 +1100,13 @@
 				00706FFD1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m in Sources */,
 				0041AB041D41D18700D59AB6 /* GTLYouTubePlaylist+GEPlaylist.m in Sources */,
 				008B3E591D28C06600DBD93C /* GEVideoListCell.m in Sources */,
+				00FB3E581DA8194800D5B8CF /* RECommonFunctions.m in Sources */,
 				0041AB071D41D91500D59AB6 /* GTLYouTubeVideo+GEYouTubeVideo.m in Sources */,
+				00EF75CE1DB5D74E007B9EF3 /* GEThemeSelectionVC.m in Sources */,
 				00706FF51D19B8B1003AF084 /* SDWebImageDownloader.m in Sources */,
 				00A1DCA51D3A7F0A00C3C710 /* GEVideoListVC.m in Sources */,
 				0018E4651D656D3200CAFEA8 /* UserDataManager.m in Sources */,
+				00FB3E5A1DA8194800D5B8CF /* UIViewController+RESideMenu.m in Sources */,
 				00706FF81D19B8B1003AF084 /* SDWebImagePrefetcher.m in Sources */,
 				00A602691D2D1B1300A62423 /* GESettingThemeCell.m in Sources */,
 				00BE6BC81D1540A50019D907 /* GETube.xcdatamodeld in Sources */,
@@ -1019,6 +1116,7 @@
 				00706FF01D19B8B1003AF084 /* MKAnnotationView+WebCache.m in Sources */,
 				00706FFB1D19B8B1003AF084 /* UIImage+MultiFormat.m in Sources */,
 				00706FFF1D19B8B1003AF084 /* UIView+WebCacheOperation.m in Sources */,
+				00449B041DB28A3800DA4C98 /* GESettingListCell.m in Sources */,
 				00706FF31D19B8B1003AF084 /* SDWebImageCompat.m in Sources */,
 				0008E4811D323351002DDE8B /* GEVideoPlayerCtr.m in Sources */,
 				001BD17E1D166FC700DDD39F /* GESharedMenu.m in Sources */,
@@ -1067,14 +1165,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		00BE6BCB1D1540A50019D907 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				00BE6BCC1D1540A50019D907 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1119,6 +1209,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1158,6 +1249,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1169,12 +1261,14 @@
 			baseConfigurationReference = B965180A4A98C511FC2DE882 /* Pods-GETube.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Firoz Khan (5NTGWGK6MR)";
 				INFOPLIST_FILE = GETube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.Embr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
 			};
 			name = Debug;
 		};
@@ -1183,12 +1277,14 @@
 			baseConfigurationReference = 3636D0B901C7767BAF0DDFD0 /* Pods-GETube.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Firoz Khan (5NTGWGK6MR)";
 				INFOPLIST_FILE = GETube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.Embr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
 			};
 			name = Release;
 		};

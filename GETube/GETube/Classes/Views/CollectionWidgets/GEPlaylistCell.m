@@ -27,12 +27,13 @@
     ThemeManager* lThemeManager = [ThemeManager themeManager];
     UIColor* lNavColor = [lThemeManager selectedNavColor];
     UIColor* lNavTextColor = [lThemeManager selectedTextColor];
-    self.contentView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.2];
     self.overlayView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.5];
     self.noOfVideoLbl.textColor = lNavTextColor;
     self.videoLbl.textColor = lNavTextColor;
-    self.videoTileLbl.textColor = [UIColor blackColor];
+    self.videoTileLbl.textColor = [UIColor darkGrayColor];
     self.playlistIconView.image = [UIImage imageWithName: @"playlistIcon.png"];
+    
+    self.contentView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
@@ -45,8 +46,10 @@
         self.thumbIconView.image = lImage;
         return;
     }
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIImage* lLoadingImage = [UIImage createImageFromMask: [UIImage imageNamed: @"loadingthumbnailurl.png"] withFillColor: lNavColor];
     
-    UIImage* lLoadingImage = [UIImage imageWithName: @"loadingthumbnailurl.png"];
     [self.thumbIconView sd_setImageWithURL:thumbUrl placeholderImage:lLoadingImage completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
          if (image)

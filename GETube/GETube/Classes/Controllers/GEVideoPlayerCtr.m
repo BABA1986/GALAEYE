@@ -18,6 +18,8 @@
 #import "MBProgressHUD.h"
 #import <Google/SignIn.h>
 #import "AppDelegate.h"
+#import "GEEventManager.h"
+#import "MBProgressHUD.h"
 
 @interface GEVideoPlayerCtr ()
 {
@@ -75,6 +77,13 @@
     
     UITapGestureRecognizer* lDisLikeGesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(dislikeActionFound:)];
     [mDisLikeBaseView addGestureRecognizer: lDisLikeGesture];
+    
+    self.view.backgroundColor = [UIColor colorWithRed: 245.0/255.0 green: 245.0/255.0 blue: 245.0/255.0 alpha: 1.0];
+    mVideoListView.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem* lRightItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageWithName: @"shareIcon.png"] style: UIBarButtonItemStylePlain target: self action: @selector(shareButtonClicked:)];
+    lRightItem.imageInsets = UIEdgeInsetsMake(2, -10, 0, 10);
+    self.navigationItem.rightBarButtonItem = lRightItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,12 +95,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    
     NSString* lChannelTitle = [self.videoItem GEChannelTitle];
     self.title = lChannelTitle;
     
     [self loadTitleAndDescription];
-    [self getRating];
+//    [self getRating];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -156,18 +164,21 @@
     [self loadTitleAndDescription];
 }
 
+- (void)onLoginLogout: (BOOL)isLoggedIn
+{
+    
+}
+
 - (void)loadTitleAndDescription
 {
     ThemeManager* lThemeManager = [ThemeManager themeManager];
-    UIColor* lNavColor = [lThemeManager selectedNavColor];
-    UIColor* lNavTextColor = [lThemeManager selectedTextColor];
-    
-    mTitleBaseView.backgroundColor = lNavColor;
-    mTitleLbl.textColor = lNavTextColor;
-    mNoOfViewLbl.textColor = lNavTextColor;
-    mDescriptionView.textColor = lNavTextColor;
-    mLikeCountLbl.textColor = lNavTextColor;
-    mDisLikeCountLbl.textColor = lNavTextColor;
+    UIColor* lNavColor = [lThemeManager selectedNavColor];    
+    mTitleBaseView.backgroundColor = [UIColor clearColor];
+    mTitleLbl.textColor = [UIColor darkGrayColor];
+    mNoOfViewLbl.textColor = [UIColor darkGrayColor];
+    mDescriptionView.textColor = [UIColor darkGrayColor];
+    mLikeCountLbl.textColor = [UIColor darkGrayColor];
+    mDisLikeCountLbl.textColor = [UIColor darkGrayColor];
     
     mTitleLbl.text = self.videoItem.GETitle;
     mDescriptionView.text = self.videoItem.GEDescription;
@@ -190,14 +201,14 @@
     CGSize lDislikeCountSize = [self sizeOfString: mDisLikeCountLbl.text withFont: mDisLikeCountLbl.font inContWidth: 80.0];
     mDislikeBaseWidth.constant = lDislikeCountSize.width + 35.0;
     
-    [mExpandBtn setImage: [UIImage imageWithName: @"downarrow.png"] forState: UIControlStateNormal];
-    [mExpandBtn setImage: [UIImage imageWithName: @"uparrow.png"] forState: UIControlStateSelected];
+    [mExpandBtn setImage: [UIImage createImageFromMask: [UIImage imageNamed: @"downarrow.png"] withFillColor: lNavColor] forState: UIControlStateNormal];
+    [mExpandBtn setImage: [UIImage createImageFromMask: [UIImage imageNamed: @"uparrow.png"] withFillColor: lNavColor] forState: UIControlStateSelected];
     
-    [mLikeBtn setImage: [UIImage imageWithName: @"like-unselected.png"] forState: UIControlStateNormal];
-    [mLikeBtn setImage: [UIImage imageWithName: @"like-selected.png"] forState: UIControlStateSelected];
+    [mLikeBtn setImage: [UIImage createImageFromMask: [UIImage imageNamed: @"like-unselected.png"] withFillColor: lNavColor] forState: UIControlStateNormal];
+    [mLikeBtn setImage: [UIImage createImageFromMask: [UIImage imageNamed: @"like-selected.png"] withFillColor: lNavColor] forState: UIControlStateSelected];
     
-    [mDisLikeBtn setImage: [UIImage imageWithName: @"dislike-unselected.png"] forState: UIControlStateNormal];
-    [mDisLikeBtn setImage: [UIImage imageWithName: @"dislike-selected.png"] forState: UIControlStateSelected];
+    [mDisLikeBtn setImage: [UIImage createImageFromMask: [UIImage imageNamed: @"dislike-unselected.png"] withFillColor: lNavColor] forState: UIControlStateNormal];
+    [mDisLikeBtn setImage: [UIImage createImageFromMask: [UIImage imageNamed: @"dislike-selected.png"] withFillColor: lNavColor] forState: UIControlStateSelected];
 }
 
 - (void)getRating
@@ -219,6 +230,29 @@
      }];
 }
 
+- (void)shareButtonClicked: (id)sender
+{
+    NSString* lVideoUrl = [NSString stringWithFormat: @"http://www.youtube.com/watch?v=%@", mVideoItem.GEId];
+    NSArray* lPostItems = @[lVideoUrl];
+    UIActivityViewController* lActivityVC = [[UIActivityViewController alloc]
+                                            initWithActivityItems:lPostItems
+                                            applicationActivities:nil];
+
+    [lActivityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray* retItems, NSError* error)
+     {
+         if(completed)
+         {
+             MBProgressHUD* lHud = [MBProgressHUD showHUDAddedTo:self.view  animated:YES];
+             lHud.mode = MBProgressHUDModeText;
+             lHud.labelText = @"Logged in successfull.";
+             lHud.labelFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
+             lHud.removeFromSuperViewOnHide = YES;
+             lHud.yOffset = CGRectGetMidY(self.view.frame) - 55.0;
+             [lHud hide:YES afterDelay:1];
+         }
+     }];
+}
+
 - (IBAction)titleExpandCollapseAction:(id)sender
 {
     UIFont* lFont = [UIFont fontWithName: @"Helvetica-Light" size: 15.0];
@@ -226,11 +260,13 @@
     [mTitleBaseView layoutIfNeeded];
 
     [self.view layoutIfNeeded];
-    if (!mIsHeaderExpanded) {
+    if (!mIsHeaderExpanded)
+    {
         mTitleBaseHeight.constant = mTitleBaseHeight.constant + lDescSize.height;
     }
-    else {
-        mTitleBaseHeight.constant = mTitleBaseHeight.constant -  lDescSize.height;
+    else
+    {
+        mTitleBaseHeight.constant = mTitleBaseHeight.constant - lDescSize.height;
     }
     
     mIsHeaderExpanded = !mIsHeaderExpanded;
@@ -238,6 +274,8 @@
                      animations:^{
                              [self.view layoutIfNeeded];
                             mExpandBtn.selected = !mExpandBtn.selected;
+                     } completion: ^(BOOL sussecc){
+                         mDescriptionView.hidden = !mIsHeaderExpanded;
                      }];
 }
 
@@ -290,6 +328,9 @@
              lHud.removeFromSuperViewOnHide = YES;
              lHud.yOffset = CGRectGetMidY(self.view.frame) - 55.0;
              [lHud hide:YES afterDelay:1];
+             
+             GEEventManager* lManager = [GEEventManager manager];
+             [lManager likeCachedVideoItem: self.videoItem];
          }
      }];
 }
@@ -344,6 +385,8 @@
              lHud.labelFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
              lHud.removeFromSuperViewOnHide = YES;
              [lHud hide:YES afterDelay:1];
+             GEEventManager* lManager = [GEEventManager manager];
+             [lManager unlikeCachedVideoItem: self.videoItem];
          }
      }];
 }

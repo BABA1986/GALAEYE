@@ -1,0 +1,125 @@
+{
+    "groups": [
+               {
+               "id": "1",
+               "type": "100",
+               "title": "",
+               "items": [
+                         {
+                         "id": "2",
+                         "type": "200",
+                         "title": ""
+                         },
+                         {
+                         "id": "3",
+                         "type": "201",
+                         "title": "Logout"
+                         }
+                         ]
+               },
+               {
+               "id": "2",
+               "type": "101",
+               "title": "General",
+               "items": [
+                         {
+                         "id": "1",
+                         "type": "202",
+                         "title": "Video Quality",
+                         "description": "Select desired video quality as per your network type. Default is auto.",
+                         "values": [
+                                    {
+                                    "title": "Auto",
+                                    "type": "205",
+                                    "isSelected": "true",
+                                    },
+                                    {
+                                    "title": "Low",
+                                    "type": "205",
+                                    "isSelected": "false",
+                                    },
+                                    {
+                                    "title": "Medium",
+                                    "type": "205",
+                                    "isSelected": "false",
+                                    },
+                                    {
+                                    "title": "High",
+                                    "type": "205",
+                                    "isSelected": "false",
+                                    }
+                                    ]
+                         },
+                         {
+                         "id": "2",
+                         "type": "203",
+                         "title": "Choose a New Theme"
+                         },
+                         {
+                         "id": "3",
+                         "type": "204",
+                         "title": "Allow Notifications"
+                         },
+                         {
+                         "id": "4",
+                         "type": "203",
+                         "title": "Disclaimer"
+                         },
+                         {
+                         "id": "5",
+                         "type": "203",
+                         "title": "About"
+                         }
+                         ]
+               },
+               {
+               "id": "3",
+               "type": "102",
+               "title": "Support & Feedback",
+               "items": [
+                         {
+                         "id": "1",
+                         "type": "201",
+                         "title": "Share This App"
+                         },
+                         {
+                         "id": "2",
+                         "type": "201",
+                         "title": "Support"
+                         },
+                         {
+                         "id": "3",
+                         "type": "201",
+                         "title": "Rate App"
+                         }
+                         ]
+               },
+               {
+               "id": "4",
+               "type": "103",
+               "title": "Follow Us",
+               "items": [
+                         {
+                         "id": "1",
+                         "type": "201",
+                         "title": "Facebook"
+                         },
+                         {
+                         "id": "2",
+                         "type": "201",
+                         "title": "Twitter"
+                         },
+                         {
+                         "id": "3",
+                         "type": "201",
+                         "title": "Instagram"
+                         },
+                         {
+                         "id": "4",
+                         "type": "201",
+                         "title": "Google Plus"
+                         }
+                         ]
+               }
+               ]
+}

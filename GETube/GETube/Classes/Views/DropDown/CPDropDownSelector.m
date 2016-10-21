@@ -543,7 +543,10 @@
         lAccessoryRect.size.width = 15.0; lAccessoryRect.size.height = 15.0;
         UIImageView* lAccessoryView = [[UIImageView alloc] initWithFrame: lAccessoryRect];
         lAccessoryView.tag = 515;
-        lAccessoryView.image = [UIImage imageWithName: @"tick.png"];
+        ThemeManager* lThemeManager = [ThemeManager themeManager];
+        UIColor* lNavColor = [lThemeManager selectedNavColor];
+        lAccessoryView.image = [UIImage createImageFromMaskWithImageName: @"tick.png" withFillColor: lNavColor];
+        
         [lCell addSubview: lAccessoryView];
     }
     
@@ -569,7 +572,9 @@
     lAccessoryView.image = nil;
     if ([self.selectedContentLabel.text isEqualToString:lText] && !mAllowMultiSelection)
     {
-        lAccessoryView.image = [UIImage imageWithName: @"tick.png"];
+        ThemeManager* lThemeManager = [ThemeManager themeManager];
+        UIColor* lNavColor = [lThemeManager selectedNavColor];
+        lAccessoryView.image = [UIImage createImageFromMaskWithImageName: @"tick.png" withFillColor: lNavColor];
         self.selectedIndex = indexPath.row;
     }
 

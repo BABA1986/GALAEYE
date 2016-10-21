@@ -29,11 +29,18 @@
     UIColor* lNavColor = [lManager selectedNavColor];
     UIColor* lNavTextColor = [lManager selectedTextColor];
 
-    self.titleLabel.textColor = [UIColor blackColor];
-    self.timeLabel.textColor = [UIColor blackColor];
+    self.titleLabel.textColor = [UIColor darkGrayColor];
+    self.timeLabel.textColor = [UIColor darkGrayColor];
     self.statusLabel.backgroundColor = [lNavColor colorWithAlphaComponent: 0.5];
     self.statusLabel.textColor = lNavTextColor;
-    self.contentView.backgroundColor = [lNavColor colorWithAlphaComponent: 0.2];
+    
+    UIImage* lNormalImg = [UIImage createImageFromMask: [UIImage imageNamed: @"alarmOff.png"] withFillColor: lNavColor];
+    [self.alarmBtn setImage: lNormalImg forState: UIControlStateNormal];
+    
+    UIImage* lSelectedImg = [UIImage createImageFromMask: [UIImage imageNamed: @"alarmOn.png"] withFillColor: lNavColor];
+    [self.alarmBtn setImage: lSelectedImg forState: UIControlStateSelected];
+    
+    self.contentView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)loadVideoThumbFromUrl: (NSURL*)thumbUrl
@@ -47,7 +54,9 @@
         return;
     }
     
-    UIImage* lLoadingImage = [UIImage imageWithName: @"loadingthumbnailurl.png"];
+    ThemeManager* lThemeManager = [ThemeManager themeManager];
+    UIColor* lNavColor = [lThemeManager selectedNavColor];
+    UIImage* lLoadingImage = [UIImage createImageFromMask: [UIImage imageNamed: @"loadingthumbnailurl.png"] withFillColor: lNavColor];
     [self.videoIcon sd_setImageWithURL:thumbUrl placeholderImage:lLoadingImage completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
          if (image)

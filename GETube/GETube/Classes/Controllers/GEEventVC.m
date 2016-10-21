@@ -31,12 +31,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithRed: 245.0/255.0 green: 245.0/255.0 blue: 245.0/255.0 alpha: 1.0];
+    mEventListView.backgroundColor = [UIColor clearColor];
+    mConnectionErrView.hidden = TRUE;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
-    
     if (![self checkForInternetConnection])
         return;
 }
@@ -54,7 +57,10 @@
     
     GEEventManager* lManager = [GEEventManager manager];
     if (lManager.eventListObjs.count)
+    {
+        [mEventListView reloadData];
         return;
+    }
     
     [self addIndicatorView];
     [mIndicator startAnimating];
@@ -72,6 +78,11 @@
 - (void)applyTheme
 {
     [mEventListView reloadData];
+}
+
+- (void)onLoginLogout: (BOOL)isLoggedIn
+{
+    
 }
 
 - (void)addIndicatorView
@@ -97,10 +108,12 @@
     NetworkStatus lNetStatus = [lNetReach currentReachabilityStatus];
     if (lNetStatus == NotReachable)
     {
+        mConnectionErrView.hidden = FALSE;
         [self.view bringSubviewToFront: mConnectionErrView];
         return NO;
     }
     
+    mConnectionErrView.hidden = TRUE;
     [self.view bringSubviewToFront: mEventListView];
     return YES;
 }
@@ -156,7 +169,7 @@
         lCell.statusLabel.text = @"Live";
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
         NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
         lCell.timeLabel.attributedText = lAttStr;
     }
     else if (indexPath.section == 1) {
@@ -168,7 +181,7 @@
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
         
         NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
         lCell.timeLabel.attributedText = lAttStr;
         lCell.alarmBtn.hidden = FALSE;
     }
@@ -178,7 +191,7 @@
         NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
         
         NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
+        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
         lCell.timeLabel.attributedText = lAttStr;
     }
 

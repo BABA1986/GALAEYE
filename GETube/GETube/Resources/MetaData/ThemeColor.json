@@ -1,58 +1,58 @@
 {
     "Themes": [
                {
-               "id": "1",
-               "themename": "Theme1",
-               "navcolor": "003366",
+               "id": "4",
+               "themename": "Theme4",
+               "navcolor": "F6CD2E",
                "navtextcolor": "FFFFFF",
                },
                {
                "id": "2",
                "themename": "Theme2",
                "navcolor": "C3C3E5",
-               "navtextcolor": "443266",
+               "navtextcolor": "FFFFFF",
+               },
+               {
+               "id": "9",
+               "themename": "Theme9",
+               "navcolor": "C3C3E5",
+               "navtextcolor": "FFFFFF",
+               },
+               {
+               "id": "1",
+               "themename": "Theme1",
+               "navcolor": "003366",
+               "navtextcolor": "FFFFFF",
                },
                {
                "id": "3",
                "themename": "Theme3",
                "navcolor": "9C2A00",
-               "navtextcolor": "D6BF86",
-               },
-               {
-               "id": "4",
-               "themename": "Theme4",
-               "navcolor": "F6CD2E",
-               "navtextcolor": "2D2D2D",
+               "navtextcolor": "FFFFFF",
                },
                {
                "id": "5",
                "themename": "Theme5",
                "navcolor": "F8F8F2",
-               "navtextcolor": "6F3662",
+               "navtextcolor": "FFFFFF",
                },
                {
                "id": "6",
                "themename": "Theme6",
                "navcolor": "4E1500",
-               "navtextcolor": "FFEC00",
+               "navtextcolor": "FFFFFF",
                },
                {
                "id": "7",
                "themename": "Theme7",
                "navcolor": "606060",
-               "navtextcolor": "ECECEC",
+               "navtextcolor": "FFFFFF",
                },
                {
                "id": "8",
                "themename": "Theme8",
                "navcolor": "FF8E7F",
-               "navtextcolor": "0C6A9C",
-               },
-               {
-               "id": "9",
-               "themename": "Theme9",
-               "navcolor": "000000",
-               "navtextcolor": "C0C0C0",
+               "navtextcolor": "FFFFFF",
                }
                ]
 }

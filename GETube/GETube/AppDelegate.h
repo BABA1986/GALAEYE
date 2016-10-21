@@ -8,24 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "MMDrawerController.h"
-#import "MMDrawerVisualState.h"
-#import "MMNavigationController.h"
-
+#import "RESideMenu.h"
 #import "GEMenuVC.h"
 #import "GEPageRootVC.h"
+#import "GEIntoductionViewCtr.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <Google/SignIn.h>
 
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate, GEMenuVCDelegate, GIDSignInDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GEMenuVCDelegate, GIDSignInDelegate, RESideMenuDelegate, GEIntoductionViewCtrDelegate>
 {
-    MMDrawerController*             mAppDrawer;
+    RESideMenu*                     mAppDrawer;
     GEMenuVC*                       mDrawerLeftMenuCtr;
     GEPageRootVC*                   mDrawerCenterCtr;
     
     BOOL                            mShowLoginToast;
+    BOOL                            mIsMenuOpen;
 }
 
 @property (strong, nonatomic) UIWindow *window;
