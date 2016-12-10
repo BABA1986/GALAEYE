@@ -12,6 +12,7 @@
 #import "GESelectFromListVC.h"
 #import "ThemeManager.h"
 #import "UserDataManager.h"
+#import "GEThemeSelectionVC.h"
 
 @interface GESettingViewCtr ()
 - (void)applyTheme;
@@ -172,7 +173,7 @@
     lLabel.textColor = [UIColor darkGrayColor];
     
     UIView* lView = [[UIView alloc] init];
-    lView.backgroundColor = [UIColor clearColor];
+    lView.backgroundColor = [UIColor colorWithRed: 245.0/255.0 green: 245.0/255.0 blue: 245.0/255.0 alpha: 1.0];
     [lView addSubview: lLabel];
     
     CGRect lLblRect = lLabel.frame;
@@ -207,13 +208,18 @@
     NSDictionary* lListItem = [lGrpItems objectAtIndex: indexPath.row];
     NSInteger lCellId = [[lListItem objectForKey: @"id"] integerValue];
     
+    UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     if(lGrpType == 101 && lCellId == 1)
     {
-        UIStoryboard* lStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         GESelectFromListVC* lGESelectFromListVC = [lStoryBoard instantiateViewControllerWithIdentifier: @"GESelectFromListVCID"];
         lGESelectFromListVC.values = [lListItem objectForKey: @"values"];
         lGESelectFromListVC.headerTitle = [lListItem objectForKey: @"description"];
         [self.navigationController pushViewController: lGESelectFromListVC animated: TRUE];
+    }
+    else if(lGrpType == 101 && lCellId == 2)
+    {
+        GEThemeSelectionVC* lGEThemeSelectionVC = [lStoryBoard instantiateViewControllerWithIdentifier: @"GEThemeSelectionVCID"];
+        [self.navigationController pushViewController: lGEThemeSelectionVC animated: TRUE];
     }
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import "GEEventVC.h"
-#import "GEEventCell.h"
 #import "GEServiceManager.h"
 #import "GEEventManager.h"
 #import "NSDate+TimeAgo.h"
@@ -17,6 +16,7 @@
 #import "GEYoutubeResult.h"
 #import "GEConstants.h"
 #import "Reachability.h"
+#import "SharedReminder.h"
 
 @interface GEEventVC()
 - (void)loadData;
@@ -153,7 +153,7 @@
     static NSString *identifier = @"GEEventCellID";
     
     GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-
+    lCell.delegate = self;
     lCell.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
     GEEventManager* lManager = [GEEventManager manager];
     GEEventListObj* lEventObj = [lManager.eventListObjs objectAtIndex: indexPath.section];
@@ -165,34 +165,23 @@
     lCell.alarmBtn.hidden = TRUE;
     lCell.timeLabelMaxX.constant = 0.0;
     lCell.videoPlayIcon.hidden = FALSE;
+    NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
+    lCell.timeLabel.text = lStartOn;
+    
     if (indexPath.section == 0) {
         lCell.statusLabel.text = @"Live";
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else if (indexPath.section == 1) {
         lCell.videoPlayIcon.hidden = TRUE;
         lCell.statusLabel.text = @"Upcomming";
         lCell.videoPlayIcon.image = nil;
         lCell.timeLabelMaxX.constant = -30.0;
-        NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
-        lCell.timeLabel.attributedText = lAttStr;
         lCell.alarmBtn.hidden = FALSE;
+        SharedReminder* lSharedReminder = [SharedReminder SharedRemider];
+        lCell.alarmBtn.selected = [lSharedReminder isInReminderList: lResult];
     }
     else if (indexPath.section == 2) {
         lCell.statusLabel.text = @"Completed";
-        NSString* lEndOn = [[lResult eventEndStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
 
     NSURL* lThumbUrl = [NSURL URLWithString: [lResult GEThumbnailUrl]];
@@ -249,7 +238,7 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 90.0;
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GEEventManager* lManager = [GEEventManager manager];
@@ -352,6 +341,36 @@
         lGEVideoListVC.channelSource = kGEChannelID;
         lGEVideoListVC.videoEventType = lQueryType;
         [self.navigationDelegate moveToViewController: lGEVideoListVC fromViewCtr: self];
+    }
+}
+
+- (void)didSelectAlarmButtonInCell: (GEEventCell*)eventCell
+{
+    SharedReminder* lSharedReminder = [SharedReminder SharedRemider];
+    NSIndexPath* indexPath = [mEventListView indexPathForCell: eventCell];
+    
+    GEEventManager* lManager = [GEEventManager manager];
+    FetchEventQueryType lQueryType = EFetchEventsLive;
+    if (indexPath.section == 2)
+        lQueryType = EFetchEventsCompleted;
+    else if (indexPath.section == 1)
+        lQueryType = EFetchEventsUpcomming;
+    else
+        lQueryType = EFetchEventsLive;
+    
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: lQueryType forSource: kGEChannelID];
+    GEEventListPage* lEventPage = [lEventObj.eventListPages objectAtIndex: 0];
+    NSObject<GEYoutubeResult>* lSearchResult = [lEventPage.eventList objectAtIndex: indexPath.row];
+    
+    if ([lSharedReminder isInReminderList: lSearchResult])
+    {
+        [lSharedReminder deleteReminderVideo: lSearchResult];
+        [lManager removeReminderVideoItem: lSearchResult];
+    }
+    else
+    {
+        [lSharedReminder addReminderVideo: lSearchResult];
+        [lManager addReminderVideoItem: lSearchResult];
     }
 }
 

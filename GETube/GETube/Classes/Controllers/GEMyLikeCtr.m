@@ -72,7 +72,7 @@
 {
     if (![self checkForInternetConnection])
         return;
-    if (mVideoEventType == EFetchEventsPrivate && ![self checkForLoginUser])
+    if (mVideoEventType == EFetchEventsLiked && ![self checkForLoginUser])
         return;
     
     GEEventManager* lManager = [GEEventManager manager];
@@ -98,7 +98,7 @@
          mIndicator.hidden = TRUE;
          mRequesting = FALSE;
          
-         if (mVideoEventType == EFetchEventsPrivate)
+         if (mVideoEventType == EFetchEventsLiked)
              [self showDataNotAvailable];
      }];
 }
@@ -203,33 +203,20 @@
     lCell.statusLabel.hidden = TRUE;
     lCell.alarmBtn.hidden = TRUE;
     lCell.timeLabelMaxX.constant = 0.0;
+    NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
+    lCell.timeLabel.text = lStartOn;
+    
     if (mVideoEventType == EFetchEventsLive) {
         lCell.statusLabel.text = @"Live";
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else if (mVideoEventType == EFetchEventsUpcomming) {
         lCell.statusLabel.text = @"Upcomming";
         lCell.videoPlayIcon.image = nil;
         lCell.timeLabelMaxX.constant = -30.0;
-        NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
-        lCell.timeLabel.attributedText = lAttStr;
         lCell.alarmBtn.hidden = FALSE;
     }
     else if (mVideoEventType == EFetchEventsCompleted) {
         lCell.statusLabel.text = @"Completed";
-        NSString* lEndOn = [[lResult eventEndStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else
     {
@@ -295,7 +282,7 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 90.0;
     if (mVideoEventType == EFetchEventsUpcomming) lHeight += 10.0;
     
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);

@@ -90,5 +90,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Used to Save Events</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Used to Save Reminder</string>
 </dict>
 </plist>

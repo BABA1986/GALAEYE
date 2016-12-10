@@ -36,6 +36,7 @@
 		00449AFF1DB1EF0000DA4C98 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 00449AFE1DB1EF0000DA4C98 /* setting.png */; };
 		00449B011DB2368500DA4C98 /* Setting.json in Resources */ = {isa = PBXBuildFile; fileRef = 00449B001DB2368500DA4C98 /* Setting.json */; };
 		00449B041DB28A3800DA4C98 /* GESettingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00449B031DB28A3800DA4C98 /* GESettingListCell.m */; };
+		004A525E1DD0FA9B003E3C09 /* SharedReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A525D1DD0FA9B003E3C09 /* SharedReminder.m */; };
 		005104701D3B5F0600C5ACCD /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0051046F1D3B5F0600C5ACCD /* tick.png */; };
 		006588C21D70C89900DF0A43 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006588C11D70C89900DF0A43 /* Security.framework */; };
 		006588C41D70C8B100DF0A43 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006588C31D70C8B100DF0A43 /* SystemConfiguration.framework */; };
@@ -58,12 +59,15 @@
 		00706FFD1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FEB1D19B8B1003AF084 /* UIImageView+HighlightedWebCache.m */; };
 		00706FFE1D19B8B1003AF084 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */; };
 		00706FFF1D19B8B1003AF084 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */; };
+		0073971E1DB9CCF000052D6C /* themeImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0073971D1DB9CCF000052D6C /* themeImage.png */; };
+		007397211DBA9ACD00052D6C /* GEThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 007397201DBA9ACD00052D6C /* GEThemeCell.m */; };
 		008B3E521D27C68000DBD93C /* play-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008B3E511D27C68000DBD93C /* play-Icon.png */; };
 		008B3E561D283C9800DBD93C /* GESharedVideoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E551D283C9800DBD93C /* GESharedVideoList.m */; };
 		008B3E591D28C06600DBD93C /* GEVideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E581D28C06600DBD93C /* GEVideoListCell.m */; };
 		008B3E5C1D28C0DE00DBD93C /* GELoadingFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E5B1D28C0DE00DBD93C /* GELoadingFooter.m */; };
 		008B3E5F1D28D0AA00DBD93C /* GEVideoListHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */; };
 		008B3E611D2971D800DBD93C /* ThemeColor.json in Resources */ = {isa = PBXBuildFile; fileRef = 008B3E601D2971D800DBD93C /* ThemeColor.json */; };
+		008BBA711DCFAC96009BF76D /* GEReminderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BBA701DCFAC96009BF76D /* GEReminderVC.m */; };
 		00A1DCA21D3A783300C3C710 /* smalllogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A1DCA11D3A783300C3C710 /* smalllogo.png */; };
 		00A1DCA51D3A7F0A00C3C710 /* GEVideoListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A1DCA41D3A7F0A00C3C710 /* GEVideoListVC.m */; };
 		00A1DCA91D3B31FF00C3C710 /* CPDropDownSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A1DCA81D3B31FF00C3C710 /* CPDropDownSelector.m */; };
@@ -84,6 +88,7 @@
 		00A602631D2D143F00A62423 /* GESettingViewCtr.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A602621D2D143F00A62423 /* GESettingViewCtr.m */; };
 		00A602661D2D1AF500A62423 /* GESettingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A602651D2D1AF500A62423 /* GESettingHeader.m */; };
 		00A602691D2D1B1300A62423 /* GESettingThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A602681D2D1B1300A62423 /* GESettingThemeCell.m */; };
+		00A895771DD8E4E1004F3615 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A895761DD8E4E1004F3615 /* EventKit.framework */; };
 		00A9F90A1D7B5F86003CAC65 /* dislike-unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9F9081D7B5F86003CAC65 /* dislike-unselected.png */; };
 		00A9F90B1D7B5F86003CAC65 /* dislike-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A9F9091D7B5F86003CAC65 /* dislike-selected.png */; };
 		00B196421D46FD1700D09E9F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B196411D46FD1700D09E9F /* CoreText.framework */; };
@@ -195,6 +200,8 @@
 		00449B001DB2368500DA4C98 /* Setting.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Setting.json; sourceTree = "<group>"; };
 		00449B021DB28A3800DA4C98 /* GESettingListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESettingListCell.h; sourceTree = "<group>"; };
 		00449B031DB28A3800DA4C98 /* GESettingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESettingListCell.m; sourceTree = "<group>"; };
+		004A525C1DD0FA9B003E3C09 /* SharedReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedReminder.h; sourceTree = "<group>"; };
+		004A525D1DD0FA9B003E3C09 /* SharedReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedReminder.m; sourceTree = "<group>"; };
 		0051046F1D3B5F0600C5ACCD /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
 		006588C11D70C89900DF0A43 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		006588C31D70C8B100DF0A43 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -237,6 +244,9 @@
 		00706FED1D19B8B1003AF084 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		00706FEE1D19B8B1003AF084 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		00706FEF1D19B8B1003AF084 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		0073971D1DB9CCF000052D6C /* themeImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = themeImage.png; sourceTree = "<group>"; };
+		0073971F1DBA9ACD00052D6C /* GEThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEThemeCell.h; sourceTree = "<group>"; };
+		007397201DBA9ACD00052D6C /* GEThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEThemeCell.m; sourceTree = "<group>"; };
 		008B3E511D27C68000DBD93C /* play-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-Icon.png"; sourceTree = "<group>"; };
 		008B3E541D283C9800DBD93C /* GESharedVideoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESharedVideoList.h; sourceTree = "<group>"; };
 		008B3E551D283C9800DBD93C /* GESharedVideoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESharedVideoList.m; sourceTree = "<group>"; };
@@ -247,6 +257,8 @@
 		008B3E5D1D28D0AA00DBD93C /* GEVideoListHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoListHeader.h; sourceTree = "<group>"; };
 		008B3E5E1D28D0AA00DBD93C /* GEVideoListHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoListHeader.m; sourceTree = "<group>"; };
 		008B3E601D2971D800DBD93C /* ThemeColor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ThemeColor.json; sourceTree = "<group>"; };
+		008BBA6F1DCFAC96009BF76D /* GEReminderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEReminderVC.h; sourceTree = "<group>"; };
+		008BBA701DCFAC96009BF76D /* GEReminderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEReminderVC.m; sourceTree = "<group>"; };
 		00A1DCA11D3A783300C3C710 /* smalllogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smalllogo.png; sourceTree = "<group>"; };
 		00A1DCA31D3A7F0A00C3C710 /* GEVideoListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEVideoListVC.h; sourceTree = "<group>"; };
 		00A1DCA41D3A7F0A00C3C710 /* GEVideoListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEVideoListVC.m; sourceTree = "<group>"; };
@@ -278,6 +290,7 @@
 		00A602651D2D1AF500A62423 /* GESettingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESettingHeader.m; sourceTree = "<group>"; };
 		00A602671D2D1B1300A62423 /* GESettingThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESettingThemeCell.h; sourceTree = "<group>"; };
 		00A602681D2D1B1300A62423 /* GESettingThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESettingThemeCell.m; sourceTree = "<group>"; };
+		00A895761DD8E4E1004F3615 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		00A9F9081D7B5F86003CAC65 /* dislike-unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dislike-unselected.png"; sourceTree = "<group>"; };
 		00A9F9091D7B5F86003CAC65 /* dislike-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dislike-selected.png"; sourceTree = "<group>"; };
 		00B196411D46FD1700D09E9F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -345,6 +358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A895771DD8E4E1004F3615 /* EventKit.framework in Frameworks */,
 				006588C41D70C8B100DF0A43 /* SystemConfiguration.framework in Frameworks */,
 				006588C21D70C89900DF0A43 /* Security.framework in Frameworks */,
 				00B196421D46FD1700D09E9F /* CoreText.framework in Frameworks */,
@@ -425,6 +439,8 @@
 				00EF75CA1DB370CB007B9EF3 /* GESelectFromListVC.m */,
 				00EF75CC1DB5D74E007B9EF3 /* GEThemeSelectionVC.h */,
 				00EF75CD1DB5D74E007B9EF3 /* GEThemeSelectionVC.m */,
+				008BBA6F1DCFAC96009BF76D /* GEReminderVC.h */,
+				008BBA701DCFAC96009BF76D /* GEReminderVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -432,6 +448,7 @@
 		001BD15F1D1555E900DDD39F /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				004A525B1DD0FA7B003E3C09 /* Reminders */,
 				0018E4621D656D0E00CAFEA8 /* UserModal */,
 				0041AAE71D41BE8400D59AB6 /* YoutubeCatageory */,
 				008B3E531D283C5400DBD93C /* VideoList */,
@@ -496,6 +513,8 @@
 				00A602651D2D1AF500A62423 /* GESettingHeader.m */,
 				00A602671D2D1B1300A62423 /* GESettingThemeCell.h */,
 				00A602681D2D1B1300A62423 /* GESettingThemeCell.m */,
+				0073971F1DBA9ACD00052D6C /* GEThemeCell.h */,
+				007397201DBA9ACD00052D6C /* GEThemeCell.m */,
 			);
 			path = CollectionWidgets;
 			sourceTree = "<group>";
@@ -582,6 +601,7 @@
 				0051046F1D3B5F0600C5ACCD /* tick.png */,
 				0022ECEB1D91B8BD0032C317 /* private.png */,
 				0022ECED1D91BADF0032C317 /* noData.png */,
+				0073971D1DB9CCF000052D6C /* themeImage.png */,
 				001BD1771D164CCB00DDD39F /* MetaData */,
 			);
 			path = Resources;
@@ -615,6 +635,15 @@
 				0041AB061D41D91500D59AB6 /* GTLYouTubeVideo+GEYouTubeVideo.m */,
 			);
 			path = YoutubeCatageory;
+			sourceTree = "<group>";
+		};
+		004A525B1DD0FA7B003E3C09 /* Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				004A525C1DD0FA9B003E3C09 /* SharedReminder.h */,
+				004A525D1DD0FA9B003E3C09 /* SharedReminder.m */,
+			);
+			path = Reminders;
 			sourceTree = "<group>";
 		};
 		00706F9C1D1795F8003AF084 /* Events */ = {
@@ -747,6 +776,7 @@
 		8AAD3EAB25D22B05EAC352B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00A895761DD8E4E1004F3615 /* EventKit.framework */,
 				006588C31D70C8B100DF0A43 /* SystemConfiguration.framework */,
 				006588C11D70C89900DF0A43 /* Security.framework */,
 				00B196411D46FD1700D09E9F /* CoreText.framework */,
@@ -904,6 +934,7 @@
 				00DF23B41D486EC00073E86F /* back_white.png in Resources */,
 				00BE6BC51D1540A50019D907 /* Main.storyboard in Resources */,
 				00FB3E611DA9837300D5B8CF /* HeaderImage.png in Resources */,
+				0073971E1DB9CCF000052D6C /* themeImage.png in Resources */,
 				00A602591D2CAFFF00A62423 /* MenuFooter.json in Resources */,
 				0027D4B91D2E069E001B5503 /* menuicon.png in Resources */,
 				00A602601D2D11E500A62423 /* disclosureicon.png in Resources */,
@@ -1066,6 +1097,7 @@
 				00706FA31D179D70003AF084 /* GESharedPlaylist.m in Sources */,
 				008B3E5F1D28D0AA00DBD93C /* GEVideoListHeader.m in Sources */,
 				00BE6BBF1D1540A50019D907 /* AppDelegate.m in Sources */,
+				007397211DBA9ACD00052D6C /* GEThemeCell.m in Sources */,
 				00A3C5281D7C8BD60068C3C2 /* Reachability.m in Sources */,
 				00A6024D1D2C283C00A62423 /* ThemeManager.m in Sources */,
 				00706FFC1D19B8B1003AF084 /* UIImage+WebP.m in Sources */,
@@ -1093,6 +1125,8 @@
 				00FB3E591DA8194800D5B8CF /* RESideMenu.m in Sources */,
 				0041AAF81D41CCB000D59AB6 /* GTLYouTubeChannel+GEChannel.m in Sources */,
 				001BD16A1D15678700DDD39F /* MMNavigationController.m in Sources */,
+				008BBA711DCFAC96009BF76D /* GEReminderVC.m in Sources */,
+				004A525E1DD0FA9B003E3C09 /* SharedReminder.m in Sources */,
 				00BE6BBC1D1540A50019D907 /* main.m in Sources */,
 				001BD1811D16793D00DDD39F /* MenuListCell.m in Sources */,
 				00706F9B1D170820003AF084 /* GEServiceManager.m in Sources */,
@@ -1209,7 +1243,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
-				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
+				PROVISIONING_PROFILE = "b87dc6c4-2059-4586-9dc6-c26275d331fe";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1249,7 +1283,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.GETube;
-				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
+				PROVISIONING_PROFILE = "b87dc6c4-2059-4586-9dc6-c26275d331fe";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1262,13 +1296,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Firoz Khan (5NTGWGK6MR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
 				INFOPLIST_FILE = GETube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.Embr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
+				PROVISIONING_PROFILE = "b87dc6c4-2059-4586-9dc6-c26275d331fe";
 			};
 			name = Debug;
 		};
@@ -1278,13 +1312,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Firoz Khan (5NTGWGK6MR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Himanshu Kansara (62349692CK)";
 				INFOPLIST_FILE = GETube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.Embr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b85d3368-edc4-42f8-b3d3-be11e2b7fc95";
+				PROVISIONING_PROFILE = "b87dc6c4-2059-4586-9dc6-c26275d331fe";
 			};
 			name = Release;
 		};

@@ -12,6 +12,7 @@
 #import "GESharedVideoList.h"
 #import "UserDataManager.h"
 #import "GEConstants.h"
+#import "SharedReminder.h"
 #import <GTMOAuth2/GTMOAuth2Authentication.h>
 
 @interface GEServiceManager ()
@@ -162,7 +163,6 @@
     return lQuery;
 }
 
-
 - (GTLQueryYouTube*)queryForVideoListFromSearch: (GTLYouTubeSearchListResponse*)result
 {
     GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForVideosListWithPart: @"id,snippet,liveStreamingDetails,statistics"];
@@ -178,6 +178,26 @@
         lVideos = [lVideos stringByAppendingFormat: @"%@", lItem.identifier.videoId];
     }
     lQuery.identifier = lVideos;
+    return lQuery;
+}
+
+- (GTLQueryYouTube*)queryForVideoListFromReminders
+{
+    GTLQueryYouTube* lQuery = [GTLQueryYouTube queryForVideosListWithPart: @"id,snippet,liveStreamingDetails,statistics"];
+    lQuery.maxResults = 50;
+    lQuery.type = @"video";
+    lQuery.order = @"date";
+    NSArray* lVideos = [[SharedReminder SharedRemider] remiderVideoIds];
+    NSString* lIds = @"";
+    for (NSString* lItem in lVideos)
+    {
+        if ([lVideos lastObject] != lItem) {
+            lIds = [lIds stringByAppendingFormat: @"%@,", lItem];
+            continue;
+        }
+        lIds = [lIds stringByAppendingFormat: @"%@", lItem];
+    }
+    lQuery.identifier = lIds;
     return lQuery;
 }
 
@@ -212,9 +232,6 @@
     else if (eventType == EFetchEventsPopularCompleted) {
         lQuery.eventType = kGTLYouTubeEventTypeCompleted;
         lQuery.order = kGTLYouTubeOrderViewCount;
-    }
-    else  if (eventType == EFetchEventsPrivate) {
-//        lQuery.eventType = kGTLYouTubeEventTypeCompleted;
     }
     
     lQuery.pageToken = pageToken;
@@ -306,7 +323,7 @@
                    GTLYouTubeVideoListResponse* lResponse = (GTLYouTubeVideoListResponse*)object;
                    lResponse.nextPageToken = lResult.nextPageToken;
                    lResponse.prevPageToken = lResult.prevPageToken;
-                  [lManager addEventSearchResponse: lResponse forEventType: queryType forSource: channelId];
+                  [lManager addEventSearchResponse: lResponse forEventType: queryType forSource: kGEChannelID];
                   finishCallback(queryType);
                }];
           }];
@@ -400,6 +417,17 @@
          if (eventType == EFetchEventsLiked)
          {
              GTLQueryYouTube* lVideoListQuery = [self queryForMyLikedVideos];
+             [mYTService executeQuery: lVideoListQuery
+                    completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
+              {
+                  GTLYouTubeVideoListResponse* lResponse = (GTLYouTubeVideoListResponse*)object;
+                  [lManager addEventSearchResponse: lResponse forEventType: eventType forSource: channelSource];
+                  finishCallback(eventType);
+              }];
+         }
+         else if (eventType == EFetchEventsReminders)
+         {
+             GTLQueryYouTube* lVideoListQuery = [self queryForVideoListFromReminders];
              [mYTService executeQuery: lVideoListQuery
                     completionHandler: ^(GTLServiceTicket* ticket, id object, NSError* error)
               {

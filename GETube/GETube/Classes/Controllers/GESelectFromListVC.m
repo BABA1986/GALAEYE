@@ -58,7 +58,7 @@
 */
 
 #pragma mark-
-#pragma mark- UICollectionViewDelegate and UICollectionViewDatasource
+#pragma mark- UITableViewDelegate and UITableViewDatasource
 #pragma mark-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -99,7 +99,7 @@
     lLabel.textColor = [UIColor darkGrayColor];
     
     UIView* lView = [[UIView alloc] init];
-    lView.backgroundColor = [UIColor clearColor];
+    lView.backgroundColor = [UIColor colorWithRed: 245.0/255.0 green: 245.0/255.0 blue: 245.0/255.0 alpha: 1.0];
     [lView addSubview: lLabel];
     
     CGRect lLblRect = lLabel.frame;

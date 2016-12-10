@@ -111,6 +111,10 @@
 {
     [super viewDidAppear: animated];
     
+    YTPlayerState lState = mPlayerView.playerState;
+    if (lState != kYTPlayerStateUnknown)
+        return;
+    
     [self reloadVideo];
     
     
@@ -187,16 +191,14 @@
     mDisLikeCountLbl.text = self.videoItem.GETotalDisLikes;
     
     if (self.eventType == EFetchEventsLive)
-    {
         mNoOfViewLbl.text = [NSString stringWithFormat: @"Views %ld", self.videoItem.GETotalLiveViewers];
-    }
     
     UIFont* lFont = [UIFont fontWithName: @"HelveticaNeue" size: 15.0];
     CGSize lTitleSize = [self sizeOfString: self.videoItem.GETitle withFont: lFont inContWidth: self.view.frame.size.width - 50.0];
 
     mTitleHeight.constant = lTitleSize.height + 10.0;
     mTitleBaseHeight.constant = lTitleSize.height + 35.0;
-    mDescriptionView.hidden = FALSE;
+    mDescriptionView.hidden = !mIsHeaderExpanded;
     
     CGSize lDislikeCountSize = [self sizeOfString: mDisLikeCountLbl.text withFont: mDisLikeCountLbl.font inContWidth: 80.0];
     mDislikeBaseWidth.constant = lDislikeCountSize.width + 35.0;
@@ -237,18 +239,15 @@
     UIActivityViewController* lActivityVC = [[UIActivityViewController alloc]
                                             initWithActivityItems:lPostItems
                                             applicationActivities:nil];
+    
+    [self presentViewController:lActivityVC animated:YES completion:^{
+        
+    }];
 
     [lActivityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray* retItems, NSError* error)
      {
          if(completed)
          {
-             MBProgressHUD* lHud = [MBProgressHUD showHUDAddedTo:self.view  animated:YES];
-             lHud.mode = MBProgressHUDModeText;
-             lHud.labelText = @"Logged in successfull.";
-             lHud.labelFont = [UIFont fontWithName:@"HelveticaNeue" size:15];
-             lHud.removeFromSuperViewOnHide = YES;
-             lHud.yOffset = CGRectGetMidY(self.view.frame) - 55.0;
-             [lHud hide:YES afterDelay:1];
          }
      }];
 }
@@ -519,33 +518,20 @@
     lCell.statusLabel.hidden = TRUE;
     lCell.alarmBtn.hidden = TRUE;
     lCell.timeLabelMaxX.constant = 0.0;
+    NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
+    lCell.timeLabel.text = lStartOn;
+    
     if (self.eventType == EFetchEventsLive) {
         lCell.statusLabel.text = @"Live";
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else if (self.eventType == EFetchEventsUpcomming) {
         lCell.statusLabel.text = @"Upcomming";
         lCell.videoPlayIcon.image = nil;
         lCell.timeLabelMaxX.constant = -30.0;
-        NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
-        lCell.timeLabel.attributedText = lAttStr;
         lCell.alarmBtn.hidden = FALSE;
     }
     else if (self.eventType == EFetchEventsCompleted) {
         lCell.statusLabel.text = @"Completed";
-        NSString* lEndOn = [[lResult eventEndStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 14.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else
     {
@@ -608,7 +594,7 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 90.0;
     if (self.eventType == EFetchEventsUpcomming) lHeight += 10.0;
     
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);

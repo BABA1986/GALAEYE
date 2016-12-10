@@ -13,10 +13,10 @@
 #import "GELoadingFooter.h"
 #import "UIImage+ImageMask.h"
 #import "GEYoutubeResult.h"
-#import "GEEventCell.h"
 #import "Reachability.h"
 #import "UserDataManager.h"
 #import <Google/SignIn.h>
+#import "SharedReminder.h"
 
 @interface GEVideoListVC ()
 {
@@ -91,9 +91,6 @@
     if (![self checkForInternetConnection])
         return;
     
-    if (mVideoEventType == EFetchEventsPrivate && ![self checkForLoginUser])
-        return;
-    
     if (mVideoEventType == EFetchEventsLiked && ![self checkForLoginUser])
         return;
     
@@ -121,7 +118,7 @@
          mIndicator.hidden = TRUE;
          mRequesting = FALSE;
          
-         if (mVideoEventType == EFetchEventsPrivate || mVideoEventType == EFetchEventsLiked)
+         if (mVideoEventType == EFetchEventsLiked)
              [self showDataNotAvailable];
      }];
 }
@@ -164,11 +161,7 @@
         mFullPageErrView.titleLabel.text = @"Liked Videos";
         mFullPageErrView.descLabel.text = @"Login required to see your liked video.";
     }
-    else if (self.videoEventType == EFetchEventsPrivate)
-    {
-        mFullPageErrView.titleLabel.text = @"Private Videos";
-        mFullPageErrView.descLabel.text = @"Login required to see these private video shared by the content owner to you.";
-    }
+
     mFullPageErrView.iconView.image = [UIImage imageNamed: @"private.png"];
     [mFullPageErrView.actionBtn setTitle: @"Sign In" forState: UIControlStateNormal];
     [mFullPageErrView.actionBtn setImage: nil forState: UIControlStateHighlighted];
@@ -190,11 +183,6 @@
         {
             mFullPageErrView.titleLabel.text = @"Videos Not Found";
             mFullPageErrView.descLabel.text = @"You have no liked videos. Please refresh to get the latest update.";
-        }
-        else if (self.videoEventType == EFetchEventsPrivate)
-        {
-            mFullPageErrView.titleLabel.text = @"Videos Not Found";
-            mFullPageErrView.descLabel.text = @"You have no private shared videos. Please refresh to get the latest update.";
         }
         else
         {
@@ -253,6 +241,7 @@
     static NSString *identifier = @"GEEventCellID";
     
     GEEventCell* lCell = (GEEventCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    lCell.delegate = self;
     lCell.videoPlayIcon.image = [UIImage imageWithName: @"play-Icon.png"];
     
     GEEventManager* lManager = [GEEventManager manager];
@@ -264,36 +253,26 @@
     lCell.statusLabel.hidden = TRUE;
     lCell.alarmBtn.hidden = TRUE;
     lCell.timeLabelMaxX.constant = 0.0;
+    NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
+    lCell.timeLabel.text = lStartOn;
+    
     if (mVideoEventType == EFetchEventsLive)
     {
         lCell.statusLabel.text = @"Live";
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Lived at: %@", lDateStr];
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Lived at:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else if (mVideoEventType == EFetchEventsUpcomming)
     {
         lCell.statusLabel.text = @"Upcomming";
         lCell.videoPlayIcon.image = nil;
         lCell.timeLabelMaxX.constant = -30.0;
-        NSString* lStartOn = [[lResult eventStartStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Will Start: %@", lStartOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Will Start:"]];
-        lCell.timeLabel.attributedText = lAttStr;
         lCell.alarmBtn.hidden = FALSE;
+        
+        SharedReminder* lReminder = [SharedReminder SharedRemider];
+        lCell.alarmBtn.selected = [lReminder isInReminderList: lResult];
     }
     else if (mVideoEventType == EFetchEventsCompleted)
     {
         lCell.statusLabel.text = @"Completed";
-        NSString* lEndOn = [[lResult eventEndStreamDate] dateString];
-        NSString* lNonAttributedStr = [NSString stringWithFormat: @"Completed On: %@", lEndOn];
-        
-        NSMutableAttributedString* lAttStr = [[NSMutableAttributedString alloc] initWithString:lNonAttributedStr];
-        [lAttStr setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size: 12.0]} range:[lNonAttributedStr rangeOfString: @"Completed On:"]];
-        lCell.timeLabel.attributedText = lAttStr;
     }
     else
     {
@@ -359,7 +338,7 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 90.0;
     if (mVideoEventType == EFetchEventsUpcomming) lHeight += 10.0;
     
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);
@@ -428,6 +407,28 @@
     }
     
     [self.navigationController pushViewController: lGEVideoPlayerCtr animated: TRUE];
+}
+
+- (void)didSelectAlarmButtonInCell: (GEEventCell*)eventCell
+{
+    SharedReminder* lSharedReminder = [SharedReminder SharedRemider];
+    NSIndexPath* lPath = [mVideoListView indexPathForCell: eventCell];
+    
+    GEEventManager* lManager = [GEEventManager manager];
+    GEEventListObj* lEventObj = [lManager eventListObjForEventType: mVideoEventType forSource: self.channelSource];
+    GEEventListPage* lEventPage = [lEventObj.eventListPages objectAtIndex: lPath.section];
+    NSObject<GEYoutubeResult>* lSearchResult = [lEventPage.eventList objectAtIndex: lPath.row];
+    
+    if ([lSharedReminder isInReminderList: lSearchResult])
+    {
+        [lSharedReminder deleteReminderVideo: lSearchResult];
+        [lManager removeReminderVideoItem: lSearchResult];
+    }
+    else
+    {
+        [lSharedReminder addReminderVideo: lSearchResult];
+        [lManager addReminderVideoItem: lSearchResult];
+    }
 }
 
 @end

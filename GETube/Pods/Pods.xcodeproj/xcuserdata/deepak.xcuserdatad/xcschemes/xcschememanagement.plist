@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MMDrawerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,17 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>12AC35F9C569FA2A4543EFEDD802D2C9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>13C0548F87978E770BF07D80F168F666</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>37BCFCFBA8937BAA27C1AC0454F6817D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +92,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>78889745395CDA712857DE03944F5710</key>
+		<key>5DA492142DD71BFB17D0061D2BB86F4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74030642508E2E8C107212A6248FCED7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7F2706D536054A9E0F1610E2DF3973D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>98153875EFC06576B7A2A63513686061</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E22B6B293DF628C08F28EE62464C4C69</key>
 		<dict>
 			<key>primary</key>
 			<true/>

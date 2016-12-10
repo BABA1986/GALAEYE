@@ -14,6 +14,7 @@
 #import "GEPlaylistVideoListCtr.h"
 #import "GEVideoListVC.h"
 #import "GEVideoPlayerCtr.h"
+#import "GEReminderVC.h"
 #import "GEMyLikeCtr.h"
 #import "MMDrawerBarButtonItem.h"
 #import "AppDelegate.h"
@@ -197,6 +198,13 @@
                 [(GEVideoPlayerCtr*)lCtr applyTheme];
             }
         }
+        else if ([lCtr isKindOfClass: [GEReminderVC class]])
+        {
+            if ([lCtr respondsToSelector: @selector(applyTheme)])
+            {
+                [(GEReminderVC*)lCtr applyTheme];
+            }
+        }
     }
     
     NSArray* lNavControllers = self.navigationController.viewControllers;
@@ -221,6 +229,13 @@
             if ([lNavCtr respondsToSelector: @selector(applyTheme)])
             {
                 [(GEVideoPlayerCtr*)lNavCtr applyTheme];
+            }
+        }
+        else if ([lNavCtr isKindOfClass: [GEReminderVC class]])
+        {
+            if ([lNavCtr respondsToSelector: @selector(applyTheme)])
+            {
+                [(GEReminderVC*)lNavCtr applyTheme];
             }
         }
     }
@@ -251,8 +266,7 @@
             }
             else if([lPageMenu.subMenuName isEqualToString: @"Popular"]
                     || [lPageMenu.subMenuName isEqualToString: @"Private"]
-                    || [lPageMenu.subMenuName isEqualToString: @"Gala Liked"]
-                    || [lPageMenu.subMenuName isEqualToString: @"Reminders"])
+                    || [lPageMenu.subMenuName isEqualToString: @"My Liked"])
             {
                 GEVideoListVC* lGEVideoListVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEVideoListVCID"];
                 lGEVideoListVC.title = lPageMenu.subMenuName;
@@ -260,14 +274,19 @@
                 lGEVideoListVC.navigationDelegate = self;
                 if([lPageMenu.subMenuName isEqualToString: @"Popular"])
                    lGEVideoListVC.videoEventType = EFetchEventsPopularCompleted;
-                else if([lPageMenu.subMenuName isEqualToString: @"Private"])
-                    lGEVideoListVC.videoEventType = EFetchEventsPrivate;
-                else if([lPageMenu.subMenuName isEqualToString: @"Gala Liked"])
+                else if([lPageMenu.subMenuName isEqualToString: @"My Liked"])
                     lGEVideoListVC.videoEventType = EFetchEventsLiked;
-                else if([lPageMenu.subMenuName isEqualToString: @"Reminders"])
-                    lGEVideoListVC.videoEventType = EFetchEventsReminders;
-                
                 [lPageCtrs addObject: lGEVideoListVC];
+            }
+            else if([lPageMenu.subMenuName isEqualToString: @"Reminders"])
+            {
+                GEReminderVC* lGEReminderVC = [self.storyboard instantiateViewControllerWithIdentifier: @"GEReminderVCID"];
+                lGEReminderVC.title = lPageMenu.subMenuName;
+                lGEReminderVC.channelSource = kGEChannelID;
+                lGEReminderVC.navigationDelegate = self;
+                lGEReminderVC.videoEventType = EFetchEventsReminders;
+                
+                [lPageCtrs addObject: lGEReminderVC];
             }
         }
         else if ([lPageMenu.subMenuType isEqualToString: @"playlist"])

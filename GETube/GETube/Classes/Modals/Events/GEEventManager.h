@@ -16,7 +16,6 @@ typedef enum : NSUInteger {
     EFetchEventsCompleted,
     EFetchEventsUpcomming,
     EFetchEventsPopularCompleted,
-    EFetchEventsPrivate,
     EFetchEventsLiked,
     EFetchEventsReminders,
     EFetchEventsLive,
@@ -66,5 +65,8 @@ typedef enum : NSUInteger {
 
 - (void)likeCachedVideoItem: (NSObject<GEYoutubeResult>*)videoItem;
 - (void)unlikeCachedVideoItem: (NSObject<GEYoutubeResult>*)videoItem;
+
+- (void)addReminderVideoItem: (NSObject<GEYoutubeResult>*)videoItem;
+- (void)removeReminderVideoItem: (NSObject<GEYoutubeResult>*)videoItem;
 
 @end

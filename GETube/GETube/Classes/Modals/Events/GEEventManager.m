@@ -154,7 +154,7 @@
                   forEventType: (FetchEventQueryType)eventQueryType
                      forSource: (NSString*)channelId;
 {
-    if (![response.pageInfo.totalResults integerValue] && (eventQueryType == EFetchEventsPrivate || eventQueryType == EFetchEventsLiked))
+    if (![response.pageInfo.totalResults integerValue] && (eventQueryType == EFetchEventsLiked || eventQueryType == EFetchEventsReminders))
     {
         return;
     }
@@ -221,5 +221,41 @@
     }
 }
 
+- (void)addReminderVideoItem: (NSObject<GEYoutubeResult>*)videoItem
+{
+    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: EFetchEventsReminders forSource: kGEChannelID];
+    GEEventListPage* lLastPage = [lGEEventListObj.eventListPages lastObject];
+    NSMutableArray* lNewList = [[NSMutableArray alloc] initWithArray: lLastPage.eventList];
+    [lNewList addObject: videoItem];
+    lLastPage.eventList = lNewList;
+}
+
+- (void)removeReminderVideoItem: (NSObject<GEYoutubeResult>*)videoItem
+{
+    GEEventListObj* lGEEventListObj = [self eventListObjForEventType: EFetchEventsReminders forSource: kGEChannelID];
+    for (GEEventListPage* lPage in lGEEventListObj.eventListPages)
+    {
+        NSMutableArray* lNewList = [[NSMutableArray alloc] init];
+        BOOL lIsFound = FALSE;
+        
+        for (NSObject<GEYoutubeResult>* lItem in lPage.eventList)
+        {
+            if ([lItem.GEId isEqualToString: videoItem.GEId])
+            {
+                lIsFound = TRUE;
+            }
+            else
+            {
+                [lNewList addObject: lItem];
+            }
+        }
+        
+        if (lIsFound)
+        {
+            lPage.eventList = lNewList;
+            break;
+        }
+    }
+}
 
 @end

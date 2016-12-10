@@ -45,10 +45,6 @@
     mProfileImgView.image = [UIImage imageWithName: @"userprofile.png"];
     [self initialiseFooterItems];
     
-    mProfileImgView.clipsToBounds = YES;
-    mProfileImgView.layer.cornerRadius = mProfileImgView.frame.size.width/2.0;
-
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onSucessfullLogin:)
                                                  name:@"onSucessfullLogin"
@@ -59,6 +55,14 @@
 {
     [super viewWillAppear: animated];
     [GIDSignIn sharedInstance].uiDelegate = self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear: animated];
+    
+    mProfileImgView.clipsToBounds = YES;
+    mProfileImgView.layer.cornerRadius = mProfileImgView.frame.size.width/2.0;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

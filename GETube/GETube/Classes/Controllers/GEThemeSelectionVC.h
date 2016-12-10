@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface GEThemeSelectionVC : UIViewController
+{
+    IBOutlet UICollectionView*          mThemeListView;
+    IBOutlet UIPageControl*             mPageControl;
+}
 
 @end

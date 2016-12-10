@@ -12,8 +12,9 @@
 #import "GEEventManager.h"
 #import "GENavigatorProtocol.h"
 #import "GEFullScreenAlert.h"
+#import "GEEventCell.h"
 
-@interface GEVideoListVC : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GEVideoListVC : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, GEEventCellDelegate>
 {
     IBOutlet UICollectionView*      mVideoListView;
     IBOutlet GEFullScreenAlert*     mFullPageErrView;

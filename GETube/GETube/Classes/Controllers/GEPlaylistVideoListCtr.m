@@ -146,12 +146,12 @@
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];
     GEVideoListObj* lListObject =  [lSharedList videoListObjForChannelSource: [self.fromPlayList GEId]];
     GEVideoListPage* lGEVideoListPage = [lListObject.videoListPages objectAtIndex: indexPath.section];
-    
-    GTLYouTubePlaylistItem* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
-    NSURL* lThumbUrl = [NSURL URLWithString: lVideo.snippet.thumbnails.medium.url];
+    NSObject <GEYoutubeResult>* lVideo = [lGEVideoListPage.videoList objectAtIndex: indexPath.row];
+    NSURL* lThumbUrl = [NSURL URLWithString: [lVideo GEThumbnailUrl]];
     [lCell loadVideoThumbFromUrl: lThumbUrl];
-    lCell.timeLabel.text = [lVideo.snippet.publishedAt.date dateTimeAgo];
-    lCell.titleLabel.text = lVideo.snippet.title;
+    NSString* lDateStr = [[lVideo GEPublishedAt] dateString];
+    lCell.timeLabel.text = lDateStr;
+    lCell.titleLabel.text = lVideo.GETitle;
     return lCell;
 }
 
@@ -246,7 +246,7 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat lWidth = self.view.bounds.size.width/2 - 3.0;
-    CGFloat lHeight = 9.0*lWidth/16.0 + 80.0;
+    CGFloat lHeight = 9.0*lWidth/16.0 + 90.0;
     CGSize lItemSize = CGSizeMake(lWidth, lHeight);
     
     GESharedVideoList* lSharedList = [GESharedVideoList sharedVideoList];

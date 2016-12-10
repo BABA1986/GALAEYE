@@ -20,6 +20,7 @@
 @synthesize videoIcon;
 @synthesize videoPlayIcon;
 @synthesize alarmBtn;
+@synthesize delegate = mDelegate;
 
 - (void)layoutSubviews
 {
@@ -75,6 +76,11 @@
 {
     UIButton* lAlarmBtn = (UIButton*)sender;
     lAlarmBtn.selected = !lAlarmBtn.selected;
+    
+    if(mDelegate && [mDelegate respondsToSelector: @selector(didSelectAlarmButtonInCell:)])
+    {
+        [mDelegate didSelectAlarmButtonInCell: self];
+    }
 }
 
 @end

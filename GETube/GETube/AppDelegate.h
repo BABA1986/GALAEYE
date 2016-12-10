@@ -38,6 +38,5 @@
 - (NSURL*)applicationDocumentsDirectory;
 - (void)openCloseLeftMenuDrawer;
 
-
 @end
 

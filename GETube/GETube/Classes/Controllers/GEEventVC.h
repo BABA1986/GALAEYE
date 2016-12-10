@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GEEventHeader.h"
+#import "GEEventCell.h"
 #import "DGActivityIndicatorView.h"
 #import "GENavigatorProtocol.h"
 
 @class GEFullScreenAlert;
-@interface GEEventVC : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GEEventHeaderDelegate>
+@interface GEEventVC : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, GEEventHeaderDelegate, GEEventCellDelegate>
 {
     IBOutlet UICollectionView*          mEventListView;
     DGActivityIndicatorView*            mIndicator;
