@@ -323,8 +323,8 @@
                    GTLYouTubeVideoListResponse* lResponse = (GTLYouTubeVideoListResponse*)object;
                    lResponse.nextPageToken = lResult.nextPageToken;
                    lResponse.prevPageToken = lResult.prevPageToken;
-                  [lManager addEventSearchResponse: lResponse forEventType: queryType forSource: kGEChannelID];
-                  finishCallback(queryType);
+                   [lManager addEventSearchResponse: lResponse forEventType: queryType forSource: kGEChannelID];
+                   finishCallback(queryType);
                }];
           }];
      }];

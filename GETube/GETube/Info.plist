@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.526568270970-0bsj2j844rdd9tjchbbj8ul7t8pb8f6j</string>
+				<string>com.googleusercontent.apps.526568270970-6o0kpo4rsb8jg9bce36ca5d2nlspm4dl</string>
 			</array>
 		</dict>
 	</array>
@@ -71,6 +71,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Used to Save Events</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Used to Save Reminder</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -90,9 +94,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Used to Save Events</string>
-	<key>NSRemindersUsageDescription</key>
-	<string>Used to Save Reminder</string>
 </dict>
 </plist>

@@ -26,7 +26,7 @@
 #define kDefaultTitleColor [UIColor whiteColor]
 
 //#define kGEChannelID        @"UCYANsgh-rW4bFPsZlgK827A"
-#define kGEChannelID        @"UCT_QwW7Tbew5qrYNb2auqAQ"
+#define kGEChannelID        @"TheSanskarGroup"
 //#define kGEChannelID        @"UCddiUEpeqJcYeBxX1IVBKvQ"
 
 #define kGEAPIKey           @"AIzaSyAIqCjqiB_ryEhhL-gEQdiNBd0tWRemJNg"

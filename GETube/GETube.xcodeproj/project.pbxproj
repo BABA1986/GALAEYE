@@ -316,6 +316,7 @@
 		00BE6BE21D1540A50019D907 /* GETubeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GETubeUITests.m; sourceTree = "<group>"; };
 		00BE6BE41D1540A50019D907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00C84C641D5F9031000DD01B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		00D27F341E6058250074230D /* NSString_CSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_CSString.h; sourceTree = "<group>"; };
 		00DF23B31D486EC00073E86F /* back_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_white.png; sourceTree = "<group>"; };
 		00EF75C91DB370CB007B9EF3 /* GESelectFromListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GESelectFromListVC.h; sourceTree = "<group>"; };
 		00EF75CA1DB370CB007B9EF3 /* GESelectFromListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GESelectFromListVC.m; sourceTree = "<group>"; };
@@ -756,6 +757,7 @@
 				00FB3E551DA8194800D5B8CF /* RESideMenu.m */,
 				00FB3E561DA8194800D5B8CF /* UIViewController+RESideMenu.h */,
 				00FB3E571DA8194800D5B8CF /* UIViewController+RESideMenu.m */,
+				00D27F341E6058250074230D /* NSString_CSString.h */,
 			);
 			path = ResideMenu;
 			sourceTree = "<group>";
@@ -1304,8 +1306,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.crescerance.Embr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6283d207-aa43-4139-8c35-970323e402cc";
-				PROVISIONING_PROFILE_SPECIFIER = "APP Delivery 19.4 iOS Provisioning Profile: *";
+				PROVISIONING_PROFILE = "02a0c686-27be-4312-8aaf-d9d4c5dbac28";
+				PROVISIONING_PROFILE_SPECIFIER = Embr_Development_Sprint20;
 			};
 			name = Debug;
 		};
